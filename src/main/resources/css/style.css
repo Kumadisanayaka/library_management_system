@@ -1,0 +1,143 @@
+/* ==============================
+   SIDEBAR
+   ============================== */
+
+.sidebar {
+    -fx-background-color: #F8FAFC;
+    -fx-padding: 20px 12px;
+    -fx-spacing: 10px;
+}
+
+
+/* ==============================
+   SIDEBAR BUTTONS
+   ============================== */
+
+.sidebar .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #334155;
+
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10px 15px;
+
+    -fx-cursor: hand;
+}
+
+
+/* ==============================
+   BUTTON HOVER
+   ============================== */
+
+.sidebar .button:hover {
+    -fx-background-color: #E0F2FE;
+    -fx-text-fill: #2563EB;
+    -fx-border-color: #93C5FD;
+}
+
+
+/* ==============================
+   BUTTON PRESSED
+   ============================== */
+
+.sidebar .button:pressed {
+    -fx-background-color: #BFDBFE;
+    -fx-text-fill: #1D4ED8;
+}
+
+
+/* ==============================
+   BUTTON FOCUS
+   ============================== */
+
+.sidebar .button:focused {
+    -fx-background-insets: 0;
+}
+
+
+/* ==============================
+   MAIN AREA
+   ============================== */
+
+.main-content {
+    -fx-background-color: #FFFFFF;
+}
+
+
+/* ==============================
+   TITLE
+   ============================== */
+
+.title {
+    -fx-text-fill: #1E293B;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* DASHBOARD CARDS */
+.card {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+
+    -fx-padding: 18px;
+    -fx-spacing: 8px;
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-pref-width: 220px;
+    -fx-pref-height: 130px;
+}
+
+.card-title {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.card-value {
+    -fx-text-fill: #1E293B;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+/* CARD HOVER EFFECT */
+.card:hover {
+    -fx-background-color: #F0F9FF;
+    -fx-border-color: #93C5FD;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(37, 99, 235, 0.15),
+        10,
+        0.2,
+        0,
+        3
+    );
+}
+
+/* MAIN HEADER */
+.main-header {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20px 25px;
+    -fx-spacing: 12px;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* DASHBOARD GRID */
+
+.dashboard-grid {
+    -fx-background-color: #F8FAFC;
+    -fx-padding: 25px;
+    -fx-hgap: 20px;
+    -fx-vgap: 20px;
+    -fx-alignment: CENTER;
+}
