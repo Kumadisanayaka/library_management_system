@@ -49,6 +49,7 @@ public class Login_page_controller {
                 throw new RuntimeException(e);
             }
             stage.show();
+            stage.setTitle("Main Dashboard");
 
             Stage loginstage = (Stage) btnlogin.getScene().getWindow();
 
@@ -64,6 +65,9 @@ public class Login_page_controller {
     @FXML
     void resetOnAction(ActionEvent event) {
 
+        txtusername.setText("");
+        txtpassword.setText("");
+        // TODO document why this method is empty
     }
 
 }
