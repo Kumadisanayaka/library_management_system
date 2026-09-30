@@ -22,7 +22,7 @@
       <Label fx:id="lblpassword" layoutX="50.0" layoutY="170.0" text="Password" />
       <PasswordField fx:id="txtpassword" layoutX="114.0" layoutY="166.0" prefHeight="26.0" prefWidth="184.0" />
       <Button fx:id="btnlogin" layoutX="50.0" layoutY="250.0" mnemonicParsing="false" onAction="#loginOnAction" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #F15025;" text="Login" textFill="WHITE" />
-      <Button fx:id="btnreset" layoutX="205.0" layoutY="250.0" mnemonicParsing="false" onAction="#resetOnAction" prefHeight="26.0" prefWidth="89.0" text="Reset" />
+      <Button fx:id="btnreset" layoutX="205.0" layoutY="250.0" mnemonicParsing="false" onAction="#resetOnAction" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #7D9C65;" text="Reset" textFill="WHITE" />
       <Label fx:id="lblerror" layoutX="50.0" layoutY="214.0" prefHeight="18.0" prefWidth="221.0" textFill="#ff2424" />
       <ImageView fitHeight="228.0" fitWidth="222.0" layoutX="354.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
          <image>

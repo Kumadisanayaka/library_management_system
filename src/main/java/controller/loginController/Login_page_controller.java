@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Login_page_controller {
 
-    Login_controller loginController = new Login_controller();
+    Login_controller login_Controller = new Login_controller();
 
     @FXML
     private Button btnlogin;
@@ -40,7 +40,7 @@ public class Login_page_controller {
     @FXML
     void loginOnAction(ActionEvent event) {
 
-        if (loginController.checkUsernameAndPassword(txtusername.getText(),txtpassword.getText())){
+        if (login_Controller.checkUsernameAndPassword(txtusername.getText(),txtpassword.getText())){
             lblerror.setText("");
             Stage stage = new Stage();
             try {
@@ -67,7 +67,7 @@ public class Login_page_controller {
 
         txtusername.setText("");
         txtpassword.setText("");
-        // TODO document why this method is empty
+
     }
 
 }
