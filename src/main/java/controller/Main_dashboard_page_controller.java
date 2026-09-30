@@ -2,8 +2,13 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Main_dashboard_page_controller {
 
@@ -42,6 +47,18 @@ public class Main_dashboard_page_controller {
 
     @FXML
     void addBookOnAction(ActionEvent event) {
+
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/add_book_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+        stage.setTitle("Add Book");
+
+        Stage dashboardStage = (Stage) btnAddBook.getScene().getWindow();
+        dashboardStage.close();
 
     }
 
