@@ -65,6 +65,19 @@ public class Main_dashboard_page_controller {
     @FXML
     void addMemberOnAction(ActionEvent event) {
 
+        Stage stage = new Stage();
+
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/add_member_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+        stage.setTitle("Add Member");
+
+        Stage dashboardStage = (Stage) btnAddMember.getScene().getWindow();
+        dashboardStage.close();
+
     }
 
     @FXML
