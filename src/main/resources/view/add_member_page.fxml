@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
 
+<AnchorPane prefHeight="827.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Add_member_page_controller">
+   <children>
+      <VBox layoutX="-2.0" prefHeight="827.0" prefWidth="722.0" styleClass="add-member-page" stylesheets="@../css/style.css">
+         <children>
+            <Label alignment="CENTER" prefHeight="76.0" prefWidth="722.0" style="-fx-background-color: #FFF2A0;" styleClass="add-member-title" stylesheets="@../css/style.css" text="Add New Member">
+               <font>
+                  <Font name="Arial Black" size="30.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="645.0" prefWidth="662.0" styleClass="member-form" stylesheets="@../css/style.css">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="102.0" text="Member ID" />
+                  <TextField fx:id="txtMemberId" />
+                  <Label layoutX="36.0" layoutY="36.0" prefHeight="20.0" prefWidth="102.0" text="Full Name" />
+                  <TextField fx:id="txtFullname" layoutX="36.0" layoutY="72.0" />
+                  <Label layoutX="36.0" layoutY="128.0" prefHeight="20.0" prefWidth="102.0" text="Email" />
+                  <TextField fx:id="txtEmail" layoutX="36.0" layoutY="163.0" />
+                  <Label layoutX="36.0" layoutY="219.0" prefHeight="20.0" prefWidth="102.0" text="Phone Number" />
+                  <TextField fx:id="txtPhoneNumber" layoutX="36.0" layoutY="254.0" />
+                  <Label layoutX="36.0" layoutY="310.0" prefHeight="20.0" prefWidth="102.0" text="Address" />
+                  <TextField fx:id="txtAddress" layoutX="36.0" layoutY="345.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="member-button-container" stylesheets="@../css/style.css">
+                     <children>
+                        <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#addMemberOnAction" styleClass="add-member-btn" stylesheets="@../css/style.css" text="Add Member " />
+                        <Button fx:id="btnClear" mnemonicParsing="false" onAction="#clearOnAction" styleClass="member-clear-btn" stylesheets="@../css/style.css" text="Clear" />
+                        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backOnAction" styleClass="member-back-btn" stylesheets="@../css/style.css" text="Back" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
