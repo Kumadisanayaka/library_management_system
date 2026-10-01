@@ -1,4 +1,4 @@
-package controller;
+package controller.addBookController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -174,6 +174,17 @@ public class Add_book_page_controller implements Initializable {
 
     @FXML
     void backOnAction(ActionEvent event) {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_dashboard_page.fxml"));
+
+        try {
+            Parent root = loader.load();
+            Stage stage = (Stage) txtBookId.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

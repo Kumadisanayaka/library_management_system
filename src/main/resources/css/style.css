@@ -291,3 +291,161 @@
     -fx-padding: 15px 0 0 0;
     -fx-alignment: CENTER_LEFT;
 }
+
+/* ADD MEMBER PAGE */
+
+.add-member-page {
+    -fx-background-color: #F8FAFC;
+    -fx-padding: 30px;
+}
+
+/* PAGE TITLE */
+
+.add-member-title {
+    -fx-text-fill: #1E293B;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+
+/* MEMBER FORM */
+
+.member-form {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 25px;
+    -fx-spacing: 15px;
+
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(15, 23, 42, 0.08),
+        8,
+        0.2,
+        0,
+        3
+    );
+}
+
+
+/* FORM LABELS */
+
+.member-form .label {
+    -fx-text-fill: #334155;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+
+/* TEXT FIELDS */
+
+.member-form .text-field {
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+
+    -fx-padding: 9px 12px;
+    -fx-font-size: 14px;
+}
+
+
+/* TEXT FIELD FOCUS */
+
+.member-form .text-field:focused {
+    -fx-border-color: #60A5FA;
+    -fx-background-color: #F8FAFC;
+}
+
+
+/* BUTTON CONTAINER */
+
+.member-button-container {
+    -fx-spacing: 12px;
+    -fx-padding: 15px 0 0 0;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+/* ADD MEMBER BUTTON */
+
+.add-member-btn {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: #FFFFFF;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 10px 20px;
+
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+
+    -fx-cursor: hand;
+}
+
+.add-member-btn:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+.add-member-btn:pressed {
+    -fx-background-color: #1E40AF;
+}
+
+
+/* CLEAR BUTTON */
+
+.member-clear-btn {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #475569;
+
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 10px 20px;
+
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+
+    -fx-cursor: hand;
+}
+
+.member-clear-btn:hover {
+    -fx-background-color: #F1F5F9;
+}
+
+
+/* BACK BUTTON */
+
+.member-back-btn {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #475569;
+
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 10px 20px;
+
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+
+    -fx-cursor: hand;
+}
+
+.member-back-btn:hover {
+    -fx-background-color: #F1F5F9;
+    -fx-border-color: #94A3B8;
+}

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="334.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Add_book_page_controller">
+<AnchorPane prefHeight="334.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addBookController.Add_book_page_controller">
    <children>
       <VBox prefHeight="425.0" prefWidth="656.0" styleClass="add-book-page" stylesheets="@../css/style.css">
          <children>
@@ -25,9 +25,9 @@
                   <Label layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="106.0" text="Book Title" />
                   <TextField fx:id="txtBookTitle" layoutX="10.0" layoutY="28.0" />
                   <Label layoutX="36.0" layoutY="128.0" prefHeight="18.0" prefWidth="106.0" text="Author" />
-                  <TextField fx:id="txtAuthor" layoutX="36.0" layoutY="163.0" />
+                  <TextField fx:id="txtAuthor" layoutX="36.0" layoutY="163.0" prefHeight="41.0" prefWidth="327.0" />
                   <Label layoutX="36.0" layoutY="219.0" prefHeight="18.0" prefWidth="106.0" text="Category" />
-                  <TextField fx:id="txtCategory" layoutX="36.0" layoutY="254.0" />
+                  <ComboBox fx:id="cbCategory" editable="true" prefHeight="27.0" prefWidth="539.0" promptText="Select Category" />
                   <Label layoutX="36.0" layoutY="310.0" prefHeight="18.0" prefWidth="106.0" text="Published Year" />
                   <TextField fx:id="txtPublishedYear" layoutX="36.0" layoutY="345.0" />
                   <Label layoutX="36.0" layoutY="401.0" prefHeight="18.0" prefWidth="106.0" text="Quantity" />
