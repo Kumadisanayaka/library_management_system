@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
 
+<AnchorPane prefHeight="575.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Issue_page_controller">
+   <children>
+      <VBox prefHeight="591.0" prefWidth="754.0" styleClass="issue-book-page" stylesheets="@../css/style.css">
+         <children>
+            <VBox prefHeight="110.0" prefWidth="774.0" style="-fx-background-color: #FFF2A0;" styleClass="main-header">
+               <children>
+                  <Label styleClass="issue-book-title" text="Issue Book" />
+                  <Label styleClass="issue-book-subtitle" text="Issue a book to a registered member" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="363.0" prefWidth="694.0" styleClass="issue-book-form">
+               <children>
+                  <Label text="Select Member" />
+                  <ComboBox fx:id="cboxSelectMember" prefWidth="150.0" promptText="Select Member" styleClass="member-combo-box" stylesheets="@../css/style.css" />
+                  <Label layoutX="36.0" layoutY="36.0" text="Select Book" />
+                  <ComboBox fx:id="cboxSelectBook" layoutX="36.0" layoutY="72.0" prefWidth="150.0" promptText="Select Book" styleClass="book-combo-box" stylesheets="@../css/style.css" />
+                  <Label layoutX="36.0" layoutY="118.0" text="Issue Date" />
+                  <DatePicker fx:id="datePickerIssue" styleClass="issue-date-picker" />
+                  <Label layoutX="36.0" layoutY="200.0" text="Due Date" />
+                  <DatePicker fx:id="datePickerDue" layoutX="36.0" layoutY="235.0" styleClass="due-date-picker" stylesheets="@../css/style.css" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="issue-button-container">
+                     <children>
+                        <Button fx:id="issueBtn" mnemonicParsing="false" onAction="#issueBtnOnAction" prefHeight="41.0" prefWidth="138.0" styleClass="issue-book-btn" text="Issue" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
 
+<AnchorPane prefHeight="565.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Borrowing_history_page_controller">
+   <children>
+      <BorderPane prefHeight="566.0" prefWidth="793.0" styleClass="borrowing-page" stylesheets="@../css/style.css">
+         <top>
+            <HBox prefHeight="97.0" prefWidth="794.0" style="-fx-background-color: #FFF2A0;" styleClass="top-bar" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Label styleClass="page-title" stylesheets="@../css/style.css" text="Borrowing History " />
+                  <Region prefHeight="67.0" prefWidth="467.0" />
+                  <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backBtnOnAction" styleClass="member-back-btn" text="Back" />
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="content-area" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Label styleClass="main-heading" text="Borrowing History  " />
+                  <Label styleClass="description-label" text="View all borrowing records" />
+                  <HBox prefHeight="58.0" prefWidth="733.0" styleClass="search-section">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="49.0" styleClass="info-label" text="Search" />
+                        <TextField fx:id="searchTxt" onAction="#searchTxtOnAction" prefHeight="42.0" prefWidth="630.0" promptText=" Search by Member ID or Book Title  " styleClass="search-field" />
+                     </children>
+                  </HBox>
+                  <TableView prefHeight="200.0" prefWidth="200.0" styleClass="history-table">
+                    <columns>
+                      <TableColumn fx:id="memberIdCol" prefWidth="75.0" text="Member ID" />
+                      <TableColumn fx:id="bookTitleCol" prefWidth="227.99999237060547" text="Book Title" />
+                        <TableColumn fx:id="issueDateCol" prefWidth="108.0" text="Issue Date" />
+                        <TableColumn fx:id="dueDateCol" prefWidth="97.5999755859375" text="Due Date" />
+                        <TableColumn fx:id="returnDateCol" prefWidth="110.39999389648438" text="Return Date" />
+                        <TableColumn fx:id="statusCol" prefWidth="112.7999267578125" text="Status" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
 </AnchorPane>
