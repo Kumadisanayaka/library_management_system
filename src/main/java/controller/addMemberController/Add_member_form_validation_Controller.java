@@ -1,4 +1,4 @@
-package controller;
+package controller.addMemberController;
 
 public class Add_member_form_validation_Controller {
 
