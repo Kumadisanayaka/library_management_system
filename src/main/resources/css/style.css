@@ -449,3 +449,707 @@
     -fx-background-color: #F1F5F9;
     -fx-border-color: #94A3B8;
 }
+
+/* ================================
+   MANAGE MEMBERS PAGE
+   ================================ */
+
+.members-page {
+    -fx-background-color: #F8FAFC;
+    -fx-padding: 30px;
+}
+
+
+/* ================================
+   HEADER
+   ================================ */
+
+.members-header {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20px 25px;
+    -fx-spacing: 8px;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.main-title {
+    -fx-text-fill: #1E293B;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.main-subtitle {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 13px;
+}
+
+
+/* ================================
+   SEARCH
+   ================================ */
+
+.search-container {
+    -fx-spacing: 10px;
+    -fx-padding: 20px 0;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.search-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 12px;
+    -fx-font-size: 14px;
+    -fx-margin: 10px;
+}
+
+.search-field:focused {
+    -fx-border-color: #60A5FA;
+}
+
+.search-btn {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.search-btn:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+.search-btn:pressed {
+    -fx-background-color: #1E40AF;
+}
+
+
+/* ================================
+   TABLE
+   ================================ */
+
+.member-table {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.member-table .column-header-background {
+    -fx-background-color: #F1F5F9;
+}
+
+.member-table .column-header {
+    -fx-background-color: #F1F5F9;
+    -fx-border-color: #E2E8F0;
+}
+
+.member-table .column-header .label {
+    -fx-text-fill: #334155;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.member-table .table-cell {
+    -fx-text-fill: #475569;
+    -fx-font-size: 13px;
+    -fx-padding: 10px;
+}
+
+.member-table .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #F1F5F9 transparent;
+}
+
+.member-table .table-row-cell:hover {
+    -fx-background-color: #F8FAFC;
+}
+
+.member-table .table-row-cell:selected {
+    -fx-background-color: #E0F2FE;
+}
+
+.member-table .table-row-cell:selected .text {
+    -fx-fill: #1E40AF;
+}
+
+
+/* ================================
+   ACTION BUTTONS
+   ================================ */
+
+.member-action-container {
+    -fx-spacing: 12px;
+    -fx-padding: 15px 0 0 0;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+/* EDIT MEMBER */
+
+.edit-member-btn {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.edit-member-btn:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+.edit-member-btn:pressed {
+    -fx-background-color: #1E40AF;
+}
+
+
+/* DELETE MEMBER */
+
+.delete-member-btn {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #DC2626;
+    -fx-border-color: #FCA5A5;
+    -fx-border-width: 1px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.delete-member-btn:hover {
+    -fx-background-color: #FEF2F2;
+    -fx-border-color: #EF4444;
+}
+
+.delete-member-btn:pressed {
+    -fx-background-color: #FEE2E2;
+}
+
+/* ================================
+   ISSUE BOOK PAGE
+   ================================ */
+
+.issue-book-page {
+    -fx-background-color: #F8FAFC;
+    -fx-padding: 30px;
+}
+
+
+/* ================================
+   TITLE
+   ================================ */
+
+.issue-book-title {
+    -fx-text-fill: #1E293B;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.issue-book-subtitle {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 13px;
+}
+
+
+/* ================================
+   FORM
+   ================================ */
+
+.issue-book-form {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 25px;
+    -fx-spacing: 15px;
+
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(15, 23, 42, 0.08),
+        8,
+        0.2,
+        0,
+        3
+    );
+}
+
+
+/* ================================
+   LABELS
+   ================================ */
+
+.issue-book-form .label {
+    -fx-text-fill: #334155;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+
+/* ================================
+   COMBO BOX
+   ================================ */
+
+.member-combo-box,
+.book-combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+
+    -fx-font-size: 14px;
+}
+
+.member-combo-box:focused,
+.book-combo-box:focused {
+    -fx-border-color: #60A5FA;
+}
+
+
+/* ================================
+   DATE PICKER
+   ================================ */
+
+.issue-date-picker,
+.due-date-picker {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+
+    -fx-font-size: 14px;
+}
+
+.issue-date-picker:focused,
+.due-date-picker:focused {
+    -fx-border-color: #60A5FA;
+}
+
+
+/* ================================
+   BUTTON CONTAINER
+   ================================ */
+
+.issue-button-container {
+    -fx-spacing: 12px;
+    -fx-padding: 15px 0 0 0;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+/* ================================
+   ISSUE BOOK BUTTON
+   ================================ */
+
+.issue-book-btn {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: #FFFFFF;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 10px 22px;
+
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+
+    -fx-cursor: hand;
+}
+
+.issue-book-btn:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+.issue-book-btn:pressed {
+    -fx-background-color: #1E40AF;
+}
+
+
+/* =========================================
+   MAIN PAGE
+   ========================================= */
+
+.return-page {
+    -fx-background-color: #f5f6fa;
+}
+
+
+/* =========================================
+   TOP BAR
+   ========================================= */
+
+.top-bar {
+    -fx-background-color: white;
+    -fx-padding: 15 25 15 25;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.back-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #555555;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.back-btn:hover {
+    -fx-text-fill: #000000;
+}
+
+.page-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222222;
+}
+
+
+/* =========================================
+   CENTER CONTENT
+   ========================================= */
+
+.content-area {
+    -fx-padding: 30;
+    -fx-spacing: 15;
+    -fx-alignment: TOP_CENTER;
+}
+
+
+/* =========================================
+   ALL LABELS
+   ========================================= */
+
+.info-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+
+/* =========================================
+   DESCRIPTION
+   ========================================= */
+
+.description-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #777777;
+}
+
+
+/* =========================================
+   SEARCH SECTION
+   ========================================= */
+
+.search-section {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-border-color: #e1e1e1;
+    -fx-border-width: 1;
+}
+
+.search-field {
+    -fx-background-color: #fafafa;
+    -fx-border-color: #d5d5d5;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+
+.search-field:focused {
+    -fx-border-color: #4a6cf7;
+}
+
+
+/* =========================================
+   INFORMATION CARD
+   ========================================= */
+
+.info-card {
+    -fx-background-color: white;
+    -fx-padding: 25;
+    -fx-border-color: #e1e1e1;
+    -fx-border-width: 1;
+}
+
+
+/* =========================================
+   GRID PANE
+   ========================================= */
+
+.info-grid {
+    -fx-hgap: 20;
+    -fx-vgap: 15;
+}
+
+
+/* =========================================
+   INFORMATION FIELDS
+   ========================================= */
+
+.info-field {
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1;
+    -fx-padding: 9;
+    -fx-font-size: 14px;
+}
+
+.info-field:focused {
+    -fx-border-color: #4a6cf7;
+}
+
+
+/* =========================================
+   RETURN DATE
+   ========================================= */
+
+.return-date {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-font-size: 14px;
+}
+
+.return-date:focused {
+    -fx-border-color: #4a6cf7;
+}
+
+
+/* =========================================
+   STATUS
+   ========================================= */
+
+.status-container {
+    -fx-spacing: 8;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.status-normal {
+    -fx-text-fill: #2e7d32;
+    -fx-font-weight: bold;
+}
+
+.status-overdue {
+    -fx-text-fill: #d32f2f;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================
+   RETURN BUTTON
+   ========================================= */
+
+.return-btn {
+    -fx-background-color: #4a6cf7;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 11 30 11 30;
+    -fx-cursor: hand;
+}
+
+.return-btn:hover {
+    -fx-background-color: #3858d6;
+}
+
+.return-btn:pressed {
+    -fx-background-color: #2f49b5;
+}
+
+/* =========================================
+   BORROWING HISTORY PAGE
+   ========================================= */
+
+.borrowing-page {
+    -fx-background-color: #f5f6fa;
+}
+
+
+/* =========================================
+   TOP BAR
+   ========================================= */
+
+.top-bar {
+    -fx-background-color: white;
+    -fx-padding: 15 25 15 25;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.back-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #555555;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.back-btn:hover {
+    -fx-text-fill: #000000;
+}
+
+.page-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222222;
+}
+
+
+/* =========================================
+   CENTER CONTENT
+   ========================================= */
+
+.content-area {
+    -fx-padding: 30;
+    -fx-spacing: 15;
+    -fx-alignment: TOP_CENTER;
+}
+
+
+/* =========================================
+   HEADINGS & LABELS
+   ========================================= */
+
+.main-heading {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222222;
+}
+
+.description-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #777777;
+}
+
+.info-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+
+/* =========================================
+   SEARCH SECTION
+   ========================================= */
+
+.search-section {
+    -fx-background-color: white;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-color: #e1e1e1;
+    -fx-border-width: 1;
+}
+
+.search-field {
+    -fx-background-color: #fafafa;
+    -fx-border-color: #d5d5d5;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+
+.search-field:focused {
+    -fx-border-color: #4a6cf7;
+}
+
+
+/* =========================================
+   TABLE
+   ========================================= */
+
+.history-table {
+    -fx-background-color: white;
+    -fx-border-color: #e1e1e1;
+    -fx-border-width: 1;
+    -fx-font-size: 13px;
+}
+
+
+/* =========================================
+   TABLE HEADER
+   ========================================= */
+
+.history-table .column-header-background {
+    -fx-background-color: #f1f2f6;
+}
+
+.history-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: #e1e1e1;
+    -fx-border-width: 0 1 1 0;
+}
+
+.history-table .column-header .label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================
+   TABLE ROWS
+   ========================================= */
+
+.history-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #eeeeee transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.history-table .table-row-cell:hover {
+    -fx-background-color: #f5f7ff;
+}
+
+.history-table .table-row-cell:selected {
+    -fx-background-color: #e8ecff;
+}
+
+
+/* =========================================
+   TABLE CELLS
+   ========================================= */
+
+.history-table .table-cell {
+    -fx-text-fill: #444444;
+    -fx-padding: 10 8 10 8;
+}
+
+
+/* =========================================
+   STATUS STYLES
+   ========================================= */
+
+.status-borrowed {
+    -fx-text-fill: #4a6cf7;
+    -fx-font-weight: bold;
+}
+
+.status-returned {
+    -fx-text-fill: #2e7d32;
+    -fx-font-weight: bold;
+}
+
+.status-overdue {
+    -fx-text-fill: #d32f2f;
+    -fx-font-weight: bold;
+}
