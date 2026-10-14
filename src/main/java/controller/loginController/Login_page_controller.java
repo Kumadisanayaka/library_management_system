@@ -3,70 +3,54 @@ package controller.loginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jdk.management.jfr.FlightRecorderMXBean;
 
 import java.io.IOException;
 
 public class Login_page_controller {
 
-    Login_controller login_Controller = new Login_controller();
+    Login_controller login_controller = new Login_controller();
+
 
     @FXML
-    private Button btnlogin;
+    private Button btnLogin;
 
     @FXML
-    private Button btnreset;
+    private Label lblErrorMsg;
 
     @FXML
-    private Label lblerror;
+    private PasswordField txtPassword;
 
     @FXML
-    private Label lblpassword;
+    private TextField txtUsername;
 
     @FXML
-    private Label lbluname;
+    void btnLoginOnAction(ActionEvent event) {
 
-    @FXML
-    private PasswordField txtpassword;
+        if (login_controller.checkUsernameAndPassword(txtUsername.getText(),txtPassword.getText())){
 
-    @FXML
-    private TextField txtusername;
+            FXMLLoader  loader = new FXMLLoader(getClass().getResource("/view/main_dashboard_page.fxml"));
 
-    @FXML
-    void loginOnAction(ActionEvent event) {
-
-        if (login_Controller.checkUsernameAndPassword(txtusername.getText(),txtpassword.getText())){
-            lblerror.setText("");
-            Stage stage = new Stage();
             try {
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/main_dashboard_page.fxml"))));
+                Parent root = loader.load();
+                Stage stage = (Stage) btnLogin.getScene().getWindow();
+
+                stage.setScene(new Scene(root));
+                stage.setTitle("Main Dashboard");
+                stage.centerOnScreen();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            stage.show();
-            stage.setTitle("Main Dashboard");
 
-            Stage loginstage = (Stage) btnlogin.getScene().getWindow();
 
-            loginstage.close();
-
-        }else{
-            lblerror.setText("Your entered invalid username or password");
         }
-
-
-    }
-
-    @FXML
-    void resetOnAction(ActionEvent event) {
-
-        txtusername.setText("");
-        txtpassword.setText("");
 
     }
 

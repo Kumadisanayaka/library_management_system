@@ -2,31 +2,30 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class Main_dashboard_page_controller {
-
-    @FXML
-    private Button btnAddBook;
 
     @FXML
     private Button btnAddMember;
 
     @FXML
-    private Button btnBorrowingHistory;
+    private Button btnAddbook;
+
+    @FXML
+    private Button btnDashboard;
+
+    @FXML
+    private Button btnHistory;
 
     @FXML
     private Button btnIssueBook;
 
     @FXML
-    private Button btnLogOut;
+    private Button btnLogout;
 
     @FXML
     private Button btnManageMembers;
@@ -35,138 +34,80 @@ public class Main_dashboard_page_controller {
     private Button btnReturnBook;
 
     @FXML
-    private Label lblBorrowodBooksCount;
+    private Button btnViewBooks;
 
     @FXML
-    private Label lblOverdueCount;
+    private TableColumn<?, ?> clmBookTitle;
 
     @FXML
-    private Label lblTotalBooksCount;
+    private TableColumn<?, ?> clmDueDate;
 
     @FXML
-    private Label lblTotalMembersCount;
+    private TableColumn<?, ?> clmIssueDate;
 
     @FXML
-    void addBookOnAction(ActionEvent event) {
+    private TableColumn<?, ?> clmMember;
 
-        Stage stage = new Stage();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/add_book_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-        stage.setTitle("Add Book");
+    @FXML
+    private TableColumn<?, ?> clmStatus;
 
-        Stage dashboardStage = (Stage) btnAddBook.getScene().getWindow();
-        dashboardStage.close();
+    @FXML
+    private Label lblBookIssued;
+
+    @FXML
+    private Label lblOverDueBooks;
+
+    @FXML
+    private Label lblTotalBook;
+
+    @FXML
+    private Label lblTotalMember;
+
+    @FXML
+    private TableView<?> tblRecentIssuedBooks;
+
+    @FXML
+    void btnAddMemberOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void addMemberOnAction(ActionEvent event) {
-
-        Stage stage = new Stage();
-
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/add_member_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-        stage.setTitle("Add Member");
-
-        Stage dashboardStage = (Stage) btnAddMember.getScene().getWindow();
-        dashboardStage.close();
+    void btnAddbookOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void borrowingHistoryOnAction(ActionEvent event) {
-
-        Stage stage = new Stage();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/borrowing_history_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();;
-        stage.setTitle("Borrowing History");
-
-        Stage dashBoardStage = (Stage) btnBorrowingHistory.getScene().getWindow();
-        dashBoardStage.close();
-    }
-
-    @FXML
-    void issueBookOnAction(ActionEvent event) {
-
-        Stage stage = new Stage();
-
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/issue_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-        stage.setTitle("Issue Book");
-
-        Stage dashBoardStage = (Stage) btnIssueBook.getScene().getWindow();
-        dashBoardStage.close();
+    void btnDashboardOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void logOutOnAction(ActionEvent event) {
-
-        Stage stage = new Stage();
-
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-        stage.setTitle("Login");
-
-        Stage dashBoardStage = (Stage) btnLogOut.getScene().getWindow();
-        dashBoardStage.close();
+    void btnHistoryOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void manageMembersOnAction(ActionEvent event) {
-
-        Stage stage = new Stage();
-
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/manage_member_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-        stage.setTitle("Manage Members");
-
-        Stage dashBoardStage = (Stage) btnManageMembers.getScene().getWindow();
-
-        dashBoardStage.close();
+    void btnIssueBookOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void returnBookOnAction(ActionEvent event) {
+    void btnLogoutOnAction(ActionEvent event) {
 
-        Stage stage = new Stage();
+    }
 
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/return_book_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-        stage.setTitle("Return Book");
+    @FXML
+    void btnManageMembersOnAction(ActionEvent event) {
 
-        Stage dashboardStage = (Stage) btnReturnBook.getScene().getWindow();
-        dashboardStage.close();
+    }
+
+    @FXML
+    void btnReturnBookOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnViewBooksOnAction(ActionEvent event) {
 
     }
 
