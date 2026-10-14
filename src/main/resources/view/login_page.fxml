@@ -7,26 +7,35 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="484.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginController.Login_page_controller">
+<AnchorPane prefHeight="502.0" prefWidth="728.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginController.Login_page_controller">
    <children>
-      <Label layoutX="52.0" layoutY="38.0" prefHeight="70.0" prefWidth="125.0" text="Login">
-         <font>
-            <Font name="Century" size="44.0" />
-         </font>
-      </Label>
-      <Label fx:id="lbluname" layoutX="50.0" layoutY="129.0" text="Username" />
-      <TextField fx:id="txtusername" layoutX="113.0" layoutY="125.0" prefHeight="26.0" prefWidth="184.0" />
-      <Label fx:id="lblpassword" layoutX="50.0" layoutY="170.0" text="Password" />
-      <PasswordField fx:id="txtpassword" layoutX="114.0" layoutY="166.0" prefHeight="26.0" prefWidth="184.0" />
-      <Button fx:id="btnlogin" layoutX="50.0" layoutY="250.0" mnemonicParsing="false" onAction="#loginOnAction" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #F15025;" text="Login" textFill="WHITE" />
-      <Button fx:id="btnreset" layoutX="205.0" layoutY="250.0" mnemonicParsing="false" onAction="#resetOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #7D9C65;" text="Reset" textFill="WHITE" />
-      <Label fx:id="lblerror" layoutX="50.0" layoutY="214.0" prefHeight="18.0" prefWidth="221.0" textFill="#ff2424" />
-      <ImageView fitHeight="283.0" fitWidth="297.0" layoutX="376.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/image%201.png" />
-         </image>
-      </ImageView>
+      <BorderPane layoutY="6.0" prefHeight="494.0" prefWidth="728.0" styleClass="login-root">
+         <left>
+            <VBox prefHeight="523.0" prefWidth="314.0" styleClass="login-brand-panel" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="brand-icon">
+                     <image>
+                        <Image url="@../image/image%201.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="294.0" styleClass="brand-title" text="Library Management System" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="login-form-panel" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="238.0" styleClass="login-title" text="Welcome Back" />
+                  <TextField fx:id="txtUsername" promptText="Username" styleClass="input-field" />
+                  <PasswordField fx:id="txtPassword" promptText="Password" styleClass="input-field" />
+                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLoginOnAction" styleClass="login-button" text="Login" />
+                  <Label fx:id="lblErrorMsg" prefHeight="18.0" prefWidth="354.0" styleClass="message-label" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>
