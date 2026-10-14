@@ -1,0 +1,205 @@
+/* ===== Main Page ===== */
+.add-book-root {
+    -fx-background-color: #F4F7FC;
+    -fx-font-family: "Arial";
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    -fx-background-color: #101B35;
+    -fx-pref-width: 210px;
+    -fx-min-width: 210px;
+    -fx-padding: 25 15 20 15;
+    -fx-spacing: 15;
+}
+
+.sidebar-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 20 5;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #CBD5E1;
+    -fx-font-size: 13px;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 42px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 12;
+    -fx-cursor: hand;
+    -fx-background-radius: 4;
+}
+
+.nav-button:hover {
+    -fx-background-color: #263858;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Active Add Book Button */
+.nav-button-active {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 42px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 12;
+    -fx-background-radius: 4;
+}
+
+/* ===== Main Content ===== */
+.add-book-content {
+    -fx-background-color: #F4F7FC;
+    -fx-padding: 30px;
+    -fx-spacing: 25px;
+}
+
+/* ===== Page Header ===== */
+.page-header {
+    -fx-spacing: 8px;
+}
+
+.page-title {
+    -fx-text-fill: #101B35;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 13px;
+}
+
+/* ===== Form Container ===== */
+.book-form {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 28px;
+    -fx-spacing: 22px;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+}
+
+/* ===== Form Rows ===== */
+.form-row {
+    -fx-spacing: 20px;
+    -fx-alignment: TOP_LEFT;
+}
+
+.form-field {
+    -fx-spacing: 9px;
+    -fx-pref-width: 300px;
+}
+
+/* ===== Field Labels ===== */
+.field-label {
+    -fx-text-fill: #334155;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* ===== Text Fields ===== */
+.input-field {
+    -fx-pref-height: 42px;
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #17233D;
+    -fx-prompt-text-fill: #94A3B8;
+    -fx-font-size: 13px;
+    -fx-padding: 8 12;
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.input-field:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #2563EB;
+}
+
+/* ===== Category ComboBox ===== */
+.category-combo {
+    -fx-pref-height: 42px;
+    -fx-background-color: #F8FAFC;
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-font-size: 13px;
+}
+
+.category-combo:focused {
+    -fx-border-color: #2563EB;
+}
+
+.category-combo .list-cell {
+    -fx-text-fill: #17233D;
+    -fx-padding: 8 12;
+}
+
+/* ===== Description TextArea ===== */
+.description-field {
+    -fx-pref-height: 90px;
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #17233D;
+    -fx-prompt-text-fill: #94A3B8;
+    -fx-font-size: 13px;
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.description-field:focused {
+    -fx-border-color: #2563EB;
+}
+
+.description-field .content {
+    -fx-background-color: #F8FAFC;
+}
+
+/* ===== Buttons ===== */
+.form-buttons {
+    -fx-spacing: 12px;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-padding: 10 0 0 0;
+}
+
+.primary-button {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 125px;
+    -fx-pref-height: 42px;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #1E40AF;
+}
+
+.secondary-button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #334155;
+    -fx-font-size: 13px;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 42px;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #F1F5F9;
+}
+```

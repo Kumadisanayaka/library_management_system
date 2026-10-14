@@ -1,0 +1,90 @@
+
+/* Main BorderPane */
+.login-root {
+    -fx-background-color: #F4F7FC;
+    -fx-font-family: "Arial";
+}
+
+/* Left Dark Navy Panel */
+.login-brand-panel {
+    -fx-background-color: #101B35;
+    -fx-alignment: center;
+    -fx-spacing: 20;
+    -fx-padding: 40;
+}
+
+/* Library Icon */
+.brand-icon {
+    -fx-font-size: 58px;
+    -fx-text-fill: #60A5FA;
+}
+
+/* Library System Title */
+.brand-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+
+/* Right Login Form Panel */
+.login-form-panel {
+    -fx-background-color: #FFFFFF;
+    -fx-alignment: center;
+    -fx-spacing: 20;
+    -fx-padding: 45;
+}
+
+/* Welcome Back! */
+.login-title {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #17233D;
+}
+
+/* Username and Password Fields */
+.input-field {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 46px;
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #17233D;
+    -fx-prompt-text-fill: #94A3B8;
+    -fx-font-size: 14px;
+    -fx-padding: 10 14;
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.input-field:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #3B82F6;
+}
+
+/* Blue Login Button */
+.login-button {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 46px;
+    -fx-background-color: #2563EB;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-radius: 5;
+}
+
+.login-button:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+.login-button:pressed {
+    -fx-background-color: #1E40AF;
+}
+
+/* Error Message */
+.message-label {
+    -fx-text-fill: #DC2626;
+    -fx-font-size: 13px;
+    -fx-wrap-text: true;
+}
