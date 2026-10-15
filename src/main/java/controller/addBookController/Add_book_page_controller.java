@@ -6,9 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -24,193 +25,251 @@ public class Add_book_page_controller implements Initializable {
     private Button btnAdd;
 
     @FXML
-    private Button btnBack;
+    private Button btnAddMember;
 
     @FXML
-    private Button btnClear;
+    private Button btnAddbook;
 
     @FXML
-    private ComboBox<String> cbCategory;
+    private Button btnDashboard;
+
+    @FXML
+    private Button btnHistory;
+
+    @FXML
+    private Button btnIssueBook;
+
+    @FXML
+    private Button btnLogout;
+
+    @FXML
+    private Button btnManageMembers;
+
+    @FXML
+    private Button btnReset;
+
+    @FXML
+    private Button btnReturnBook;
+
+    @FXML
+    private Button btnViewBooks;
+
+    @FXML
+    private ComboBox<String> cmbCategory;
+
+    @FXML
+    private Label lblAuthorError;
+
+    @FXML
+    private Label lblBooktitleError;
+
+    @FXML
+    private Label lblCmbCategoryError;
+
+    @FXML
+    private Label lblDescriptionError;
+
+    @FXML
+    private Label lblIsbnError;
+
+    @FXML
+    private Label lblTotalCopiesError;
 
     @FXML
     private TextField txtAuthor;
 
     @FXML
-    private TextField txtBookId;
-
-    @FXML
     private TextField txtBookTitle;
 
     @FXML
-    private TextField txtPublishedYear;
+    private TextArea txtDescription;
 
     @FXML
-    private TextField txtQuantity;
+    private TextField txtIsbn;
 
-    private void showError(String msg){
+    @FXML
+    private TextField txtTotalCopies;
 
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+    @FXML
+    private Label lblDescriptionCount;
 
-        alert.setTitle("Validation Error");
-        alert.setHeaderText(null);
-        alert.setContentText(msg);
-
-        alert.showAndWait();
+    @FXML
+    void btnAddMemberOnAction(ActionEvent event) {
 
     }
 
-    private void showSuccess(){
+    @FXML
+    void btnAddOnAction(ActionEvent event) {
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        //Validate book title
+        if (add_book_controller.isEmpty(txtBookTitle.getText())){
+            lblBooktitleError.setText("Please Enter Book Title.");
+            txtBookTitle.getStyleClass().add("input-error");
+            txtBookTitle.requestFocus();
+        }else{
+            lblBooktitleError.setText("");
+            txtBookTitle.getStyleClass().remove("input-error");
+        }
 
-        alert.setTitle("Success");
-        alert.setHeaderText(null);
-        alert.setContentText("Book added successfully!");
+        //Validate book author
+        if (add_book_controller.isEmpty(txtAuthor.getText())){
+            lblAuthorError.setText("Please Enter Author name.");
+            txtAuthor.getStyleClass().add("input-error");
+            txtAuthor.requestFocus();
 
-        alert.showAndWait();
+        }else{
+            lblAuthorError.setText("");
+            txtAuthor.getStyleClass().remove("input-error");
+        }
+
+        //Validate ISBN
+        if (add_book_controller.isEmpty(txtIsbn.getText())){
+            lblIsbnError.setText("Please Enter ISBN Number.");
+            txtIsbn.getStyleClass().add("input-error");
+            txtIsbn.requestFocus();
+        }else{
+            lblIsbnError.setText("");
+            txtIsbn.getStyleClass().remove("input-error");
+        }
+
+        //Validate Category
+        if (add_book_controller.isEmpty(cmbCategory.getValue())){
+            lblCmbCategoryError.setText("Please select a category.");
+            cmbCategory.getStyleClass().add("input-error");
+            cmbCategory.requestFocus();
+        }else {
+            lblCmbCategoryError.setText("");
+            cmbCategory.getStyleClass().remove("input-error");
+        }
+
+        //Validate Description
+        if (add_book_controller.isEmpty(txtDescription.getText())){
+            lblDescriptionError.setText("Please Enter a Description.");
+            txtDescription.getStyleClass().add("input-error");
+            txtDescription.requestFocus();
+        }else {
+            lblDescriptionError.setText("");
+            txtDescription.getStyleClass().remove("input-error");
+        }
+
+        //Validate Total copies
+        if (add_book_controller.isEmpty(txtTotalCopies.getText())){
+            lblTotalCopiesError.setText("Please Enter total copies.");
+            txtTotalCopies.getStyleClass().add("input-error");
+            txtTotalCopies.requestFocus();
+        }else{
+            try {
+                int copies = Integer.parseInt(txtTotalCopies.getText());
+
+                if (copies < 0){
+                    lblTotalCopiesError.setText("Copies must be greater than 0.");
+                    txtTotalCopies.requestFocus();
+                }else{
+                    lblTotalCopiesError.setText("");
+                }
+            } catch (NumberFormatException e) {
+                lblTotalCopiesError.setText("Please enter a valid whole number.");
+            }
+        }
+
+
+    }
+
+    @FXML
+    void btnAddbookOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnDashboardOnAction(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_dashboard_page.fxml"));
 
         try {
             Parent root = loader.load();
-            Stage stage = (Stage) txtBookId.getScene().getWindow();
+            Stage stage = (Stage) btnDashboard.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.show();
+            stage.setTitle("Dashboard");
+            stage.centerOnScreen();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @FXML
-    void addOnAction(ActionEvent event) {
-
-        //BookID
-    if(add_book_controller.isEmpty(txtBookId.getText())){
-
-        showError("Please Enter Book ID.");
-        txtBookId.requestFocus();
-        return;
-
-    }
-
-    if(!add_book_controller.isNumber(txtBookId.getText())){
-
-        showError("Book ID must contain numbers only.");
-        txtBookId.requestFocus();
-        return;
-
-    }
-
-    //BookTitle
-    if(add_book_controller.isEmpty(txtBookTitle.getText())){
-
-        showError("Please Enter Book Title.");
-        txtBookTitle.requestFocus();
-        return;
-
-    }
-
-    //Author
-    if (add_book_controller.isEmpty(txtAuthor.getText())){
-
-        showError("Please Enter Author name.");
-        txtAuthor.requestFocus();
-        return;
-
-    }
-
-    //Category
-    if (cbCategory.getValue() == null){
-
-        showError("Please select a category.");
-        cbCategory.requestFocus();
-        return;
-
-    }
-
-
-    //Published Year
-    if(add_book_controller.isEmpty(txtPublishedYear.getText())){
-
-        showError("Please enter Published Year.");
-        txtPublishedYear.requestFocus();
-        return;
-
-    }
-
-    if (!add_book_controller.isNumber(txtPublishedYear.getText())){
-
-        showError("Published Year must contain 4 digits.");
-        txtPublishedYear.requestFocus();
-        return;
-
-    }
-
-    //Quantity
-    if (add_book_controller.isEmpty(txtQuantity.getText())){
-
-        showError("Please enter Quantity.");
-        txtQuantity.requestFocus();
-        return;
-    }
-
-    if (!add_book_controller.isNumber(txtQuantity.getText())){
-
-        showError("Quantity must contain numbers only.");
-        txtQuantity.requestFocus();
-        return;
-    }
-
-    if (Integer.parseInt(txtQuantity.getText()) <= 0 ){
-
-        showError("Quantity must be greater than 0.");
-        return;
-    }
-
-    showSuccess();
-
+    void btnHistoryOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void backOnAction(ActionEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_dashboard_page.fxml"));
-
-        try {
-            Parent root = loader.load();
-            Stage stage = (Stage) txtBookId.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    void btnIssueBookOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void clearOnAction(ActionEvent event) {
+    void btnLogoutOnAction(ActionEvent event) {
 
-        txtBookId.setText("");
+    }
+
+    @FXML
+    void btnManageMembersOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnResetOnAction(ActionEvent event) {
+
         txtBookTitle.setText("");
         txtAuthor.setText("");
-        txtPublishedYear.setText("");
-        txtQuantity.setText("");
+        txtIsbn.setText("");
+        txtDescription.setText("");
+        txtTotalCopies.setText("");
+        cmbCategory.setPromptText("Select Category");
 
-        txtBookId.requestFocus();
+    }
+
+    @FXML
+    void btnReturnBookOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnViewBooksOnAction(ActionEvent event) {
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cbCategory.getItems().addAll(
+
+        cmbCategory.getItems().addAll(
                 "Fiction",
                 "Non-Fiction",
                 "Science",
                 "Technology",
+                "Education",
                 "History",
                 "Biography",
-                "Education"
+                "Business",
+                "Self-Help",
+                "Literature",
+                "Reference",
+                "Children's Books"
         );
+
+        cmbCategory.setPromptText("Select a Category");
+
+        txtDescription.textProperty().addListener(
+                (observable,oldValue,newValue) -> {
+
+                    if (newValue.length() > 300){
+                        txtDescription.setText(oldValue);
+                    }
+
+                    lblDescriptionCount.setText(
+                            txtDescription.getText().length() + " / 300"
+                    );
+
+
+                });
     }
 }
