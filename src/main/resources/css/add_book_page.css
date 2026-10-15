@@ -202,4 +202,33 @@
 .secondary-button:hover {
     -fx-background-color: #F1F5F9;
 }
-```
+
+.error-label {
+    -fx-text-fill: #DC2626;
+    -fx-font-size: 11px;
+}
+
+.input-error {
+    -fx-border-color: #DC2626;
+    -fx-border-width: 1px;
+}
+
+.input-field {
+    -fx-pref-height: 42px;
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #17233D;
+    -fx-prompt-text-fill: #94A3B8;
+    -fx-font-size: 13px;
+    -fx-padding: 8 12;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+.description-counter {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 11px;
+}
