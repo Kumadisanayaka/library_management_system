@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
 
+<AnchorPane prefHeight="550.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.View_books_page_controller">
+   <children>
+      <BorderPane prefHeight="550.0" prefWidth="1089.0" styleClass="view-books-root" stylesheets="@../css/view_books_page.css">
+         <left>
+            <VBox prefHeight="548.0" prefWidth="217.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+               <children>
+                  <Label styleClass="logo-title" text="Library System" />
+                  <VBox prefHeight="377.0" prefWidth="181.0" styleClass="navigation-menu">
+                     <children>
+                        <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Dashboard" />
+                        <Button fx:id="btnAddBook" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Add Book" />
+                        <Button fx:id="btnViewBook" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button-active" text="View Books" />
+                        <Button fx:id="btnAddMember" layoutX="10.0" layoutY="108.0" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Add Member" />
+                        <Button fx:id="btnManageMember" layoutX="10.0" layoutY="156.0" mnemonicParsing="false" onAction="#btnManageMemberOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Manage Members" />
+                        <Button fx:id="btnIssueBook" layoutX="10.0" layoutY="205.0" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Issue Book" />
+                        <Button fx:id="btnReturnBook" layoutX="10.0" layoutY="254.0" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Return Book" />
+                        <Button fx:id="btnHistory" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#btnHistoryOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="History" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#btnLogoutOnAction" prefHeight="42.0" prefWidth="172.0" styleClass="logout-button" text="Logout" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="549.0" prefWidth="737.0" styleClass="content-area" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="74.0" prefWidth="543.0" styleClass="top-bar">
+                     <children>
+                        <VBox prefHeight="74.0" prefWidth="230.0" styleClass="page-header">
+                           <children>
+                              <Label styleClass="page-title" text="View Books" />
+                              <Label styleClass="page-subtitle" text="Search and manage books in the library" />
+                           </children>
+                        </VBox>
+                        <Region prefHeight="74.0" prefWidth="382.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="admin-profile">
+                           <children>
+                              <Label styleClass="admin-avatar" text="A" />
+                              <VBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="154.0" styleClass="admin-info">
+                                 <children>
+                                    <Label styleClass="admin-name" text="Admin" />
+                                    <Label styleClass="admin-role" text="Administrator" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="60.0" prefWidth="543.0" styleClass="search-bar">
+                     <children>
+                        <TextField fx:id="txtSearch" onAction="#txtSearchOnAction" onDragEntered="#txtSearchEnteredOnAction" onKeyTyped="#txtSearchTypeOnAction" prefHeight="42.0" prefWidth="654.0" promptText="Search by title, author or ISBN..." styleClass="search-field" />
+                        <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAddOnAction" styleClass="add-book-button" text="+ Add Book" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tblViewBooks" prefHeight="200.0" prefWidth="200.0" styleClass="books-table" stylesheets="@../css/view_books_page.css">
+                     <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="64.00002980232239" styleClass="id-column" text="ID" />
+                        <TableColumn fx:id="bookTitleColumn" prefWidth="140.79995346069336" styleClass="title-column" text="Book Title" />
+                        <TableColumn fx:id="authorColumn" prefWidth="125.59999084472656" text="Author" />
+                        <TableColumn fx:id="isbnColumn" prefWidth="105.5999755859375" styleClass="isbn-column" text="ISBN" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="111.20010375976562" styleClass="category-column" text="Category" />
+                        <TableColumn fx:id="copiesColumn" prefWidth="76.800048828125" styleClass="copies-column" text="Copies" />
+                        <TableColumn fx:id="actionsColumn" prefWidth="178.39996337890625" styleClass="actions-column" text="Actions" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
 </AnchorPane>
