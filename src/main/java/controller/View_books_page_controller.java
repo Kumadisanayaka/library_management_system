@@ -2,12 +2,18 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class View_books_page_controller {
 
@@ -71,20 +77,72 @@ public class View_books_page_controller {
     @FXML
     void btnAddBookOnAction(ActionEvent event) {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_book_page.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = (Stage) btnAddBook.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Add Book");
+        stage.centerOnScreen();
+
     }
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_member_page.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = (Stage) btnAddMember.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Add Member");
+        stage.centerOnScreen();
 
     }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_book_page.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = (Stage) btnAdd.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Add Book");
+        stage.centerOnScreen();
+
     }
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_dashboard_page.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = (Stage) btnDashboard.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Dashboard");
+        stage.centerOnScreen();
 
     }
 

@@ -96,6 +96,18 @@ public class Add_book_page_controller implements Initializable {
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_member_page.fxml"));
+
+        try {
+            Parent root = loader.load();
+            Stage stage = (Stage) btnAddMember.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Add Member");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @FXML
@@ -235,6 +247,18 @@ public class Add_book_page_controller implements Initializable {
 
     @FXML
     void btnViewBooksOnAction(ActionEvent event) {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/view_books_page.fxml"));
+
+        try {
+            Parent root = loader.load();
+            Stage stage = (Stage) btnViewBooks.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("View Books");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

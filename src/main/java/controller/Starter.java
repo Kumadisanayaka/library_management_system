@@ -15,7 +15,7 @@ public class Starter extends Application {
 
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login_page.fxml"))));
         stage.show();
-        stage.setTitle("Login");
+        stage.setTitle("Library Management System");
 
     }
 }

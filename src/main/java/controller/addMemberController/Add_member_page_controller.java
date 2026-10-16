@@ -5,26 +5,59 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Add_member_page_controller  {
+public class Add_member_page_controller {
 
-    Add_member_form_validation_Controller add_member_form_validation_controller = new Add_member_form_validation_Controller();
+    @FXML
+    private Button btnAdd;
 
+    @FXML
+    private Button btnAddBook;
 
     @FXML
     private Button btnAddMember;
 
     @FXML
-    private Button btnBack;
+    private Button btnDashboard;
 
     @FXML
-    private Button btnClear;
+    private Button btnHistory;
+
+    @FXML
+    private Button btnIssueBook;
+
+    @FXML
+    private Button btnLogout;
+
+    @FXML
+    private Button btnManageMembers;
+
+    @FXML
+    private Button btnReset;
+
+    @FXML
+    private Button btnReturnBook;
+
+    @FXML
+    private Button btnViewBooks;
+
+    @FXML
+    private Label lblAddressError;
+
+    @FXML
+    private Label lblEmailError;
+
+    @FXML
+    private Label lblFullNameError;
+
+    @FXML
+    private Label lblPhoneNumberError;
 
     @FXML
     private TextField txtAddress;
@@ -33,148 +66,115 @@ public class Add_member_page_controller  {
     private TextField txtEmail;
 
     @FXML
-    private TextField txtFullname;
-
-    @FXML
-    private TextField txtMemberId;
+    private TextField txtFullName;
 
     @FXML
     private TextField txtPhoneNumber;
 
-    private void showError(String msg){
+    @FXML
+    void btnAddBookOnAction(ActionEvent event) {
 
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_book_page.fxml"));
 
-        alert.setTitle("Validation Error!");
-        alert.setHeaderText(null);
-        alert.setContentText(msg);
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = (Stage) btnAddBook.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Add Book");
+        stage.centerOnScreen();
 
-        alert.showAndWait();
     }
 
-    private void showSuccess(){
+    @FXML
+    void btnAddMemberOnAction(ActionEvent event) {
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_member_page.fxml"));
 
-        alert.setTitle("Success!");
-        alert.setHeaderText(null);
-        alert.setContentText("Member added successfully!");
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = (Stage) btnAddMember.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Add Member");
+        stage.centerOnScreen();
 
-        alert.showAndWait();
+    }
+
+    @FXML
+    void btnAddOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnDashboardOnAction(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_dashboard_page.fxml"));
 
+        Parent root = null;
         try {
-            Parent root = loader.load();
-            Stage stage = (Stage) txtMemberId.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @FXML
-    void addMemberOnAction(ActionEvent event) {
-
-        //Member ID
-        if (add_member_form_validation_controller.isEmpty(txtMemberId.getText())){
-
-            showError("Please enter Member ID.");
-            txtMemberId.requestFocus();
-            return;
-
-        }
-
-        if (!add_member_form_validation_controller.isNumber(txtMemberId.getText())){
-
-            showError("Member ID must contain numbers only.");
-            txtMemberId.requestFocus();
-            return;
-
-        }
-
-        //Full Name
-        if (add_member_form_validation_controller.isEmpty(txtFullname.getText())){
-
-            showError("Please enter Full Name.");
-            txtFullname.requestFocus();
-            return;
-
-        }
-
-        //Email
-        if (add_member_form_validation_controller.isEmpty(txtEmail.getText())){
-
-            showError("Please enter Email.");
-            txtEmail.requestFocus();
-            return;
-
-        }
-
-        if (!add_member_form_validation_controller.isValidEmail(txtEmail.getText())){
-
-            showError("Please enter a valid Email address.");
-            txtEmail.requestFocus();
-            return;
-        }
-
-        //Address
-        if (add_member_form_validation_controller.isEmpty(txtAddress.getText())){
-
-            showError("Please enter Address.");
-            txtAddress.requestFocus();
-            return;
-
-        }
-
-        //PhoneNumber
-        if (add_member_form_validation_controller.isEmpty(txtPhoneNumber.getText())){
-
-            showError("Please enter Phone Number.");
-            txtPhoneNumber.requestFocus();
-            return;
-
-        }
-
-        if (!add_member_form_validation_controller.isValidPhoneNumber(txtPhoneNumber.getText())){
-
-            showError("Phone Number must contain exactly 10 digits.");
-            txtPhoneNumber.requestFocus();
-            return;
-
-        }
-
-        showSuccess();
-
+        Stage stage = (Stage) btnDashboard.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Dashboard");
+        stage.centerOnScreen();
 
     }
 
     @FXML
-    void backOnAction(ActionEvent event) {
+    void btnHistoryOnAction(ActionEvent event) {
 
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_dashboard_page.fxml"));
+    }
 
+    @FXML
+    void btnIssueBookOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnLogoutOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnManageMembersOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnResetOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnReturnBookOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnViewBooksOnAction(ActionEvent event) {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/view_books_page.fxml"));
+
+        Parent root = null;
         try {
-            Parent root = loader.load();
-            Stage stage = (Stage) txtMemberId.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-
+            root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-    }
-
-    @FXML
-    void clearOnAction(ActionEvent event) {
-
-        txtMemberId.setText("");
-        txtFullname.setText("");
-        txtAddress.setText("");
-        txtEmail.setText("");
-        txtPhoneNumber.setText("");
+        Stage stage = (Stage) btnViewBooks.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("View Books");
+        stage.centerOnScreen();
 
     }
 
