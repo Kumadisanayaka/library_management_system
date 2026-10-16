@@ -9,7 +9,7 @@
 .login-brand-panel {
     -fx-background-color: #101B35;
     -fx-alignment: center;
-    -fx-spacing: 20;
+    -fx-spacing: 10;
     -fx-padding: 40;
 }
 
@@ -21,7 +21,7 @@
 
 /* Library System Title */
 .brand-title {
-    -fx-font-size: 15px;
+    -fx-font-size: 25px;
     -fx-font-weight: bold;
     -fx-text-fill: #FFFFFF;
 }

@@ -1,15 +1,11 @@
-/* =========================
-   VIEW BOOKS - ROOT
-   ========================= */
+/* ======== VIEW BOOKS - ROOT ======== */
 
 .view-books-root {
     -fx-background-color: #F5F7FB;
 }
 
 
-/* =========================
-   SIDEBAR
-   ========================= */
+/* ========= SIDEBAR ========= */
 
 .sidebar {
     -fx-background-color: #17233D;
@@ -79,9 +75,7 @@
 }
 
 
-/* =========================
-   MAIN CONTENT
-   ========================= */
+/* ======  MAIN CONTENT====== */
 
 .content-area {
     -fx-background-color: #F5F7FB;
@@ -90,9 +84,7 @@
 }
 
 
-/* =========================
-   TOP BAR
-   ========================= */
+/* ======== TOP BAR ======== */
 
 .top-bar {
     -fx-alignment: CENTER_LEFT;
@@ -114,9 +106,7 @@
 }
 
 
-/* =========================
-   ADMIN PROFILE
-   ========================= */
+/* ======= ADMIN PROFILE ========= */
 
 .admin-profile {
     -fx-background-color: white;
@@ -167,9 +157,7 @@
 }
 
 
-/* =========================
-   SEARCH AREA
-   ========================= */
+/* ========= SEARCH AREA =========== */
 
 .search-bar {
     -fx-spacing: 12;
@@ -216,9 +204,7 @@
 }
 
 
-/* =========================
-   BOOKS TABLE
-   ========================= */
+/* ======== BOOKS TABLE ========== */
 
 .books-table {
     -fx-background-color: white;
@@ -278,9 +264,7 @@
 }
 
 
-/* =========================
-   ACTION BUTTONS
-   ========================= */
+/* ====== ACTION BUTTONS ===== */
 
 .actions-container {
     -fx-spacing: 6;

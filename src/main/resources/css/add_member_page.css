@@ -1,0 +1,307 @@
+/* ======== ADD MEMBER ROOT ======== */
+
+.add-member-root {
+    -fx-background-color: #F5F7FB;
+}
+
+
+/* ======== SIDEBAR ========== */
+
+.sidebar {
+    -fx-background-color: #17233D;
+    -fx-padding: 28 18 20 18;
+    -fx-spacing: 10;
+}
+
+.logo-title {
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 12 25 12;
+}
+
+.navigation-menu {
+    -fx-spacing: 6;
+}
+
+
+/* Normal Navigation Button */
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #B8C2D6;
+
+    -fx-font-size: 13px;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 11 14;
+
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #243452;
+    -fx-text-fill: white;
+}
+
+
+/* Active Navigation Button */
+
+.nav-button-active {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: white;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 11 14;
+
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+
+/* Logout */
+
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #B8C2D6;
+
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-padding: 11 14;
+
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: #243452;
+    -fx-text-fill: white;
+}
+
+
+/* ======== MAIN CONTENT =========== */
+
+.content-area {
+    -fx-background-color: #F5F7FB;
+
+    -fx-padding: 28 35 30 35;
+
+    -fx-spacing: 24;
+}
+
+
+/* ========= TOP BAR ========== */
+
+.top-bar {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.page-header {
+    -fx-spacing: 5;
+}
+
+.page-title {
+    -fx-text-fill: #17233D;
+
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: #7A869A;
+
+    -fx-font-size: 12px;
+}
+
+
+/* ======== ADMIN PROFILE ========= */
+
+.admin-profile {
+    -fx-background-color: white;
+
+    -fx-padding: 7 12 7 8;
+
+    -fx-spacing: 9;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-background-radius: 7px;
+
+    -fx-border-color: #E2E7EF;
+    -fx-border-width: 1px;
+    -fx-border-radius: 7px;
+}
+
+.admin-avatar {
+    -fx-background-color: #2F80ED;
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER;
+
+    -fx-min-width: 34px;
+    -fx-min-height: 34px;
+
+    -fx-max-width: 34px;
+    -fx-max-height: 34px;
+
+    -fx-background-radius: 17px;
+}
+
+.admin-info {
+    -fx-spacing: 2;
+}
+
+.admin-name {
+    -fx-text-fill: #17233D;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.admin-role {
+    -fx-text-fill: #8994A7;
+
+    -fx-font-size: 10px;
+}
+
+
+/* ========= MEMBER FORM ========== */
+
+.member-form {
+    -fx-background-color: white;
+
+    -fx-padding: 28;
+
+    -fx-spacing: 22;
+
+    -fx-background-radius: 7px;
+
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+    -fx-border-radius: 7px;
+}
+
+.form-row {
+    -fx-spacing: 25;
+}
+
+.form-field {
+    -fx-spacing: 6;
+}
+
+
+/* ======= FIELD LABEL ========== */
+
+.field-label {
+    -fx-text-fill: #344054;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+
+/* ======== INPUT FIELD =========== */
+
+.input-field {
+    -fx-background-color: #F8FAFC;
+
+    -fx-text-fill: #17233D;
+    -fx-prompt-text-fill: #9AA5B5;
+
+    -fx-font-size: 13px;
+
+    -fx-padding: 10 12;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+
+    -fx-background-radius: 5px;
+}
+
+.input-field:focused {
+    -fx-background-color: white;
+
+    -fx-border-color: #2F80ED;
+}
+
+
+/* ========== VALIDATION ERROR ========= */
+
+.error-label {
+    -fx-text-fill: #DC3545;
+
+    -fx-font-size: 11px;
+
+    -fx-padding: 1 0 0 2;
+}
+
+.input-error {
+    -fx-border-color: #DC3545;
+
+    -fx-border-width: 1px;
+}
+
+
+/* ========= BUTTON AREA ========== */
+
+.form-buttons {
+    -fx-spacing: 10;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-padding: 10 0 0 0;
+}
+
+
+/* ======== ADD MEMBER BUTTON ========== */
+
+.primary-button {
+    -fx-background-color: #2F80ED;
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 10 20;
+
+    -fx-background-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #256FD1;
+}
+
+
+/* ========== RESET BUTTON ========== */
+
+.secondary-button {
+    -fx-background-color: #EEF2F7;
+
+    -fx-text-fill: #526074;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 10 20;
+
+    -fx-background-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #E2E7EF;
+}
