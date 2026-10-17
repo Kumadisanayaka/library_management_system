@@ -2,18 +2,14 @@ package controller.addBookController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import scene.SceneManager;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -95,19 +91,7 @@ public class Add_book_page_controller implements Initializable {
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_member_page.fxml"));
-
-        try {
-            Parent root = loader.load();
-            Stage stage = (Stage) btnAddMember.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Add Member");
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        SceneManager.switchPage("/view/add_member_page.fxml");
     }
 
     @FXML
@@ -189,23 +173,12 @@ public class Add_book_page_controller implements Initializable {
 
     @FXML
     void btnAddbookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/add_book_page.fxml");
     }
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_dashboard_page.fxml"));
-
-        try {
-            Parent root = loader.load();
-            Stage stage = (Stage) btnDashboard.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Dashboard");
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        SceneManager.switchPage("/view/main_dashboard_page.fxml");
     }
 
     @FXML
@@ -247,19 +220,7 @@ public class Add_book_page_controller implements Initializable {
 
     @FXML
     void btnViewBooksOnAction(ActionEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/view_books_page.fxml"));
-
-        try {
-            Parent root = loader.load();
-            Stage stage = (Stage) btnViewBooks.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("View Books");
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        SceneManager.switchPage("/view/view_books_page.fxml");
     }
 
     @Override

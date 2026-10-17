@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import scene.SceneManager;
 
 import java.io.IOException;
 
@@ -73,38 +74,12 @@ public class Add_member_page_controller {
 
     @FXML
     void btnAddBookOnAction(ActionEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_book_page.fxml"));
-
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Stage stage = (Stage) btnAddBook.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Add Book");
-        stage.centerOnScreen();
-
+        SceneManager.switchPage("/view/add_book_page.fxml");
     }
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_member_page.fxml"));
-
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Stage stage = (Stage) btnAddMember.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Add Member");
-        stage.centerOnScreen();
-
+        SceneManager.switchPage("/view/add_member_page.fxml");
     }
 
     @FXML
@@ -114,20 +89,7 @@ public class Add_member_page_controller {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_dashboard_page.fxml"));
-
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Stage stage = (Stage) btnDashboard.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Dashboard");
-        stage.centerOnScreen();
-
+        SceneManager.switchPage("/view/main_dashboard_page.fxml");
     }
 
     @FXML
@@ -162,20 +124,7 @@ public class Add_member_page_controller {
 
     @FXML
     void btnViewBooksOnAction(ActionEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/view_books_page.fxml"));
-
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Stage stage = (Stage) btnViewBooks.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("View Books");
-        stage.centerOnScreen();
-
+        SceneManager.switchPage("/view/view_books_page.fxml");
     }
 
 }
