@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="531.0" prefWidth="846.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Main_dashboard_page_controller">
+<AnchorPane prefHeight="531.0" prefWidth="846.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainDashboardControlle.Main_dashboard_page_controller">
    <children>
       <BorderPane prefHeight="541.0" prefWidth="846.0" styleClass="dashboard-root">
          <left>

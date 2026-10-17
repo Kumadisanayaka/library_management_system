@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="550.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.View_books_page_controller">
+<AnchorPane prefHeight="550.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.viewBooksController.View_books_page_controller">
    <children>
       <BorderPane prefHeight="550.0" prefWidth="1089.0" styleClass="view-books-root" stylesheets="@../css/view_books_page.css">
          <left>
