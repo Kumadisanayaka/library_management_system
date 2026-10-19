@@ -1,11 +1,17 @@
+/* =========================================
+   MAIN BORDERPANE
+   ========================================= */
 
-/* Main BorderPane */
 .login-root {
     -fx-background-color: #F4F7FC;
     -fx-font-family: "Arial";
 }
 
-/* Left Dark Navy Panel */
+
+/* =========================================
+   LEFT BRAND PANEL
+   ========================================= */
+
 .login-brand-panel {
     -fx-background-color: #101B35;
     -fx-alignment: center;
@@ -13,78 +19,231 @@
     -fx-padding: 40;
 }
 
+
 /* Library Icon */
 .brand-icon {
     -fx-font-size: 58px;
     -fx-text-fill: #60A5FA;
 }
 
-/* Library System Title */
+
+/* Brand Name */
 .brand-title {
-    -fx-font-size: 25px;
+    -fx-font-size: 30px;
     -fx-font-weight: bold;
     -fx-text-fill: #FFFFFF;
 }
 
 
-/* Right Login Form Panel */
+/* Sub Name */
+.brand-subtitle {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #CBD5E1;
+}
+
+
+/* Slogan */
+.brand-slogan {
+    -fx-font-size: 14px;
+    -fx-text-fill: #94A3B8;
+    -fx-font-style: italic;
+}
+
+
+/* =========================================
+   RIGHT LOGIN FORM PANEL
+   ========================================= */
+
 .login-form-panel {
     -fx-background-color: #FFFFFF;
     -fx-alignment: center;
-    -fx-spacing: 20;
+    -fx-spacing: 15;
     -fx-padding: 45;
 }
 
-/* Welcome Back! */
+
+/* Login Title */
 .login-title {
     -fx-font-size: 25px;
     -fx-font-weight: bold;
     -fx-text-fill: #17233D;
 }
 
-/* Username and Password Fields */
+
+/* Description */
+.login-description {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748B;
+}
+
+
+/* =========================================
+   INPUT LABELS
+   ========================================= */
+
+.input-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
+}
+
+
+/* =========================================
+   INPUT FIELDS
+   ========================================= */
+
 .input-field {
     -fx-pref-width: 300px;
     -fx-pref-height: 46px;
+
     -fx-background-color: #F8FAFC;
+
     -fx-text-fill: #17233D;
     -fx-prompt-text-fill: #94A3B8;
+
     -fx-font-size: 14px;
+
     -fx-padding: 10 14;
+
     -fx-border-color: #D8E0EC;
-    -fx-border-width: 1;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
 }
 
+
+/* Field Hover */
+.input-field:hover {
+    -fx-border-color: #B8C7DD;
+}
+
+
+/* Field Focus */
 .input-field:focused {
     -fx-background-color: #FFFFFF;
+
     -fx-border-color: #3B82F6;
+    -fx-border-width: 1.5px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(37, 99, 235, 0.12),
+        8,
+        0.2,
+        0,
+        1
+    );
 }
 
-/* Blue Login Button */
+
+/* =========================================
+   FORGOT PASSWORD BUTTON
+   ========================================= */
+
+.forgot-password {
+    -fx-background-color: transparent;
+
+    -fx-text-fill: #2563EB;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-border-width: 0;
+
+    -fx-padding: 5 0;
+
+    -fx-cursor: hand;
+}
+
+
+/* Forgot Password Hover */
+.forgot-password:hover {
+    -fx-text-fill: #1D4ED8;
+    -fx-underline: true;
+}
+
+
+/* Forgot Password Pressed */
+.forgot-password:pressed {
+    -fx-text-fill: #1E40AF;
+}
+
+
+/* =========================================
+   LOGIN BUTTON
+   ========================================= */
+
 .login-button {
     -fx-pref-width: 300px;
     -fx-pref-height: 46px;
+
     -fx-background-color: #2563EB;
+
     -fx-text-fill: #FFFFFF;
+
     -fx-font-size: 15px;
     -fx-font-weight: bold;
+
     -fx-cursor: hand;
-    -fx-background-radius: 5;
+
+    -fx-background-radius: 5px;
 }
 
+
+/* Login Hover */
 .login-button:hover {
     -fx-background-color: #1D4ED8;
 }
 
+
+/* Login Pressed */
 .login-button:pressed {
     -fx-background-color: #1E40AF;
 }
 
-/* Error Message */
+
+/* =========================================
+   ERROR MESSAGE
+   ========================================= */
+
 .message-label {
     -fx-text-fill: #DC2626;
+
     -fx-font-size: 13px;
+
     -fx-wrap-text: true;
+
+    -fx-max-width: 300px;
+}
+
+/* Username Container */
+.username-box {
+    -fx-spacing: 8px;
+    -fx-alignment: center-left;
+    -fx-pref-width: 300px;
+}
+
+
+/* Password Container */
+.password-box {
+    -fx-spacing: 8px;
+    -fx-alignment: center-left;
+    -fx-pref-width: 300px;
+}
+
+
+/* Forgot Password Container */
+.forgot-password-box {
+    -fx-alignment: center-right;
+    -fx-pref-width: 300px;
+    -fx-padding: 0 0 5px 0;
+}
+
+/* Copyright Label */
+.copyright-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #94A3B8;
+    -fx-alignment: center;
 }
