@@ -35,5 +35,7 @@ public class Login_page_controller {
         }
 
     }
-
+    @FXML
+    public void btnForgetPasswordOnAction(ActionEvent event) {
+    }
 }
