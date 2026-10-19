@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="531.0" prefWidth="846.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainDashboardControlle.Main_dashboard_page_controller">
    <children>
-      <BorderPane prefHeight="541.0" prefWidth="846.0" styleClass="dashboard-root">
+      <BorderPane prefHeight="542.0" prefWidth="935.0" styleClass="dashboard-root">
          <left>
             <VBox prefHeight="542.0" prefWidth="222.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
@@ -30,7 +30,7 @@
             </VBox>
          </left>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-content" BorderPane.alignment="CENTER">
+            <VBox prefHeight="591.0" prefWidth="725.0" styleClass="dashboard-content" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefHeight="48.0" prefWidth="586.0" styleClass="top-bar">
                      <children>
@@ -77,16 +77,16 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="recent-card">
+                  <VBox prefHeight="200.0" prefWidth="752.0" styleClass="recent-card">
                      <children>
                         <Label styleClass="section-title" text="Recent Issued Books" />
-                        <TableView fx:id="tblRecentIssuedBooks" prefHeight="169.0" prefWidth="545.0">
+                        <TableView fx:id="tblRecentIssuedBooks" prefHeight="168.0" prefWidth="634.0">
                            <columns>
-                              <TableColumn fx:id="clmBookTitle" prefWidth="160.80004960298538" text="Book Title" />
-                              <TableColumn fx:id="clmMember" prefWidth="84.00001525878906" text="Member" />
-                              <TableColumn fx:id="clmIssueDate" prefWidth="106.40003967285156" text="Issue Date" />
-                              <TableColumn fx:id="clmDueDate" prefWidth="102.4000244140625" text="Due Date" />
-                              <TableColumn fx:id="clmStatus" prefWidth="95.19992065429688" text="Status" />
+                              <TableColumn fx:id="clmBookTitle" prefWidth="228.80004960298538" text="Book Title" />
+                              <TableColumn fx:id="clmMember" prefWidth="121.60000610351562" text="Member" />
+                              <TableColumn fx:id="clmIssueDate" prefWidth="91.20001220703125" text="Issue Date" />
+                              <TableColumn fx:id="clmDueDate" prefWidth="104.79995727539062" text="Due Date" />
+                              <TableColumn fx:id="clmStatus" prefWidth="87.99993896484375" text="Status" />
                            </columns>
                         </TableView>
                      </children>

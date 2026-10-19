@@ -9,7 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="502.0" prefWidth="728.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginController.Login_page_controller">
    <children>
@@ -17,12 +19,18 @@
          <left>
             <VBox alignment="CENTER" prefHeight="494.0" prefWidth="439.0" styleClass="login-brand-panel" BorderPane.alignment="CENTER">
                <children>
+                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="179.0" styleClass="brand-title" text="BookFlow">
+                     <font>
+                        <Font name="Bauhaus 93" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="406.0" styleClass="brand-subtitle" text="Library Management System" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="brand-icon">
                      <image>
                         <Image url="@../image/image%201.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="406.0" styleClass="brand-title" text="Library Management System" />
+                  <Label styleClass="brand-slogan" text="Simple Library, Smarter Management" />
                </children>
                <BorderPane.margin>
                   <Insets />
@@ -33,10 +41,23 @@
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="login-form-panel" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="CENTER" prefHeight="18.0" prefWidth="238.0" styleClass="login-title" text="Welcome Back" />
-                  <TextField fx:id="txtUsername" promptText="Username" styleClass="input-field" />
-                  <PasswordField fx:id="txtPassword" promptText="Password" styleClass="input-field" />
+                  <Label styleClass="brand-slogan" text="Simple Library, Smarter Management" />
+                  <VBox prefHeight="100.0" prefWidth="310.0" styleClass="username-box">
+                     <children>
+                        <Label styleClass="input-label" text="Username" />
+                        <TextField fx:id="txtUsername" promptText="Username" styleClass="input-field" />
+                        <Label styleClass="input-label" text="Password" />
+                        <PasswordField fx:id="txtPassword" promptText="Password" styleClass="input-field" />
+                     </children>
+                  </VBox>
+                  <HBox fx:id="btnForgetPassword" alignment="BOTTOM_LEFT" onDragDetected="#btnForgetPasswordOnAction" prefHeight="30.0" prefWidth="290.0" styleClass="forgot-password-box">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="forgot-password" text="Forgot Password?" />
+                     </children>
+                  </HBox>
                   <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLoginOnAction" styleClass="login-button" text="Login" />
                   <Label fx:id="lblErrorMsg" prefHeight="18.0" prefWidth="354.0" styleClass="message-label" />
+                  <Label text="© 2026 BookFlow. All rights reserved." />
                </children>
             </VBox>
          </center>
