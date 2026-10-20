@@ -2,7 +2,10 @@ package controller.viewBooksController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -10,7 +13,10 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import scene.SceneManager;
 
-public class View_books_page_controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class View_books_page_controller implements Initializable {
 
     @FXML
     private TableColumn<?, ?> actionsColumn;
@@ -20,9 +26,6 @@ public class View_books_page_controller {
 
     @FXML
     private TableColumn<?, ?> bookTitleColumn;
-
-    @FXML
-    private Button btnAdd;
 
     @FXML
     private Button btnAddBook;
@@ -46,13 +49,28 @@ public class View_books_page_controller {
     private Button btnManageMember;
 
     @FXML
+    private Button btnResetFilter;
+
+    @FXML
     private Button btnReturnBook;
+
+    @FXML
+    private Button btnSearch;
 
     @FXML
     private Button btnViewBook;
 
     @FXML
     private TableColumn<?, ?> categoryColumn;
+
+    @FXML
+    private ComboBox<String> cmbAvailability;
+
+    @FXML
+    private ComboBox<String> cmbCategory;
+
+    @FXML
+    private ComboBox<String> cmbSortBy;
 
     @FXML
     private TableColumn<?, ?> copiesColumn;
@@ -62,6 +80,9 @@ public class View_books_page_controller {
 
     @FXML
     private TableColumn<?, ?> isbnColumn;
+
+    @FXML
+    private Label lblTotalCount;
 
     @FXML
     private TableView<?> tblViewBooks;
@@ -77,11 +98,6 @@ public class View_books_page_controller {
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
         SceneManager.switchPage("/view/add_member_page.fxml");
-    }
-
-    @FXML
-    void btnAddOnAction(ActionEvent event) {
-        SceneManager.switchPage("/view/add_book_page.fxml");
     }
 
     @FXML
@@ -110,13 +126,23 @@ public class View_books_page_controller {
     }
 
     @FXML
+    void btnResetFilterOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnReturnBookOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnViewBookOnAction(ActionEvent event) {
+    void btnSearchOnAction(ActionEvent event) {
 
+    }
+
+    @FXML
+    void btnViewBookOnAction(ActionEvent event) {
+        SceneManager.switchPage("/view/view_books_page.fxml");
     }
 
     @FXML
@@ -134,4 +160,39 @@ public class View_books_page_controller {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        cmbCategory.getItems().addAll(
+                "Fiction",
+                "Non-Fiction",
+                "Science",
+                "Technology",
+                "Education",
+                "History",
+                "Biography",
+                "Business",
+                "Self-Help",
+                "Literature",
+                "Reference",
+                "Children's Books"
+        );
+
+        cmbAvailability.getItems().addAll(
+                "All Availability",
+                "Available",
+                "Unavailable"
+        );
+
+        cmbSortBy.getItems().addAll(
+                "Title (A-Z)",
+                "Title (Z-A)",
+                "Author (A-Z)",
+                "Book ID"
+        );
+
+        cmbCategory.setValue("All Categories");
+        cmbAvailability.setValue("All Availability");
+        cmbSortBy.setValue("Title (A-Z)");
+    }
 }

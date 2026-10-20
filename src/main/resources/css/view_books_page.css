@@ -1,11 +1,16 @@
-/* ======== VIEW BOOKS - ROOT ======== */
+
+/* =====================================
+   VIEW BOOKS - ROOT
+===================================== */
 
 .view-books-root {
     -fx-background-color: #F5F7FB;
 }
 
 
-/* ========= SIDEBAR ========= */
+/* =====================================
+   SIDEBAR
+===================================== */
 
 .sidebar {
     -fx-background-color: #17233D;
@@ -29,10 +34,8 @@
     -fx-text-fill: #B8C2D6;
     -fx-font-size: 13px;
     -fx-font-weight: normal;
-
     -fx-alignment: CENTER_LEFT;
     -fx-padding: 11 14;
-
     -fx-background-radius: 5px;
     -fx-cursor: hand;
 }
@@ -45,13 +48,10 @@
 .nav-button-active {
     -fx-background-color: #2F80ED;
     -fx-text-fill: white;
-
     -fx-font-size: 13px;
     -fx-font-weight: bold;
-
     -fx-alignment: CENTER_LEFT;
     -fx-padding: 11 14;
-
     -fx-background-radius: 5px;
     -fx-cursor: hand;
 }
@@ -59,13 +59,10 @@
 .logout-button {
     -fx-background-color: transparent;
     -fx-text-fill: #B8C2D6;
-
     -fx-font-size: 13px;
     -fx-alignment: CENTER_LEFT;
-
     -fx-padding: 11 14;
     -fx-background-radius: 5px;
-
     -fx-cursor: hand;
 }
 
@@ -75,7 +72,9 @@
 }
 
 
-/* ======  MAIN CONTENT====== */
+/* =====================================
+   MAIN CONTENT
+===================================== */
 
 .content-area {
     -fx-background-color: #F5F7FB;
@@ -84,7 +83,9 @@
 }
 
 
-/* ======== TOP BAR ======== */
+/* =====================================
+   TOP BAR
+===================================== */
 
 .top-bar {
     -fx-alignment: CENTER_LEFT;
@@ -106,18 +107,16 @@
 }
 
 
-/* ======= ADMIN PROFILE ========= */
+/* =====================================
+   ADMIN PROFILE
+===================================== */
 
 .admin-profile {
     -fx-background-color: white;
-
     -fx-padding: 7 12 7 8;
-
     -fx-spacing: 9;
     -fx-alignment: CENTER_LEFT;
-
     -fx-background-radius: 7px;
-
     -fx-border-color: #E2E7EF;
     -fx-border-width: 1px;
     -fx-border-radius: 7px;
@@ -126,18 +125,13 @@
 .admin-avatar {
     -fx-background-color: #2F80ED;
     -fx-text-fill: white;
-
     -fx-font-size: 13px;
     -fx-font-weight: bold;
-
     -fx-alignment: CENTER;
-
     -fx-min-width: 34px;
     -fx-min-height: 34px;
-
     -fx-max-width: 34px;
     -fx-max-height: 34px;
-
     -fx-background-radius: 17px;
 }
 
@@ -157,67 +151,222 @@
 }
 
 
-/* ========= SEARCH AREA =========== */
+/* =====================================
+   SEARCH BAR
+===================================== */
 
 .search-bar {
-    -fx-spacing: 12;
+    -fx-spacing: 12px;
     -fx-alignment: CENTER_LEFT;
 }
 
 .search-field {
     -fx-background-color: white;
-
     -fx-text-fill: #17233D;
     -fx-prompt-text-fill: #9AA5B5;
-
     -fx-font-size: 13px;
-
     -fx-padding: 10 14;
-
     -fx-border-color: #DCE2EB;
     -fx-border-width: 1px;
     -fx-border-radius: 5px;
-
     -fx-background-radius: 5px;
 }
 
 .search-field:focused {
     -fx-border-color: #2F80ED;
+    -fx-border-width: 1.2px;
 }
 
-.add-book-button {
+
+/* =====================================
+   SEARCH BUTTON
+===================================== */
+
+.search-button {
     -fx-background-color: #2F80ED;
     -fx-text-fill: white;
-
     -fx-font-size: 13px;
     -fx-font-weight: bold;
-
     -fx-padding: 10 18;
-
     -fx-background-radius: 5px;
-
+    -fx-border-radius: 5px;
     -fx-cursor: hand;
 }
 
-.add-book-button:hover {
+.search-button:hover {
     -fx-background-color: #256FD1;
 }
 
+.search-button:pressed {
+    -fx-background-color: #1D5DB5;
+}
 
-/* ======== BOOKS TABLE ========== */
-
-.books-table {
-    -fx-background-color: white;
-
-    -fx-border-color: #E1E6EE;
+.search-button:focused {
+    -fx-border-color: #9BC2FF;
     -fx-border-width: 1px;
-    -fx-border-radius: 6px;
-
-    -fx-background-radius: 6px;
 }
 
 
-/* Table Header */
+/* =====================================
+   FILTER BAR
+===================================== */
+
+.filter-bar {
+    -fx-spacing: 18px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+/* =====================================
+   FILTER SECTION - VBOX
+===================================== */
+
+.filter-section {
+    -fx-spacing: 7px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+/* =====================================
+   FILTER LABEL
+===================================== */
+
+.filter-label {
+    -fx-text-fill: #526074;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+
+/* =====================================
+   FILTER COMBOBOX
+===================================== */
+
+.filter-combo {
+    -fx-background-color: white;
+    -fx-font-size: 12px;
+    -fx-pref-height: 38px;
+    -fx-border-color: #DCE2EB;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.filter-combo:hover {
+    -fx-border-color: #B8C7DC;
+}
+
+.filter-combo:focused {
+    -fx-border-color: #2F80ED;
+}
+
+.filter-combo .list-cell {
+    -fx-text-fill: #344054;
+    -fx-font-size: 12px;
+}
+
+.filter-combo .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.filter-combo .arrow {
+    -fx-background-color: #526074;
+}
+
+
+/* =====================================
+   RESET FILTER BUTTON
+===================================== */
+
+.reset-filter-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2477EC;
+    -fx-font-size: 12px;
+    -fx-padding: 9 14;
+    -fx-border-color: #DCE2EB;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.reset-filter-button:hover {
+    -fx-background-color: #EEF2F7;
+    -fx-border-color: #B8C7DC;
+}
+
+
+/* =====================================
+   BOOKS SUMMARY
+===================================== */
+
+.books-summary {
+    -fx-background-color: white;
+    -fx-padding: 14 18;
+    -fx-spacing: 6px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.books-count-title {
+    -fx-text-fill: #7A869A;
+    -fx-font-size: 12px;
+}
+
+.books-count-value {
+    -fx-text-fill: #17233D;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+
+/* =====================================
+   BOOKS TABLE CONTAINER
+===================================== */
+
+.books-table-container {
+    -fx-background-color: white;
+    -fx-padding: 18px;
+    -fx-spacing: 14px;
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.table-section-title {
+    -fx-text-fill: #17233D;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.table-section-subtitle {
+    -fx-text-fill: #8994A7;
+    -fx-font-size: 11px;
+}
+
+
+/* =====================================
+   BOOKS TABLE
+===================================== */
+
+.books-table {
+    -fx-background-color: white;
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-table-cell-border-color: transparent;
+    -fx-fixed-cell-size: 48px;
+}
+
+
+/* =====================================
+   TABLE HEADER
+===================================== */
 
 .books-table .column-header-background {
     -fx-background-color: #EEF2F7;
@@ -225,84 +374,120 @@
 
 .books-table .column-header {
     -fx-background-color: #EEF2F7;
-
     -fx-border-color: transparent;
-    -fx-size: 42px;
+    -fx-size: 44px;
+}
+
+.books-table .column-header:hover {
+    -fx-background-color: #E4EAF3;
 }
 
 .books-table .column-header .label {
-    -fx-text-fill: #526074;
+    -fx-text-fill: #344054;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 10 0 10;
 }
 
 
-/* Table Rows */
+/* =====================================
+   TABLE ROWS
+===================================== */
 
 .books-table .table-row-cell {
     -fx-background-color: white;
-
     -fx-border-color: transparent transparent #EDF0F4 transparent;
     -fx-border-width: 0 0 1px 0;
+}
 
-    -fx-cell-size: 48px;
+.books-table .table-row-cell:odd {
+    -fx-background-color: #FCFDFE;
 }
 
 .books-table .table-row-cell:hover {
-    -fx-background-color: #F5F8FD;
+    -fx-background-color: #F0F5FD;
 }
 
 .books-table .table-row-cell:selected {
-    -fx-background-color: #EAF2FF;
+    -fx-background-color: #E3EEFF;
 }
+
+
+/* =====================================
+   TABLE CELLS
+===================================== */
 
 .books-table .table-cell {
     -fx-text-fill: #344054;
     -fx-font-size: 12px;
-
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 10 0 10;
     -fx-border-color: transparent;
 }
 
+.books-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: #17233D;
+}
 
-/* ====== ACTION BUTTONS ===== */
 
-.actions-container {
-    -fx-spacing: 6;
+/* =====================================
+   INDIVIDUAL TABLE COLUMNS
+===================================== */
+
+.book-id-column {
     -fx-alignment: CENTER;
 }
 
-.edit-button {
-    -fx-background-color: #EAF2FF;
-    -fx-text-fill: #2F80ED;
+.book-title-column {
+    -fx-alignment: CENTER_LEFT;
+}
 
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
+.book-author-column {
+    -fx-alignment: CENTER_LEFT;
+}
 
-    -fx-padding: 6 10;
+.book-isbn-column {
+    -fx-alignment: CENTER;
+}
 
+.book-category-column {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.book-total-copies-column {
+    -fx-alignment: CENTER;
+}
+
+.book-available-copies-column {
+    -fx-alignment: CENTER;
+}
+
+
+/* =====================================
+   EMPTY TABLE MESSAGE
+===================================== */
+
+.books-table .placeholder .label {
+    -fx-text-fill: #8994A7;
+    -fx-font-size: 13px;
+}
+
+
+/* =====================================
+   TABLE SCROLLBAR
+===================================== */
+
+.books-table .scroll-bar:vertical,
+.books-table .scroll-bar:horizontal {
+    -fx-background-color: #F5F7FB;
+}
+
+.books-table .scroll-bar .thumb {
+    -fx-background-color: #C5CEDB;
     -fx-background-radius: 4px;
-
-    -fx-cursor: hand;
 }
 
-.edit-button:hover {
-    -fx-background-color: #DCEAFF;
-}
-
-.delete-button {
-    -fx-background-color: #FDECEC;
-    -fx-text-fill: #DC3545;
-
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
-
-    -fx-padding: 6 10;
-
-    -fx-background-radius: 4px;
-
-    -fx-cursor: hand;
-}
-
-.delete-button:hover {
-    -fx-background-color: #F9D7D9;
+.books-table .scroll-bar .thumb:hover {
+    -fx-background-color: #9AA8BB;
 }
