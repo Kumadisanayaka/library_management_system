@@ -27,6 +27,7 @@ public class SceneManager {
 
             stage.setScene(scene);
             stage.show();
+            stage.centerOnScreen();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
