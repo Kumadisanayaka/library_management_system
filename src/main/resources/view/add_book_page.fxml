@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="555.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addBookController.Add_book_page_controller">
    <children>
-      <BorderPane prefHeight="555.0" prefWidth="843.0" styleClass="add-book-root" stylesheets="@../css/add_book_page.css">
+      <BorderPane prefHeight="742.0" prefWidth="1047.0" styleClass="add-book-root" stylesheets="@../css/add_book_page.css">
          <left>
             <VBox minWidth="192.0" prefHeight="555.0" prefWidth="192.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
@@ -37,7 +37,7 @@
                   <HBox prefHeight="64.0" prefWidth="572.0" styleClass="page-header">
                      <children>
                         <Label prefHeight="57.0" prefWidth="148.0" styleClass="page-title" text="Add Book" />
-                        <Region prefHeight="64.0" prefWidth="230.0" />
+                        <Region prefHeight="64.0" prefWidth="438.0" />
                         <HBox prefHeight="26.0" prefWidth="200.0" styleClass="admin-profile" stylesheets="@../css/dashboard.css">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="62.0" maxWidth="65.0" prefHeight="62.0" prefWidth="36.0" styleClass="admin-avatar" stylesheets="@../css/dashboard.css" text="A" />
@@ -51,14 +51,14 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <VBox prefHeight="410.0" prefWidth="572.0" styleClass="book-form" stylesheets="@../css/add_book_page.css">
+                  <VBox prefHeight="498.0" prefWidth="776.0" styleClass="book-form" stylesheets="@../css/add_book_page.css">
                      <children>
                         <HBox prefHeight="49.0" prefWidth="514.0" styleClass="form-row">
                            <children>
                               <VBox prefHeight="50.0" prefWidth="175.0" styleClass="form-field">
                                  <children>
                                     <Label prefHeight="16.0" prefWidth="72.0" styleClass="field-label" text="Book Title" />
-                                    <TextField fx:id="txtBookTitle" prefHeight="23.0" prefWidth="264.0" styleClass="input-field" />
+                                    <TextField fx:id="txtBookTitle" prefHeight="23.0" prefWidth="264.0" promptText="Enter Book Title" styleClass="input-field" />
                                     <Label fx:id="lblBooktitleError" prefHeight="14.0" prefWidth="241.0" styleClass="error-label" />
                                  </children>
                               </VBox>
@@ -66,8 +66,17 @@
                               <VBox prefHeight="200.0" prefWidth="100.0" styleClass="form-field">
                                  <children>
                                     <Label prefHeight="16.0" prefWidth="58.0" styleClass="field-label" text="Author" />
-                                    <TextField fx:id="txtAuthor" styleClass="input-field" />
+                                    <TextField fx:id="txtAuthor" promptText="Enter Author Name" styleClass="input-field" />
                                     <Label fx:id="lblAuthorError" prefHeight="15.0" prefWidth="238.0" styleClass="error-label" />
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="82.0" prefWidth="50.0" />
+                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="form-field">
+                                 <children>
+                                    <Label styleClass="field-label" text="Book ID" />
+                                    <TextField fx:id="txtBookId" promptText="Click Genarate Book ID" styleClass="input-field" />
+                                    <Label fx:id="lblBookIdError" prefHeight="15.0" prefWidth="214.0" styleClass="error-label" />
+                                    <Button fx:id="btnGenarateBookId" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnGenarateBookIdOnAction" prefHeight="27.0" prefWidth="222.0" styleClass="generate-id-button" text="Genarate Book ID" />
                                  </children>
                               </VBox>
                            </children>
@@ -77,34 +86,34 @@
                               <VBox prefHeight="200.0" prefWidth="100.0" styleClass="form-field">
                                  <children>
                                     <Label styleClass="field-label" text="ISBN" />
-                                    <TextField fx:id="txtIsbn" styleClass="input-field" />
+                                    <TextField fx:id="txtIsbn" promptText="Enter ISBN No" styleClass="input-field" />
                                     <Label fx:id="lblIsbnError" prefHeight="15.0" prefWidth="244.0" styleClass="error-label" />
                                  </children>
                               </VBox>
                               <Region prefHeight="74.0" prefWidth="20.0" />
-                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="form-field">
+                              <VBox prefHeight="82.0" prefWidth="264.0" styleClass="form-field">
                                  <children>
                                     <Label styleClass="field-label" text="Category" />
-                                    <ComboBox fx:id="cmbCategory" prefWidth="237.0" styleClass="category-combo" />
+                                    <ComboBox fx:id="cmbCategory" prefWidth="237.0" promptText="Select Category" styleClass="category-combo" />
                                     <Label fx:id="lblCmbCategoryError" prefHeight="15.0" prefWidth="247.0" styleClass="error-label" />
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="82.0" prefWidth="71.0" />
+                              <VBox prefHeight="75.0" prefWidth="146.0" styleClass="form-field">
+                                 <children>
+                                    <Label styleClass="field-label" text="Total Copies" />
+                                    <TextField fx:id="txtTotalCopies" prefHeight="34.0" prefWidth="94.0" promptText="Enter Total Copies" styleClass="input-field" />
+                                    <Label fx:id="lblTotalCopiesError" prefHeight="15.0" prefWidth="246.0" styleClass="error-label" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox prefHeight="127.0" prefWidth="514.0" styleClass="form-row">
+                        <HBox prefHeight="107.0" prefWidth="718.0" styleClass="form-row">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="form-field">
-                                 <children>
-                                    <Label styleClass="field-label" text="Total Copies" />
-                                    <TextField fx:id="txtTotalCopies" prefWidth="185.0" styleClass="input-field" />
-                                    <Label fx:id="lblTotalCopiesError" prefHeight="15.0" prefWidth="246.0" styleClass="error-label" />
-                                 </children>
-                              </VBox>
-                              <Region prefHeight="93.0" prefWidth="18.0" />
-                              <VBox prefHeight="124.0" prefWidth="238.0" styleClass="form-field">
+                              <VBox prefHeight="180.0" prefWidth="538.0" styleClass="form-field">
                                  <children>
                                     <Label styleClass="field-label" text="Description" />
-                                    <TextArea fx:id="txtDescription" prefHeight="70.0" prefWidth="238.0">
+                                    <TextArea fx:id="txtDescription" prefHeight="36.0" prefWidth="499.0" promptText="Enter Description">
                                        <styleClass>
                                           <String fx:value="description-field" />
                                           <String fx:value="description-counter" />
@@ -115,7 +124,8 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="form-buttons">
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <HBox prefHeight="38.0" prefWidth="230.0" styleClass="form-buttons">
                            <children>
                               <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAddOnAction" styleClass="primary-button" text="Add" />
                               <Button fx:id="btnReset" mnemonicParsing="false" onAction="#btnResetOnAction" styleClass="secondary-button" text="Reset" />

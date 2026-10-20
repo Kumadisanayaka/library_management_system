@@ -51,10 +51,16 @@ public class Add_book_page_controller implements Initializable {
     private Button btnViewBooks;
 
     @FXML
+    private Button btnGenarateBookId;
+
+    @FXML
     private ComboBox<String> cmbCategory;
 
     @FXML
     private Label lblAuthorError;
+
+    @FXML
+    private Label lblBookIdError;
 
     @FXML
     private Label lblBooktitleError;
@@ -70,6 +76,9 @@ public class Add_book_page_controller implements Initializable {
 
     @FXML
     private Label lblTotalCopiesError;
+
+    @FXML
+    private TextField txtBookId;
 
     @FXML
     private TextField txtAuthor;
@@ -256,5 +265,8 @@ public class Add_book_page_controller implements Initializable {
 
 
                 });
+    }
+    @FXML
+    public void btnGenarateBookIdOnAction(ActionEvent event) {
     }
 }
