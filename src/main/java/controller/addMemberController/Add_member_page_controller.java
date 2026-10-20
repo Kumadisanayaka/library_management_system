@@ -2,18 +2,17 @@ package controller.addMemberController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import scene.SceneManager;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Add_member_page_controller {
+public class Add_member_page_controller implements Initializable {
 
     @FXML
     private Button btnAdd;
@@ -26,6 +25,9 @@ public class Add_member_page_controller {
 
     @FXML
     private Button btnDashboard;
+
+    @FXML
+    private Button btnGenerateMemberId;
 
     @FXML
     private Button btnHistory;
@@ -49,6 +51,9 @@ public class Add_member_page_controller {
     private Button btnViewBooks;
 
     @FXML
+    private ComboBox<String> cmbMemberCategory;
+
+    @FXML
     private Label lblAddressError;
 
     @FXML
@@ -68,6 +73,9 @@ public class Add_member_page_controller {
 
     @FXML
     private TextField txtFullName;
+
+    @FXML
+    private TextField txtMemberId;
 
     @FXML
     private TextField txtPhoneNumber;
@@ -90,6 +98,11 @@ public class Add_member_page_controller {
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
         SceneManager.switchPage("/view/main_dashboard_page.fxml");
+    }
+
+    @FXML
+    void btnGenerateMemberIdOnAction(ActionEvent event) {
+
     }
 
     @FXML
@@ -127,4 +140,16 @@ public class Add_member_page_controller {
         SceneManager.switchPage("/view/view_books_page.fxml");
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        cmbMemberCategory.getItems().addAll(
+                "Student-STU",
+                "Teacher-TCH",
+                "Staff-STF",
+                "General-GEN"
+        );
+        cmbMemberCategory.setValue("General-GEN");
+
+    }
 }

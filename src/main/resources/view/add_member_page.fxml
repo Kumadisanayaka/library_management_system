@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -64,14 +66,34 @@
                               <VBox prefHeight="58.0" prefWidth="234.0" styleClass="form-field">
                                  <children>
                                     <Label styleClass="field-label" text="Full Name" />
-                                    <TextField fx:id="txtFullName" styleClass="input-field" />
+                                    <TextField fx:id="txtFullName" promptText="Enter Full Name" styleClass="input-field" />
                                     <Label fx:id="lblFullNameError" prefHeight="17.0" prefWidth="235.0" styleClass="error-label" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="89.0" prefWidth="286.0" styleClass="form-field">
                                  <children>
+                                    <Label styleClass="field-label" text="Member ID" />
+                                    <TextField fx:id="txtMemberId" promptText="Click Generate Member ID" styleClass="input-field" />
+                                    <Label prefHeight="18.0" prefWidth="282.0" styleClass="error-label" />
+                                    <Button fx:id="btnGenerateMemberId" mnemonicParsing="false" onAction="#btnGenerateMemberIdOnAction" styleClass="generate-member-id-button" text="Generate Member ID" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="form-row">
+                           <children>
+                              <VBox prefHeight="97.0" prefWidth="183.0" styleClass="form-field">
+                                 <children>
+                                    <Label styleClass="field-label" text="Membership Category" />
+                                    <ComboBox fx:id="cmbMemberCategory" prefHeight="50.0" prefWidth="223.0" styleClass="input-field" />
+                                    <Label prefHeight="17.0" prefWidth="234.0" styleClass="error-label" />
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="97.0" prefWidth="27.0" />
+                              <VBox prefHeight="97.0" prefWidth="290.0" styleClass="form-field">
+                                 <children>
                                     <Label styleClass="field-label" text="Email" />
-                                    <TextField fx:id="txtEmail" styleClass="input-field" />
+                                    <TextField fx:id="txtEmail" prefHeight="42.0" prefWidth="283.0" promptText="Enter Email" styleClass="input-field" />
                                     <Label fx:id="lblEmailError" prefHeight="17.0" prefWidth="282.0" styleClass="error-label" />
                                  </children>
                               </VBox>
@@ -82,14 +104,18 @@
                               <VBox prefHeight="78.0" prefWidth="237.0" styleClass="form-field">
                                  <children>
                                     <Label styleClass="field-label" text="Phone Number" />
-                                    <TextField fx:id="txtPhoneNumber" styleClass="input-field" />
+                                    <TextField fx:id="txtPhoneNumber" promptText="Enter Phone Number" styleClass="input-field" />
                                     <Label fx:id="lblPhoneNumberError" prefHeight="18.0" prefWidth="243.0" styleClass="error-label" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="89.0" prefWidth="283.0" styleClass="form-field">
                                  <children>
                                     <Label styleClass="field-label" text="Address" />
-                                    <TextField fx:id="txtAddress" styleClass="input-field" />
+                                    <TextField fx:id="txtAddress" alignment="TOP_LEFT" promptText="Enter Address">
+                                       <styleClass>
+                                          <String fx:value="input-field" />
+                                          <String fx:value="address-field" />
+                                       </styleClass></TextField>
                                     <Label fx:id="lblAddressError" prefHeight="18.0" prefWidth="280.0" styleClass="error-label" />
                                  </children>
                               </VBox>

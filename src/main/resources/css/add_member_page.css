@@ -305,3 +305,82 @@
 .secondary-button:hover {
     -fx-background-color: #E2E7EF;
 }
+
+/* =====================================
+   GENERATE MEMBER ID BUTTON
+===================================== */
+
+.generate-member-id-button {
+    -fx-pref-width: 145px;
+    -fx-pref-height: 42px;
+
+    -fx-background-color: #E8F0FE;
+    -fx-text-fill: #2563EB;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-border-color: #BFDBFE;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+
+/* Hover */
+
+.generate-member-id-button:hover {
+    -fx-background-color: #DBEAFE;
+    -fx-border-color: #93C5FD;
+}
+
+
+/* Pressed */
+
+.generate-member-id-button:pressed {
+    -fx-background-color: #BFDBFE;
+    -fx-text-fill: #1D4ED8;
+}
+
+
+/* Focused */
+
+.generate-member-id-button:focused {
+    -fx-border-color: #60A5FA;
+}
+
+/* =====================================
+   ADDRESS FIELD
+===================================== */
+
+.address-field {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 90px;
+
+    -fx-min-height: 90px;
+    -fx-max-height: 90px;
+
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #17233D;
+    -fx-prompt-text-fill: #94A3B8;
+
+    -fx-font-size: 13px;
+    -fx-padding: 10 12;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+
+    -fx-wrap-text: true;
+}
+
+.address-field:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #2563EB;
+    -fx-border-width: 1.2px;
+}
