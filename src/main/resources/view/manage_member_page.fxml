@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -9,76 +10,120 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="510.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Manage_member_Page_controller">
+<AnchorPane prefHeight="615.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manageMemberController.Manage_member_Page_controller">
    <children>
-      <BorderPane prefHeight="551.0" prefWidth="742.0">
-         <top>
-            <VBox prefHeight="63.0" prefWidth="742.0" style="-fx-background-color: #FFF2A0;" styleClass="main-header" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="615.0" prefWidth="1129.0" styleClass="manage-members-root" stylesheets="@../css/manage_member_page.css">
+         <left>
+            <VBox prefHeight="615.0" prefWidth="249.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="main-title" stylesheets="@../css/style.css" text="Manage Members">
-                     <font>
-                        <Font name="Arial Black" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label styleClass="main-subtitle" text="View and manage registered library members">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  <Label styleClass="logo-title" text="Library System" />
+                  <VBox prefHeight="356.0" prefWidth="213.0" styleClass="navigation-menu">
+                     <children>
+                        <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="38.0" prefWidth="207.0" styleClass="nav-button" text="Dashboard" />
+                        <Button fx:id="btnAddBook" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="38.0" prefWidth="206.0" styleClass="nav-button" text="Add Book" />
+                        <Button fx:id="btnViewBooks" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" onAction="#btnViewBooksOnAction" prefHeight="38.0" prefWidth="208.0" styleClass="nav-button" text="View Books" />
+                        <Button fx:id="btnAddMember" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="38.0" prefWidth="206.0" styleClass="nav-button" text="Add Member" />
+                        <Button fx:id="btnManageMembers" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="38.0" prefWidth="206.0" styleClass="nav-button-active" text="Manage Members" />
+                        <Button fx:id="btnIssueBook" layoutX="10.0" layoutY="111.0" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="38.0" prefWidth="205.0" styleClass="nav-button" text="Issue Book" />
+                        <Button fx:id="btnReturnBook" layoutX="10.0" layoutY="134.0" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="38.0" prefWidth="207.0" styleClass="nav-button" text="Return Book" />
+                        <Button fx:id="btnHistory" layoutX="10.0" layoutY="157.0" mnemonicParsing="false" onAction="#btnHistoryOnAction" prefHeight="38.0" prefWidth="206.0" styleClass="nav-button" text="History" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#btnLogoutOnAction" prefHeight="38.0" prefWidth="210.0" styleClass="logout-button" text="Logout" />
                </children>
             </VBox>
-         </top>
+         </left>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="content-area" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="search-container" stylesheets="@../css/style.css">
+                  <HBox prefHeight="62.0" prefWidth="630.0" styleClass="top-bar">
                      <children>
-                        <TextField fx:id="searchField" onAction="#searchInputOnAction" prefHeight="42.0" prefWidth="600.0" promptText="search members..." styleClass="search-field" stylesheets="@../css/style.css" />
-                        <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchBtnOnAction" styleClass="search-btn" stylesheets="@../css/style.css" text="Search" />
+                        <VBox prefHeight="92.0" prefWidth="222.0">
+                           <children>
+                              <Label styleClass="page-title" text="Manage Members" />
+                              <Label styleClass="page-subtitle" text="View and manage library members" />
+                           </children>
+                        </VBox>
+                        <Region prefHeight="54.0" prefWidth="358.0" />
+                        <HBox alignment="CENTER" prefHeight="92.0" prefWidth="246.0" styleClass="admin-profile">
+                           <children>
+                              <Label styleClass="admin-avatar" text="A">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="175.0" styleClass="admin-info">
+                                 <children>
+                                    <Label styleClass="admin-name" text="Admin" />
+                                    <Label text="Administrator" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="72.0" prefWidth="756.0" styleClass="member-search-bar" VBox.vgrow="NEVER">
+                     <children>
+                        <TextField fx:id="txtSearch" onKeyTyped="#txtSearchTypeOnAction" prefWidth="305.0" promptText="Search by ID, name or phone number" styleClass="search-field" />
+                        <Region prefHeight="66.0" prefWidth="30.0" />
+                        <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#btnSearchOnAction" styleClass="search-button" text="Search" />
+                        <Region prefHeight="66.0" prefWidth="26.0" />
+                        <ComboBox fx:id="cmbCategory" prefWidth="150.0" styleClass="filter-combo" />
+                        <Region prefHeight="66.0" prefWidth="35.0" />
+                        <Button fx:id="btnResetFilters" mnemonicParsing="false" onAction="#btnResetFiltersOnAction" styleClass="reset-filter-button" text="Reset Filters" />
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets />
+                     </VBox.margin></HBox>
+                  <HBox prefHeight="53.0" prefWidth="756.0" styleClass="member-summary">
+                     <children>
+                        <VBox minHeight="67.0" prefHeight="100.0" prefWidth="261.0" styleClass="member-summary-card">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" styleClass="summary-label" text="Total Members" />
+                              <Label fx:id="lblTotalMembersCount" styleClass="summary-value" text="0" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="265.0" styleClass="member-summary-card">
+                           <children>
+                              <Label styleClass="summary-label" text="Student Members" />
+                              <Label fx:id="lblStudentMembersCount" styleClass="summary-value" text="0" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="266.0" styleClass="member-summary-card">
+                           <children>
+                              <Label styleClass="summary-label" text="Other Members" />
+                              <Label fx:id="lblOtherMembersCount" styleClass="summary-value" text="0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <TableView fx:id="memberTbl" editable="true" prefHeight="204.0" prefWidth="659.0" styleClass="member-table" stylesheets="@../css/style.css">
-                    <columns>
-                        <TableColumn fx:id="memberIdCol" prefWidth="126.39999079704285" text="Member ID" />
-                        <TableColumn fx:id="fullNameCol" prefWidth="106.4000244140625" text="Full Name" />
-                        <TableColumn fx:id="addressCol" prefWidth="125.59999084472656" text="Address" />
-                        <TableColumn fx:id="emailCol" prefWidth="141.60003662109375" text="Email" />
-                        <TableColumn fx:id="phoneNumberCol" minWidth="4.7999267578125" prefWidth="112.0" text="Phone Number" />
-                        <TableColumn fx:id="actionCol" prefWidth="129.60001220703123" text="Actions" />
-                    </columns>
+                  <VBox prefHeight="266.0" prefWidth="824.0" styleClass="members-table-container">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
-                  </TableView>
+                     <children>
+                        <Label styleClass="table-section-title" text="Member List" />
+                        <TableView prefHeight="198.0" prefWidth="782.0" styleClass="members-table">
+                           <columns>
+                              <TableColumn fx:id="clmMemberId" prefWidth="91.99996638298035" text="Member ID" />
+                              <TableColumn fx:id="clmFullName" prefWidth="144.79995727539062" text="Full Name" />
+                              <TableColumn fx:id="clmPhone" prefWidth="111.20002746582031" text="Phone" />
+                              <TableColumn fx:id="clmCategory" prefWidth="92.800048828125" text="Category" />
+                              <TableColumn fx:id="clmEmail" prefWidth="172.00003051757812" text="Email" />
+                              <TableColumn fx:id="clmAction" prefWidth="164.79996337890623" text="Action" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </center>
-         <bottom>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="member-action-container" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="editMemberBtn" mnemonicParsing="false" onAction="#editMemberBtnOnAction" styleClass="edit-member-btn" stylesheets="@../css/style.css" text="Edit Member" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="deleteMemberBtn" mnemonicParsing="false" onAction="#deleteMemberBtnOnAction" styleClass="delete-member-btn" stylesheets="@../css/style.css" text="Delete Member" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </HBox>
-         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>
