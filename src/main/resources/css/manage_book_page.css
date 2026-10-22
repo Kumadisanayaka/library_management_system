@@ -1,0 +1,645 @@
+/* =====================================
+   MANAGE BOOKS - ROOT
+===================================== */
+
+.manage-books-root {
+    -fx-background-color: #F5F7FB;
+    -fx-font-family: "Arial";
+}
+
+
+/* =====================================
+   SIDEBAR
+===================================== */
+
+.sidebar {
+    -fx-background-color: #17233D;
+    -fx-pref-width: 230px;
+    -fx-min-width: 230px;
+    -fx-padding: 28px 18px 20px 18px;
+    -fx-spacing: 10px;
+}
+
+.logo-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 12px 25px 12px;
+}
+
+.navigation-menu {
+    -fx-spacing: 6px;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #B8C2D6;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 14px;
+
+    -fx-pref-width: 194px;
+    -fx-pref-height: 44px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #243452;
+    -fx-text-fill: #FFFFFF;
+}
+
+.nav-button-active {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: #FFFFFF;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 14px;
+
+    -fx-pref-width: 194px;
+    -fx-pref-height: 44px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.nav-button-active:hover {
+    -fx-background-color: #2F80ED;
+}
+
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #B8C2D6;
+
+    -fx-font-size: 13px;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 14px;
+
+    -fx-pref-width: 194px;
+    -fx-pref-height: 44px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: #243452;
+    -fx-text-fill: #FFFFFF;
+}
+
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
+
+.content-area {
+    -fx-background-color: #F5F7FB;
+
+    -fx-padding: 28px 35px 30px 35px;
+
+    -fx-spacing: 22px;
+}
+
+
+/* =====================================
+   TOP BAR
+===================================== */
+
+.top-bar {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.page-header {
+    -fx-spacing: 5px;
+}
+
+.page-title {
+    -fx-text-fill: #17233D;
+
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: #7A869A;
+
+    -fx-font-size: 12px;
+}
+
+
+/* =====================================
+   ADMIN PROFILE
+===================================== */
+
+.admin-profile {
+    -fx-background-color: #FFFFFF;
+
+    -fx-padding: 7px 12px 7px 8px;
+
+    -fx-spacing: 9px;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+
+    -fx-border-color: #E2E7EF;
+    -fx-border-width: 1px;
+}
+
+.admin-avatar {
+    -fx-background-color: #2F80ED;
+
+    -fx-text-fill: #FFFFFF;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER;
+
+    -fx-min-width: 36px;
+    -fx-min-height: 36px;
+
+    -fx-max-width: 36px;
+    -fx-max-height: 36px;
+
+    -fx-background-radius: 18px;
+}
+
+.admin-info {
+    -fx-spacing: 2px;
+}
+
+.admin-name {
+    -fx-text-fill: #17233D;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.admin-role {
+    -fx-text-fill: #8994A7;
+
+    -fx-font-size: 10px;
+}
+
+
+/* =====================================
+   SEARCH & FILTER BAR
+===================================== */
+
+.book-search-bar {
+    -fx-background-color: #FFFFFF;
+
+    -fx-padding: 16px;
+
+    -fx-spacing: 12px;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+
+/* =====================================
+   SEARCH FIELD
+===================================== */
+
+.search-field {
+    -fx-pref-width: 330px;
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #F8FAFC;
+
+    -fx-text-fill: #17233D;
+    -fx-prompt-text-fill: #94A3B8;
+
+    -fx-font-size: 12px;
+
+    -fx-padding: 0px 12px;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.search-field:focused {
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: #2F80ED;
+}
+
+
+/* =====================================
+   SEARCH BUTTON
+===================================== */
+
+.search-button {
+    -fx-background-color: #2F80ED;
+
+    -fx-text-fill: #FFFFFF;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-pref-height: 40px;
+
+    -fx-padding: 0px 18px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.search-button:hover {
+    -fx-background-color: #256FD1;
+}
+
+.search-button:pressed {
+    -fx-background-color: #1D5DB5;
+}
+
+
+/* =====================================
+   FILTER COMBO BOX
+===================================== */
+
+.filter-combo {
+    -fx-pref-width: 155px;
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-font-size: 12px;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.filter-combo:hover {
+    -fx-border-color: #B8C7DC;
+}
+
+.filter-combo:focused {
+    -fx-border-color: #2F80ED;
+}
+
+.filter-combo .list-cell {
+    -fx-text-fill: #344054;
+
+    -fx-font-size: 12px;
+
+    -fx-padding: 0px 10px;
+}
+
+.filter-combo .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.filter-combo .arrow {
+    -fx-background-color: #526074;
+}
+
+
+/* =====================================
+   RESET BUTTON
+===================================== */
+
+.reset-filter-button {
+    -fx-background-color: #FFFFFF;
+
+    -fx-text-fill: #526074;
+
+    -fx-font-size: 12px;
+
+    -fx-pref-height: 40px;
+
+    -fx-padding: 0px 14px;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.reset-filter-button:hover {
+    -fx-background-color: #F1F5F9;
+
+    -fx-border-color: #B8C7DC;
+}
+
+
+/* =====================================
+   BOOK SUMMARY
+===================================== */
+
+.book-summary {
+    -fx-spacing: 16px;
+}
+
+.summary-card {
+    -fx-background-color: #FFFFFF;
+
+    -fx-padding: 16px 20px;
+
+    -fx-spacing: 5px;
+
+    -fx-min-height: 82px;
+
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.summary-label {
+    -fx-text-fill: #7A869A;
+
+    -fx-font-size: 11px;
+}
+
+.summary-value {
+    -fx-text-fill: #17233D;
+
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+
+/* =====================================
+   TABLE CONTAINER
+===================================== */
+
+.books-table-container {
+    -fx-background-color: #FFFFFF;
+
+    -fx-padding: 18px;
+
+    -fx-spacing: 12px;
+
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.table-section-title {
+    -fx-text-fill: #17233D;
+
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+
+/* =====================================
+   BOOKS TABLE
+===================================== */
+
+.books-table {
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+
+    -fx-table-cell-border-color: transparent;
+
+    -fx-fixed-cell-size: 46px;
+}
+
+
+/* =====================================
+   TABLE HEADER
+===================================== */
+
+.books-table .column-header-background {
+    -fx-background-color: #EEF2F7;
+}
+
+.books-table .column-header {
+    -fx-background-color: #EEF2F7;
+
+    -fx-size: 42px;
+
+    -fx-border-color: transparent transparent #E1E6EE transparent;
+}
+
+.books-table .column-header .label {
+    -fx-text-fill: #526074;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER;
+
+    -fx-padding: 0px 8px;
+}
+
+
+/* =====================================
+   TABLE ROWS
+===================================== */
+
+.books-table .table-row-cell {
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color:
+        transparent
+        transparent
+        #EDF0F4
+        transparent;
+
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.books-table .table-row-cell:odd {
+    -fx-background-color: #FAFBFD;
+}
+
+.books-table .table-row-cell:hover {
+    -fx-background-color: #F3F7FD;
+}
+
+.books-table .table-row-cell:selected {
+    -fx-background-color: #E5F0FF;
+}
+
+
+/* =====================================
+   TABLE CELLS
+===================================== */
+
+.books-table .table-cell {
+    -fx-text-fill: #344054;
+
+    -fx-font-size: 12px;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-padding: 0px 8px;
+
+    -fx-border-color: transparent;
+}
+
+.books-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: #17233D;
+}
+
+
+/* =====================================
+   STATUS
+===================================== */
+
+.status-available {
+    -fx-background-color: #E8F7EE;
+    -fx-text-fill: #16834A;
+
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 5px 9px;
+
+    -fx-background-radius: 12px;
+}
+
+.status-issued {
+    -fx-background-color: #FFF1E8;
+    -fx-text-fill: #C75B16;
+
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 5px 9px;
+
+    -fx-background-radius: 12px;
+}
+
+
+/* =====================================
+   ACTION BUTTONS
+===================================== */
+
+.action-buttons {
+    -fx-spacing: 6px;
+
+    -fx-alignment: CENTER;
+}
+
+
+/* Edit */
+
+.edit-button {
+    -fx-background-color: #EAF2FF;
+
+    -fx-text-fill: #2F80ED;
+
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 6px 10px;
+
+    -fx-background-radius: 4px;
+
+    -fx-cursor: hand;
+}
+
+.edit-button:hover {
+    -fx-background-color: #DCEAFF;
+}
+
+
+/* Delete */
+
+.delete-button {
+    -fx-background-color: #FDECEC;
+
+    -fx-text-fill: #DC3545;
+
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 6px 10px;
+
+    -fx-background-radius: 4px;
+
+    -fx-cursor: hand;
+}
+
+.delete-button:hover {
+    -fx-background-color: #F9D7D9;
+}
+
+.delete-button:pressed {
+    -fx-background-color: #F4C7CB;
+}
+
+
+/* =====================================
+   TABLE SCROLLBAR
+===================================== */
+
+.books-table .scroll-bar:vertical {
+    -fx-background-color: #F5F7FB;
+}
+
+.books-table .scroll-bar:vertical .thumb {
+    -fx-background-color: #C5CEDB;
+
+    -fx-background-radius: 4px;
+}
+
+.books-table .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #AAB6C7;
+}
+
+.books-table .scroll-bar:horizontal {
+    -fx-background-color: #F5F7FB;
+}
+
+.books-table .scroll-bar:horizontal .thumb {
+    -fx-background-color: #C5CEDB;
+
+    -fx-background-radius: 4px;
+}
+
+
+/* =====================================
+   EMPTY / MESSAGE LABEL
+===================================== */
+
+.message-label {
+    -fx-text-fill: #8994A7;
+
+    -fx-font-size: 12px;
+}
