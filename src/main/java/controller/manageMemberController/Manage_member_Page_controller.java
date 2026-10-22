@@ -38,6 +38,9 @@ public class Manage_member_Page_controller implements Initializable {
     private Button btnManageMembers;
 
     @FXML
+    private Button btnManageBooks;
+
+    @FXML
     private Button btnResetFilters;
 
     @FXML
@@ -138,6 +141,11 @@ public class Manage_member_Page_controller implements Initializable {
     }
 
     @FXML
+    public void btnManageBooksOnAction(ActionEvent event) {
+        SceneManager.switchPage("/view/manage_books_page.fxml");
+    }
+
+    @FXML
     void txtSearchTypeOnAction(KeyEvent event) {
 
     }
@@ -153,4 +161,5 @@ public class Manage_member_Page_controller implements Initializable {
 
         cmbCategory.setValue("All Categories");
     }
+
 }
