@@ -49,6 +49,9 @@ public class View_books_page_controller implements Initializable {
     private Button btnManageMember;
 
     @FXML
+    private Button btnManageBooks;
+
+    @FXML
     private Button btnResetFilter;
 
     @FXML
@@ -122,7 +125,12 @@ public class View_books_page_controller implements Initializable {
 
     @FXML
     void btnManageMemberOnAction(ActionEvent event) {
+        SceneManager.switchPage("/view/manage_member_page.fxml");
+    }
 
+    @FXML
+    public void btnManageBooksOnAction(ActionEvent event) {
+        SceneManager.switchPage("/view/manage_books_page.fxml");
     }
 
     @FXML

@@ -26,6 +26,7 @@
                         <Button fx:id="btnViewBook" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button-active" text="View Books" />
                         <Button fx:id="btnAddMember" layoutX="10.0" layoutY="108.0" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Add Member" />
                         <Button fx:id="btnManageMember" layoutX="10.0" layoutY="156.0" mnemonicParsing="false" onAction="#btnManageMemberOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Manage Members" />
+                        <Button fx:id="btnManageBooks" layoutX="10.0" layoutY="202.0" mnemonicParsing="false" onAction="#btnManageBooksOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Manage Books" />
                         <Button fx:id="btnIssueBook" layoutX="10.0" layoutY="205.0" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Issue Book" />
                         <Button fx:id="btnReturnBook" layoutX="10.0" layoutY="254.0" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="Return Book" />
                         <Button fx:id="btnHistory" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#btnHistoryOnAction" prefHeight="42.0" prefWidth="170.0" styleClass="nav-button" text="History" />
