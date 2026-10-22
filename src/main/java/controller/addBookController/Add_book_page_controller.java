@@ -42,6 +42,9 @@ public class Add_book_page_controller implements Initializable {
     private Button btnManageMembers;
 
     @FXML
+    private Button btnManageBooks;
+
+    @FXML
     private Button btnReset;
 
     @FXML
@@ -211,6 +214,11 @@ public class Add_book_page_controller implements Initializable {
     }
 
     @FXML
+    public void btnManageBooksOnAction(ActionEvent event) {
+        SceneManager.switchPage("/view/manage_books_page.fxml");
+    }
+
+    @FXML
     void btnResetOnAction(ActionEvent event) {
 
         txtBookTitle.setText("");
@@ -269,4 +277,5 @@ public class Add_book_page_controller implements Initializable {
     @FXML
     public void btnGenarateBookIdOnAction(ActionEvent event) {
     }
+
 }

@@ -34,6 +34,10 @@
     -fx-padding: 0 0 20px 5px;
 }
 
+.navigation-menu {
+    -fx-spacing: 6px;
+}
+
 
 /* Navigation Button */
 
