@@ -21,6 +21,10 @@
     -fx-padding: 0 0 20 5;
 }
 
+.navigation-menu {
+    -fx-spacing: 6px;
+}
+
 /* Navigation Buttons */
 .nav-button {
     -fx-background-color: transparent;

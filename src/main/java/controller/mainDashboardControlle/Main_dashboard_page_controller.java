@@ -32,6 +32,9 @@ public class Main_dashboard_page_controller {
     private Button btnManageMembers;
 
     @FXML
+    private Button btnManageBooks;
+
+    @FXML
     private Button btnReturnBook;
 
     @FXML
@@ -100,6 +103,11 @@ public class Main_dashboard_page_controller {
     @FXML
     void btnManageMembersOnAction(ActionEvent event) {
         SceneManager.switchPage("/view/manage_member_page.fxml");
+    }
+
+    @FXML
+    public void btnManageBooksOnAction(ActionEvent event) {
+        SceneManager.switchPage("/view/manage_books_page.fxml");
     }
 
     @FXML

@@ -17,14 +17,19 @@
             <VBox prefHeight="542.0" prefWidth="222.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="CENTER" prefHeight="35.0" prefWidth="175.0" styleClass="sidebar-title" text="Library System" />
-                  <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="23.0" prefWidth="213.0" styleClass="nav-button-active" text="Dashboard" />
-                  <Button fx:id="btnAddbook" mnemonicParsing="false" onAction="#btnAddbookOnAction" prefHeight="23.0" prefWidth="173.0" styleClass="nav-button" text="Add Book" />
-                  <Button fx:id="btnViewBooks" mnemonicParsing="false" onAction="#btnViewBooksOnAction" prefHeight="23.0" prefWidth="172.0" styleClass="nav-button" text="View Books" />
-                  <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="23.0" prefWidth="170.0" styleClass="nav-button" text="Add Member" />
-                  <Button fx:id="btnManageMembers" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="23.0" prefWidth="171.0" styleClass="nav-button" text="Manage Members" />
-                  <Button fx:id="btnIssueBook" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="23.0" prefWidth="169.0" styleClass="nav-button" text="Issue Book" />
-                  <Button fx:id="btnReturnBook" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="23.0" prefWidth="170.0" styleClass="nav-button" text="Return Book" />
-                  <Button fx:id="btnHistory" mnemonicParsing="false" onAction="#btnHistoryOnAction" prefHeight="23.0" prefWidth="172.0" styleClass="nav-button" text="History" />
+                  <VBox prefHeight="443.0" prefWidth="180.0" styleClass="navigation-menu">
+                     <children>
+                        <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="23.0" prefWidth="213.0" styleClass="nav-button-active" text="Dashboard" />
+                        <Button fx:id="btnAddbook" mnemonicParsing="false" onAction="#btnAddbookOnAction" prefHeight="23.0" prefWidth="173.0" styleClass="nav-button" text="Add Book" />
+                        <Button fx:id="btnViewBooks" mnemonicParsing="false" onAction="#btnViewBooksOnAction" prefHeight="23.0" prefWidth="172.0" styleClass="nav-button" text="View Books" />
+                        <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="23.0" prefWidth="170.0" styleClass="nav-button" text="Add Member" />
+                        <Button fx:id="btnManageMembers" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="23.0" prefWidth="171.0" styleClass="nav-button" text="Manage Members" />
+                        <Button fx:id="btnManageBooks" mnemonicParsing="false" onAction="#btnManageBooksOnAction" prefHeight="23.0" prefWidth="171.0" styleClass="nav-button" text="Manage Books" />
+                        <Button fx:id="btnIssueBook" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="23.0" prefWidth="169.0" styleClass="nav-button" text="Issue Book" />
+                        <Button fx:id="btnReturnBook" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="23.0" prefWidth="170.0" styleClass="nav-button" text="Return Book" />
+                        <Button fx:id="btnHistory" mnemonicParsing="false" onAction="#btnHistoryOnAction" prefHeight="23.0" prefWidth="172.0" styleClass="nav-button" text="History" />
+                     </children>
+                  </VBox>
                   <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#btnLogoutOnAction" styleClass="nav-button" text="Logout" />
                </children>
             </VBox>
