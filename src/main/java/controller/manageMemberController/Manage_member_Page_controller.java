@@ -107,7 +107,7 @@ public class Manage_member_Page_controller implements Initializable {
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/issue_page.fxml");
     }
 
     @FXML
