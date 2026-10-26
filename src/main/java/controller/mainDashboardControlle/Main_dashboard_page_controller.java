@@ -87,7 +87,7 @@ public class Main_dashboard_page_controller {
 
     @FXML
     void btnHistoryOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/borrowing_history_page.fxml");
     }
 
     @FXML
