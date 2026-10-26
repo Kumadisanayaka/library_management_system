@@ -92,7 +92,7 @@ public class Main_dashboard_page_controller {
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/issue_page.fxml");
     }
 
     @FXML
