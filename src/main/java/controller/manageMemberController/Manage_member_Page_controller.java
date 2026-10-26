@@ -102,7 +102,7 @@ public class Manage_member_Page_controller implements Initializable {
 
     @FXML
     void btnHistoryOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/borrowing_history_page.fxml");
     }
 
     @FXML
