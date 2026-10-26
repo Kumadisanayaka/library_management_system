@@ -1,13 +1,18 @@
-package controller;
+package controller.issueBookController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import scene.SceneManager;
 
-public class Issue_page_controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Issue_page_controller implements Initializable {
 
     @FXML
     private Button btnAddBook;
@@ -68,12 +73,12 @@ public class Issue_page_controller {
 
     @FXML
     void btnAddBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/add_book_page.fxml");
     }
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/add_member_page.fxml");
     }
 
     @FXML
@@ -83,12 +88,12 @@ public class Issue_page_controller {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/main_dashboard_page.fxml");
     }
 
     @FXML
     void btnGoAddMemberOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/add_member_page.fxml");
     }
 
     @FXML
@@ -98,7 +103,7 @@ public class Issue_page_controller {
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/issue_page.fxml");
     }
 
     @FXML
@@ -113,12 +118,12 @@ public class Issue_page_controller {
 
     @FXML
     void btnManageBooksOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/manage_books_page.fxml");
     }
 
     @FXML
     void btnManageMembersOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/manage_member_page.fxml");
     }
 
     @FXML
@@ -128,7 +133,11 @@ public class Issue_page_controller {
 
     @FXML
     void btnViewBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/view_books_page.fxml");
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
