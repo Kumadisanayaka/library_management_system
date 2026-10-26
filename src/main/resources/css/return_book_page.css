@@ -1,0 +1,724 @@
+/* =========================================
+   ROOT
+========================================= */
+
+.return-book-root {
+    -fx-background-color: #F5F7FB;
+    -fx-font-family: "Arial";
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    -fx-background-color: #17233D;
+
+    -fx-pref-width: 288px;
+    -fx-min-width: 288px;
+    -fx-max-width: 288px;
+
+    -fx-padding: 28px 12px 20px 12px;
+    -fx-spacing: 12px;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 5px 16px 25px 16px;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navigation-menu {
+    -fx-spacing: 6px;
+}
+
+
+/* NORMAL NAV BUTTON */
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #C3CEE0;
+
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 16px;
+
+    -fx-pref-width: 264px;
+    -fx-min-width: 264px;
+    -fx-pref-height: 54px;
+
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #263B5E;
+    -fx-text-fill: #FFFFFF;
+}
+
+.nav-button:pressed {
+    -fx-background-color: #30496F;
+}
+
+
+/* ACTIVE NAV BUTTON */
+
+.nav-button-active {
+    -fx-background-color: #2675F5;
+    -fx-text-fill: #FFFFFF;
+
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 16px;
+
+    -fx-pref-width: 264px;
+    -fx-min-width: 264px;
+    -fx-pref-height: 54px;
+
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+
+    -fx-cursor: hand;
+}
+
+.nav-button-active:hover {
+    -fx-background-color: #2675F5;
+    -fx-text-fill: #FFFFFF;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #C3CEE0;
+
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 16px;
+
+    -fx-pref-width: 264px;
+    -fx-min-width: 264px;
+    -fx-pref-height: 50px;
+
+    -fx-background-radius: 6px;
+
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: #263B5E;
+    -fx-text-fill: #FFFFFF;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.content-area {
+    -fx-background-color: #F5F7FB;
+
+    -fx-padding: 24px;
+
+    -fx-spacing: 22px;
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.top-bar {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 20px;
+}
+
+.page-header {
+    -fx-spacing: 5px;
+}
+
+.page-title {
+    -fx-text-fill: #17233D;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: #7A869A;
+    -fx-font-size: 13px;
+}
+
+
+/* =========================================
+   ADMIN PROFILE
+========================================= */
+
+.admin-profile {
+    -fx-background-color: #FFFFFF;
+
+    -fx-padding: 9px 14px 9px 9px;
+    -fx-spacing: 10px;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+}
+
+.admin-avatar {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: #FFFFFF;
+
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER;
+
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+
+    -fx-background-radius: 20px;
+}
+
+.admin-info {
+    -fx-spacing: 3px;
+}
+
+.admin-name {
+    -fx-text-fill: #17233D;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.admin-role {
+    -fx-text-fill: #7A869A;
+    -fx-font-size: 11px;
+}
+
+
+/* =========================================
+   RETURN BOOK CONTENT
+========================================= */
+
+.return-book-content {
+    -fx-spacing: 18px;
+    -fx-alignment: TOP_LEFT;
+}
+
+
+/* =========================================
+   FORM CONTAINER
+========================================= */
+
+.return-form-container {
+    -fx-background-color: #FFFFFF;
+
+    -fx-padding: 24px;
+    -fx-spacing: 12px;
+
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+}
+
+.form-title {
+    -fx-text-fill: #17233D;
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+}
+
+.form-subtitle {
+    -fx-text-fill: #7A869A;
+    -fx-font-size: 12px;
+}
+
+
+/* =========================================
+   MEMBER SECTION
+========================================= */
+
+.member-section-header {
+    -fx-background-color: #EEF4FD;
+
+    -fx-padding: 11px 13px;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-background-radius: 5px;
+}
+
+.member-section-label {
+    -fx-text-fill: #234B8B;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================
+   MEMBER FIELD
+========================================= */
+
+.member-id-label,
+.member-name-label,
+.book-id-label,
+.book-title-label,
+.issue-date-label,
+.return-date-label {
+    -fx-text-fill: #344054;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.member-selection-row {
+    -fx-spacing: 12px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+/* =========================================
+   MEMBER COMBOBOX
+========================================= */
+
+.member-id-combo {
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-font-size: 12px;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.member-id-combo:focused {
+    -fx-border-color: #2F80ED;
+}
+
+.member-id-combo .list-cell {
+    -fx-text-fill: #344054;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 10px;
+}
+
+.member-id-combo .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.member-id-combo .arrow {
+    -fx-background-color: #526074;
+}
+
+.member-id-combo .list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D8E0EC;
+}
+
+.member-id-combo .list-view .list-cell:hover {
+    -fx-background-color: #EEF4FD;
+}
+
+.member-id-combo .list-view .list-cell:filled:selected {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: #FFFFFF;
+}
+
+
+/* =========================================
+   ADD MEMBER BUTTON
+========================================= */
+
+.add-member-button {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: #FFFFFF;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-pref-height: 40px;
+
+    -fx-padding: 0px 15px;
+
+    -fx-background-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.add-member-button:hover {
+    -fx-background-color: #256FD1;
+}
+
+.add-member-button:pressed {
+    -fx-background-color: #1D5DB5;
+}
+
+
+/* =========================================
+   MEMBER NAME
+========================================= */
+
+.member-name-field {
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #F0F4F9;
+
+    -fx-text-fill: #526074;
+    -fx-prompt-text-fill: #94A3B8;
+
+    -fx-font-size: 12px;
+
+    -fx-padding: 0px 12px;
+
+    -fx-border-color: #E0E7F0;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+
+/* =========================================
+   BOOK SECTION
+========================================= */
+
+.book-section-label {
+    -fx-background-color: #EEF4FD;
+
+    -fx-text-fill: #234B8B;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 11px 13px;
+
+    -fx-background-radius: 5px;
+}
+
+
+/* =========================================
+   BOOK ID COMBOBOX
+========================================= */
+
+.book-id-combo {
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-font-size: 12px;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.book-id-combo:focused {
+    -fx-border-color: #2F80ED;
+}
+
+.book-id-combo .list-cell {
+    -fx-text-fill: #344054;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 10px;
+}
+
+.book-id-combo .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.book-id-combo .arrow {
+    -fx-background-color: #526074;
+}
+
+.book-id-combo .list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D8E0EC;
+}
+
+.book-id-combo .list-view .list-cell:hover {
+    -fx-background-color: #EEF4FD;
+}
+
+.book-id-combo .list-view .list-cell:filled:selected {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: #FFFFFF;
+}
+
+
+/* =========================================
+   BOOK TITLE
+========================================= */
+
+.book-title-field {
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #F0F4F9;
+
+    -fx-text-fill: #526074;
+    -fx-prompt-text-fill: #94A3B8;
+
+    -fx-font-size: 12px;
+
+    -fx-padding: 0px 12px;
+
+    -fx-border-color: #E0E7F0;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+
+/* =========================================
+   DATE SECTION
+========================================= */
+
+.date-selection-row {
+    -fx-spacing: 16px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.date-field-group {
+    -fx-spacing: 7px;
+}
+
+
+/* =========================================
+   ISSUE DATE
+========================================= */
+
+.issue-date-picker {
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-font-size: 12px;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.issue-date-picker:focused {
+    -fx-border-color: #2F80ED;
+}
+
+
+/* =========================================
+   RETURN DATE
+========================================= */
+
+.return-date-picker {
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-font-size: 12px;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.return-date-picker:focused {
+    -fx-border-color: #2F80ED;
+}
+
+
+/* =========================================
+   DATE PICKER COMMON
+========================================= */
+
+.issue-date-picker .text-field,
+.return-date-picker .text-field {
+    -fx-background-color: transparent;
+
+    -fx-text-fill: #344054;
+    -fx-prompt-text-fill: #94A3B8;
+}
+
+.issue-date-picker .arrow-button,
+.return-date-picker .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.issue-date-picker .arrow-button .arrow,
+.return-date-picker .arrow-button .arrow {
+    -fx-background-color: #526074;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.message-label {
+    -fx-text-fill: #DC3545;
+    -fx-font-size: 11px;
+}
+
+
+/* =========================================
+   FORM ACTIONS
+========================================= */
+
+.form-actions {
+    -fx-alignment: CENTER_RIGHT;
+
+    -fx-spacing: 10px;
+
+    -fx-padding: 12px 0px 0px 0px;
+
+    -fx-border-color:
+        #E1E6EE
+        transparent
+        transparent
+        transparent;
+
+    -fx-border-width: 1px 0px 0px 0px;
+}
+
+
+/* =========================================
+   CLEAR BUTTON
+========================================= */
+
+.clear-button {
+    -fx-background-color: #F5F7FB;
+    -fx-text-fill: #526074;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-pref-height: 42px;
+
+    -fx-padding: 0px 18px;
+
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.clear-button:hover {
+    -fx-background-color: #E9EEF5;
+}
+
+
+/* =========================================
+   RETURN BUTTON
+========================================= */
+
+.return-button {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: #FFFFFF;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-pref-height: 42px;
+
+    -fx-padding: 0px 18px;
+
+    -fx-background-radius: 5px;
+
+    -fx-cursor: hand;
+}
+
+.return-button:hover {
+    -fx-background-color: #256FD1;
+}
+
+.return-button:pressed {
+    -fx-background-color: #1D5DB5;
+}
+
+
+/* =========================================
+   RETURN INFORMATION PANEL
+========================================= */
+
+.return-info-container {
+    -fx-background-color: #F8FBFF;
+
+    -fx-padding: 22px;
+
+    -fx-spacing: 22px;
+
+    -fx-border-color: #D8E6FA;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+}
+
+.info-title {
+    -fx-text-fill: #172F59;
+
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================
+   INFORMATION ITEMS
+========================================= */
+
+.info-item-one,
+.info-item-two,
+.info-item-three,
+.info-item-four {
+    -fx-text-fill: #344F78;
+
+    -fx-font-size: 12px;
+
+    -fx-wrap-text: true;
+
+    -fx-padding: 5px 0px;
+}
