@@ -232,7 +232,7 @@ public class Add_book_page_controller implements Initializable {
 
     @FXML
     void btnReturnBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/return_book_page.fxml");
     }
 
     @FXML

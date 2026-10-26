@@ -82,7 +82,7 @@ public class Main_dashboard_page_controller {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/main_dashboard_page.fxml");
     }
 
     @FXML
@@ -112,7 +112,7 @@ public class Main_dashboard_page_controller {
 
     @FXML
     void btnReturnBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/return_book_page.fxml");
     }
 
     @FXML
