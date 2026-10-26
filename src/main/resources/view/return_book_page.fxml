@@ -1,118 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="665.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Return_book_page_controller">
+<AnchorPane prefHeight="723.0" prefWidth="1121.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.returnBookController.Return_book_page_controller">
    <children>
-      <BorderPane prefHeight="723.0" prefWidth="875.0" styleClass="return-page" stylesheets="@../css/style.css">
-         <top>
-            <HBox alignment="CENTER_LEFT" prefHeight="106.0" prefWidth="783.0" spacing="15.0" style="-fx-background-color: #FFF2A0;" styleClass="main-header" stylesheets="@../css/style.css" BorderPane.alignment="CENTER_LEFT">
+      <BorderPane prefHeight="723.0" prefWidth="1300.0" styleClass="return-book-root" stylesheets="@../css/return_book_page.css">
+         <left>
+            <VBox prefHeight="723.0" prefWidth="239.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" styleClass="main-title" text="Return Book">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Region prefHeight="80.0" prefWidth="462.0" />
-                  <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backBtnOnAction" styleClass="member-back-btn" text="Back">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Button>
+                  <Label styleClass="logo-title" text="Library System" />
+                  <VBox prefHeight="502.0" prefWidth="264.0" styleClass="navigation-menu">
+                     <children>
+                        <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="nav-button" text="Dashboard" />
+                        <Button fx:id="btnAddBook" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="nav-button" text="Add Book" />
+                        <Button fx:id="btnViewBook" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="nav-button" text="View Book" />
+                        <Button fx:id="btnAddMember" layoutX="10.0" layoutY="69.0" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="nav-button" text="Add Member" />
+                        <Button fx:id="btnManageMembers" layoutX="10.0" layoutY="99.0" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="nav-button" text="Manage Members" />
+                        <Button fx:id="btnManageBooks" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" onAction="#btnManageBooksOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="nav-button" text="Manage Books" />
+                        <Button fx:id="btnIssueBook" layoutX="10.0" layoutY="158.0" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="nav-button" text="Issue Book" />
+                        <Button fx:id="btnReturnBook" layoutX="10.0" layoutY="188.0" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="nav-button-active" text="Return Book" />
+                        <Button fx:id="btnHistory" layoutX="10.0" layoutY="217.0" mnemonicParsing="false" onAction="#btnHistoryOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="nav-button" text="History" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#btnLogoutOnAction" prefHeight="23.0" prefWidth="240.0" styleClass="logout-button" text="Logout" />
                </children>
-            </HBox>
-         </top>
+            </VBox>
+         </left>
          <center>
-            <VBox prefHeight="508.0" prefWidth="783.0" styleClass="content-area" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="content-area" BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="page-title" text="Return Book" />
-                  <Label styleClass="description" text="Return a borrowed book" />
-                  <VBox prefHeight="48.0" prefWidth="722.0" styleClass="search-section">
+                  <HBox prefHeight="65.0" prefWidth="786.0" styleClass="top-bar">
                      <children>
-                        <Label styleClass="section-title" text="Search Borrowed Book" />
-                        <TextField fx:id="searchTxt" onAction="#searchTxtOnAction" styleClass="search-field" />
-                     </children>
-                  </VBox>
-                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="info-label" text="Book &amp; Member Information">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <VBox prefHeight="404.0" prefWidth="814.0" spacing="5.0" styleClass="info-card">
-                     <children>
-                        <GridPane alignment="CENTER_LEFT" hgap="30.0" prefWidth="120.0" styleClass="info-grid" stylesheets="@../css/style.css" vgap="15.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="20.0" prefHeight="40.0" vgrow="ALWAYS" />
-                            <RowConstraints minHeight="20.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="20.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="20.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="20.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="20.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <VBox prefHeight="100.0" prefWidth="262.0" styleClass="page-header">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="96.0" styleClass="info-label" text="Book ID  " />
-                              <TextField fx:id="bookIdTxt" styleClass="info-field" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </TextField>
-                              <Label styleClass="info-label" text="Book Title" GridPane.rowIndex="1" />
-                              <TextField fx:id="bookTitleTxt" styleClass="info-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label styleClass="info-label" text="Member ID " GridPane.rowIndex="2" />
-                              <TextField fx:id="memberIDtxt" styleClass="info-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label styleClass="info-label" text="Member Name " GridPane.rowIndex="3" />
-                              <TextField fx:id="memberNameTxt" styleClass="info-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label styleClass="info-label" text="Borrowed Date " GridPane.rowIndex="4" />
-                              <TextField fx:id="borrowedDateTxt" styleClass="info-field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label styleClass="info-label" text="Due Date " GridPane.rowIndex="5" />
-                              <TextField fx:id="dueDateTxt" prefHeight="68.0" prefWidth="360.0" styleClass="info-field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label styleClass="info-label" text="Return Date " GridPane.rowIndex="6" />
-                              <DatePicker fx:id="returnDatePicker" prefHeight="56.0" prefWidth="394.0" styleClass="info-field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label styleClass="page-title" text="Return Book" />
+                              <Label styleClass="page-subtitle" text="Return issued books to the library" />
                            </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </GridPane>
-                     </children>
-                  </VBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="status-container" stylesheets="@../css/style.css">
-                     <children>
-                        <Label styleClass="info-label" text="Status" />
-                        <Label fx:id="statusLbl" alignment="CENTER_RIGHT" text="Not Overdue" />
+                        </VBox>
+                        <Region prefHeight="66.0" prefWidth="406.0" />
+                        <HBox prefHeight="100.0" prefWidth="258.0" styleClass="admin-profile">
+                           <children>
+                              <Label styleClass="admin-avatar" text="A" />
+                              <VBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="176.0" styleClass="admin-info">
+                                 <children>
+                                    <Label styleClass="admin-name" text="Admin" />
+                                    <Label styleClass="admin-role" text="Administrator" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
-                  <Button fx:id="returnBookBtn" mnemonicParsing="false" onAction="#returnBookBtnOnAction" styleClass="return-btn" text="Return Book " />
+                  <HBox prefHeight="578.0" prefWidth="868.0" styleClass="return-book-content">
+                     <children>
+                        <VBox prefHeight="578.0" prefWidth="623.0" styleClass="return-form-container">
+                           <children>
+                              <Label styleClass="form-title" text="Return a Book" />
+                              <Label styleClass="form-subtitle" text="Select the member and book details to return a book" />
+                              <HBox prefHeight="42.0" prefWidth="514.0" styleClass="member-section-header">
+                                 <children>
+                                    <Label styleClass="member-section-label" text="Member Details" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="82.0" prefWidth="514.0" styleClass="member-selection-row">
+                                 <children>
+                                    <VBox prefHeight="82.0" prefWidth="223.0" styleClass="admin-info">
+                                       <children>
+                                          <Label alignment="TOP_CENTER" lineSpacing="2.0" styleClass="member-id-label" text="Member ID" />
+                                          <ComboBox fx:id="cmbMemberId" prefWidth="210.0" promptText="Select Member ID" styleClass="member-id-combo" />
+                                       </children>
+                                    </VBox>
+                                    <Region prefHeight="82.0" prefWidth="14.0" />
+                                    <VBox prefHeight="82.0" prefWidth="311.0" styleClass="admin-info">
+                                       <children>
+                                          <Label styleClass="member-name-label" text="Member Name" />
+                                          <TextField fx:id="txtMemberName" promptText="Member name will appear here" styleClass="member-name-field" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Label prefHeight="38.0" prefWidth="578.0" styleClass="book-section-label" text="Book Details" />
+                              <HBox prefHeight="66.0" prefWidth="574.0" styleClass="member-selection-row">
+                                 <children>
+                                    <VBox prefHeight="66.0" prefWidth="227.0" styleClass="admin-info">
+                                       <children>
+                                          <Label styleClass="book-id-label" text="Book ID" />
+                                          <ComboBox fx:id="cmbBookId" prefWidth="211.0" promptText="Select Issued Book" styleClass="book-id-combo" />
+                                       </children>
+                                    </VBox>
+                                    <Region prefHeight="66.0" prefWidth="20.0" />
+                                    <VBox prefHeight="66.0" prefWidth="300.0" styleClass="admin-info">
+                                       <children>
+                                          <Label styleClass="book-title-label" text="Book Title" />
+                                          <TextField fx:id="txtBookTitle" promptText="Book title will appear here" styleClass="book-title-field" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="74.0" prefWidth="574.0" styleClass="date-selection-row">
+                                 <children>
+                                    <VBox prefHeight="100.0" prefWidth="243.0" styleClass="date-field-group">
+                                       <children>
+                                          <Label styleClass="issue-date-label" text="Issue Date" />
+                                          <DatePicker fx:id="datepickerIssueDate" prefHeight="23.0" prefWidth="239.0" styleClass="issue-date-picker" />
+                                       </children>
+                                    </VBox>
+                                    <Region prefHeight="100.0" prefWidth="22.0" />
+                                    <VBox prefHeight="100.0" prefWidth="289.0" styleClass="date-field-group">
+                                       <children>
+                                          <Label styleClass="return-date-label" text="Return Date" />
+                                          <DatePicker fx:id="datepickerReturnDate" prefWidth="238.0" styleClass="return-date-picker" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Label prefHeight="14.0" prefWidth="549.0" styleClass="message-label" />
+                              <HBox prefHeight="68.0" prefWidth="574.0" styleClass="form-actions">
+                                 <children>
+                                    <Button fx:id="btnClear" mnemonicParsing="false" onAction="#btnClearOnAction" prefWidth="122.0" styleClass="clear-button" text="Clear" />
+                                    <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#btnReturnOnAction" prefWidth="186.0" styleClass="return-button" text="Return Book" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="578.0" prefWidth="321.0" styleClass="return-info-container">
+                           <children>
+                              <Label styleClass="info-title" text="Return Guidelines" />
+                              <Label prefHeight="15.0" prefWidth="259.0" styleClass="info-item-one" text="01  Select the member ID" />
+                              <Label styleClass="info-item-two" text="02  Choose the issued book" />
+                              <Label styleClass="info-item-three" text="03  Confirm the return date" />
+                              <Label styleClass="info-item-four" text="04  Check the book condition" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </center>
