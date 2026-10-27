@@ -244,18 +244,18 @@ public class Add_book_page_controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         cmbCategory.getItems().addAll(
-                "Fiction",
-                "Non-Fiction",
-                "Science",
-                "Technology",
-                "Education",
-                "History",
-                "Biography",
-                "Business",
-                "Self-Help",
-                "Literature",
-                "Reference",
-                "Children's Books"
+                "FIC-Fiction",
+                "NON-Non-Fiction",
+                "SCI-Science",
+                "TEC-Technology",
+                "EDU-Education",
+                "HIS-History",
+                "BIO-Biography",
+                "BUS-Business",
+                "SEL-Self-Help",
+                "LIT-Literature",
+                "REF-Reference",
+                "CHI-Children's Books"
         );
 
         cmbCategory.setPromptText("Select a Category");
