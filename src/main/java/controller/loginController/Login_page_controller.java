@@ -29,11 +29,12 @@ public class Login_page_controller {
     @FXML
     void btnLoginOnAction(ActionEvent event) {
 
-        if (login_controller.checkUsernameAndPassword(txtUsername.getText(),txtPassword.getText())){
+        if (login_controller.checkUsernameAndPassword(txtUsername.getText(), txtPassword.getText())) {
 
             SceneManager.switchPage("/view/main_dashboard_page.fxml");
+        }else {
+            lblErrorMsg.setText("Invalid username or password.");
         }
-
     }
     @FXML
     public void btnForgetPasswordOnAction(ActionEvent event) {
