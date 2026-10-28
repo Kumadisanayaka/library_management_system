@@ -1,5 +1,6 @@
 package controller.addBookController;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -240,24 +241,14 @@ public class Add_book_page_controller implements Initializable {
         SceneManager.switchPage("/view/view_books_page.fxml");
     }
 
+    public void loadBookCategories(){
+        ObservableList<String> bookCategories = add_book_controller.getBookCategories();
+        cmbCategory.setItems(bookCategories);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        cmbCategory.getItems().addAll(
-                "FIC-Fiction",
-                "NON-Non-Fiction",
-                "SCI-Science",
-                "TEC-Technology",
-                "EDU-Education",
-                "HIS-History",
-                "BIO-Biography",
-                "BUS-Business",
-                "SEL-Self-Help",
-                "LIT-Literature",
-                "REF-Reference",
-                "CHI-Children's Books"
-        );
-
+        loadBookCategories();
         cmbCategory.setPromptText("Select a Category");
 
         txtDescription.textProperty().addListener(
