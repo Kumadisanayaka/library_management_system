@@ -1,13 +1,11 @@
 package controller.addBookController;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import model.BookDTO;
 import scene.SceneManager;
 
 import java.net.URL;
@@ -130,6 +128,16 @@ public class Add_book_page_controller implements Initializable {
             txtAuthor.getStyleClass().remove("input-error");
         }
 
+        //Validate Book ID
+        if (add_book_controller.isEmpty(txtBookId.getText())){
+            lblBookIdError.setText("Plese Genarate Book ID.");
+            txtBookId.getStyleClass().add("input-error");
+            txtBookId.requestFocus();
+        }else {
+            lblBookIdError.setText("");
+            txtBookId.getStyleClass().remove("input-error");
+        }
+
         //Validate ISBN
         if (add_book_controller.isEmpty(txtIsbn.getText())){
             lblIsbnError.setText("Please Enter ISBN Number.");
@@ -180,7 +188,41 @@ public class Add_book_page_controller implements Initializable {
             }
         }
 
+        String id = txtBookId.getText().trim();
+        String title = txtBookTitle.getText().trim();
+        String author = txtAuthor.getText().trim();
+        String category = cmbCategory.getValue().trim();
+        String isbn = txtIsbn.getText().trim();
+        String description = txtDescription.getText().trim();
+        Integer totalCopies = Integer.parseInt(txtTotalCopies.getText().trim());
 
+        BookDTO book = new BookDTO(id,title,author,category,isbn,totalCopies,description);
+        Integer authorId = add_book_controller.getAuthorId(author);
+        Integer categoryId = add_book_controller.getCategoryId(category);
+
+        try {
+            boolean isAdded = add_book_controller.addBook(book,authorId,categoryId);
+
+            if (isAdded){
+                new Alert(Alert.AlertType.INFORMATION, "Book Added Successfully!\nBook ID : " + book.getBookId()).show();
+                clearFields();
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Failed to Add Book!").show();
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Error : "+e.getMessage()).show();
+        }
+
+    }
+
+    private void clearFields(){
+        txtBookId.clear();
+        txtBookTitle.clear();
+        txtAuthor.clear();
+        txtIsbn.clear();
+        txtDescription.clear();
+        txtTotalCopies.clear();
+        cmbCategory.setValue(null);
     }
 
     @FXML
@@ -195,7 +237,7 @@ public class Add_book_page_controller implements Initializable {
 
     @FXML
     void btnHistoryOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/borrowing_history_page.fxml");
     }
 
     @FXML
@@ -232,7 +274,7 @@ public class Add_book_page_controller implements Initializable {
 
     @FXML
     void btnReturnBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/return_book_page.fxml");
     }
 
     @FXML
@@ -240,24 +282,15 @@ public class Add_book_page_controller implements Initializable {
         SceneManager.switchPage("/view/view_books_page.fxml");
     }
 
+    public void loadBookCategories(){
+        ObservableList<String> bookCategories = add_book_controller.getBookCategories();
+        cmbCategory.setItems(bookCategories);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        cmbCategory.getItems().addAll(
-                "Fiction",
-                "Non-Fiction",
-                "Science",
-                "Technology",
-                "Education",
-                "History",
-                "Biography",
-                "Business",
-                "Self-Help",
-                "Literature",
-                "Reference",
-                "Children's Books"
-        );
-
+        txtBookId.setEditable(false);
+        loadBookCategories();
         cmbCategory.setPromptText("Select a Category");
 
         txtDescription.textProperty().addListener(
@@ -276,6 +309,22 @@ public class Add_book_page_controller implements Initializable {
     }
     @FXML
     public void btnGenarateBookIdOnAction(ActionEvent event) {
+        String bookCategory = cmbCategory.getValue();
+
+        if (bookCategory == null){
+            new Alert(Alert.AlertType.WARNING,"Please select Book Category to generate Book ID!").show();
+            cmbCategory.requestFocus();
+            return;
+        }
+
+        try {
+            String bookId = add_book_controller.genarateBookId(bookCategory);
+            txtBookId.setText(bookId);
+            txtBookId.setEditable(false);
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to generate Book ID : "+e.getMessage()).show();
+        }
+
     }
 
 }

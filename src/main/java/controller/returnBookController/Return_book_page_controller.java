@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import scene.SceneManager;
 
 public class Return_book_page_controller {
 
@@ -65,12 +66,12 @@ public class Return_book_page_controller {
 
     @FXML
     void btnAddBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/add_book_page.fxml");
     }
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/add_member_page.fxml");
     }
 
     @FXML
@@ -80,17 +81,17 @@ public class Return_book_page_controller {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/main_dashboard_page.fxml");
     }
 
     @FXML
     void btnHistoryOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/borrowing_history_page.fxml");
     }
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/issue_page.fxml");
     }
 
     @FXML
@@ -100,17 +101,17 @@ public class Return_book_page_controller {
 
     @FXML
     void btnManageBooksOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/manage_books_page.fxml");
     }
 
     @FXML
     void btnManageMembersOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/manage_member_page.fxml");
     }
 
     @FXML
     void btnReturnBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/return_book_page.fxml");
     }
 
     @FXML
@@ -120,7 +121,7 @@ public class Return_book_page_controller {
 
     @FXML
     void btnViewBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/view_books_page.fxml");
     }
 
 }
