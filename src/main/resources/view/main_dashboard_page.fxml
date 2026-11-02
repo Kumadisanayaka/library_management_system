@@ -16,7 +16,7 @@
          <left>
             <VBox prefHeight="542.0" prefWidth="222.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="175.0" styleClass="sidebar-title" text="Library System" />
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="175.0" styleClass="sidebar-title" text="BookFlow" />
                   <VBox prefHeight="443.0" prefWidth="180.0" styleClass="navigation-menu">
                      <children>
                         <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="23.0" prefWidth="213.0" styleClass="nav-button-active" text="Dashboard" />

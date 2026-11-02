@@ -75,7 +75,7 @@
                                  <children>
                                     <Label styleClass="field-label" text="Member ID" />
                                     <TextField fx:id="txtMemberId" promptText="Click Generate Member ID" styleClass="input-field" />
-                                    <Label prefHeight="18.0" prefWidth="282.0" styleClass="error-label" />
+                                    <Label fx:id="lblMemberIdError" prefHeight="18.0" prefWidth="282.0" styleClass="error-label" />
                                     <Button fx:id="btnGenerateMemberId" mnemonicParsing="false" onAction="#btnGenerateMemberIdOnAction" styleClass="generate-member-id-button" text="Generate Member ID" />
                                  </children>
                               </VBox>
@@ -83,14 +83,14 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" styleClass="form-row">
                            <children>
-                              <VBox prefHeight="97.0" prefWidth="183.0" styleClass="form-field">
+                              <VBox prefHeight="97.0" prefWidth="216.0" styleClass="form-field">
                                  <children>
                                     <Label styleClass="field-label" text="Membership Category" />
                                     <ComboBox fx:id="cmbMemberCategory" prefHeight="50.0" prefWidth="223.0" styleClass="input-field" />
-                                    <Label prefHeight="17.0" prefWidth="234.0" styleClass="error-label" />
+                                    <Label fx:id="lblMemberCategoryError" prefHeight="18.0" prefWidth="220.0" styleClass="error-label" />
                                  </children>
                               </VBox>
-                              <Region prefHeight="97.0" prefWidth="27.0" />
+                              <Region prefHeight="97.0" prefWidth="20.0" />
                               <VBox prefHeight="97.0" prefWidth="290.0" styleClass="form-field">
                                  <children>
                                     <Label styleClass="field-label" text="Email" />
