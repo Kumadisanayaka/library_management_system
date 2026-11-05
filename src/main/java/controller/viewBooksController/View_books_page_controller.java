@@ -145,6 +145,16 @@ public class View_books_page_controller implements Initializable {
     @FXML
     void btnResetFilterOnAction(ActionEvent event) {
 
+        txtSearch.clear();
+        cmbCategory.setValue(null);
+        cmbCategory.setPromptText("Select Category");
+        cmbAvailability.setValue(null);
+        cmbAvailability.setPromptText("Select Availability");
+        cmbSortBy.setValue(null);
+        cmbSortBy.setPromptText("Select Sort by");
+        loadFilteredBooks();
+        Integer totalBooks = viewBooksController.getCategoryBookCount(null);
+        lblTotalCount.setText(String.valueOf(totalBooks));
     }
 
     @FXML
@@ -154,7 +164,7 @@ public class View_books_page_controller implements Initializable {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
-
+        loadFilteredBooks();
     }
 
     @FXML
@@ -183,29 +193,22 @@ public class View_books_page_controller implements Initializable {
         cmbCategory.setItems(categoryList);
     }
 
-    private void searchBooks(){
+    private void loadFilteredBooks(){
 
-        txtSearch.textProperty().addListener(
-            (observable, oldValue, newValue) ->{
-                ObservableList<ViewBookDTO> books = viewBooksController.searchBooksByTitleOrAuthor(newValue);
-                tblViewBooks.setItems(books);
+        String searchText = txtSearch.getText();
+        String category = cmbCategory.getValue();
+        String availability = cmbAvailability.getValue();
+        String sort = cmbSortBy.getValue();
 
-                idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-                bookTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-                authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-                isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-                categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-                totalCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("totalCopies"));
-                availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("availableCopies"));
-                statusColomn.setCellValueFactory(new PropertyValueFactory<>("status"));
-            }
-        );
+        ObservableList<ViewBookDTO> bookList = viewBooksController.applyFilters(searchText,category,availability,sort);
+
+        tblViewBooks.setItems(bookList);
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadCategories();
-        searchBooks();
 
         cmbAvailability.getItems().addAll(
                 "Available",
@@ -216,8 +219,47 @@ public class View_books_page_controller implements Initializable {
                 "Title (A-Z)",
                 "Title (Z-A)",
                 "Author (A-Z)",
+                "Author (Z-A)",
                 "Book ID"
         );
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        bookTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        totalCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("totalCopies"));
+        availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("availableCopies"));
+        statusColomn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        loadFilteredBooks();
+
+        lblTotalCount.setText(String.valueOf(viewBooksController.getCategoryBookCount(null)));
+
+        txtSearch.textProperty().addListener(
+            (observable, oldValue, newValue) ->{
+                loadFilteredBooks();
+            });
+
+        cmbCategory.valueProperty().addListener(
+            (observable, oldValue, newValue) ->{
+                loadFilteredBooks();
+
+                Integer bookCount = viewBooksController.getCategoryBookCount(newValue);
+
+                lblTotalCount.setText(String.valueOf(bookCount));
+
+            } );
+
+        cmbAvailability.valueProperty().addListener(
+            (observable, oldValue, newValue) ->{
+                loadFilteredBooks();
+            });
+
+        cmbSortBy.valueProperty().addListener(
+            (observable, oldValue, newValue) ->{
+                loadFilteredBooks();
+            });
 
     }
 }
