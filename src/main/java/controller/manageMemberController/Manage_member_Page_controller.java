@@ -1,5 +1,6 @@
 package controller.manageMemberController;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Manage_member_Page_controller implements Initializable {
+
+    Manage_member_controller manageMemberController = new Manage_member_controller();
 
     @FXML
     private Button btnAddBook;
@@ -150,15 +153,17 @@ public class Manage_member_Page_controller implements Initializable {
 
     }
 
+    private void loadMemberCategories(){
+
+        ObservableList<String> categoryList = manageMemberController.getMemberCategories();
+
+        cmbCategory.setItems(categoryList);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cmbCategory.getItems().addAll(
-                "Student-STU",
-                "Teacher-TCH",
-                "Staff-STF",
-                "General-GEN"
-        );
 
+        loadMemberCategories();
         cmbCategory.setValue("All Categories");
     }
 
