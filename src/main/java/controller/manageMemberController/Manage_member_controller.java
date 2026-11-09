@@ -3,6 +3,7 @@ package controller.manageMemberController;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.MemberCountDTO;
 import model.MemberDTO;
 
 import java.sql.Connection;
@@ -47,7 +48,7 @@ public class Manage_member_controller {
                 "mc.category_name, m.email, m.status, m.address, m.category_id " +
                 "FROM members m " +
                 "INNER JOIN membership_categories mc ON m.category_id = mc.category_id " +
-                "WHERE 1=1 ";
+                "WHERE 1=1 AND m.status = 'Active' ";
 
         List<Object> parameters = new ArrayList<>();
 
@@ -97,5 +98,78 @@ public class Manage_member_controller {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public boolean updateMember(String id, String fullname, String email, String phonenumber, String address) {
+
+        String sql = "UPDATE members SET full_name = ?, email = ?, phone = ?, address = ? WHERE member_id = ? ";
+
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, fullname);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, phonenumber);
+            preparedStatement.setString(4, address);
+            preparedStatement.setString(5, id);
+
+            int rows = preparedStatement.executeUpdate();
+
+            return rows > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteMember(String id) {
+
+        String sql = "UPDATE members SET status = 'Inactive' WHERE member_id = ? ";
+
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, id);
+
+            int rows = preparedStatement.executeUpdate();
+
+            return rows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public MemberCountDTO getMemberCount() {
+
+        String sql = "SELECT COUNT(*) AS total_members, " +
+                "SUM(mc.category_name = 'Student') AS student_members, " +
+                "SUM(mc.category_name != 'Student') AS other_members " +
+                "FROM members m " +
+                "INNER JOIN membership_categories mc " +
+                "ON m.category_id = mc.category_id " +
+                "WHERE m.status = 'Active' ";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                int total = resultSet.getInt("total_members");
+                int student = resultSet.getInt("student_members");
+                int other = resultSet.getInt("other_members");
+
+                MemberCountDTO memberCountDTO = new MemberCountDTO();
+                memberCountDTO.setTotalMembers(total);
+                memberCountDTO.setStudentMembers(student);
+                memberCountDTO.setOtherMembers(other);
+
+                return memberCountDTO;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
