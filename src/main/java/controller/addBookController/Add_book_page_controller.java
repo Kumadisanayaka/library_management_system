@@ -196,7 +196,16 @@ public class Add_book_page_controller implements Initializable {
         String description = txtDescription.getText().trim();
         Integer totalCopies = Integer.parseInt(txtTotalCopies.getText().trim());
 
-        BookDTO book = new BookDTO(id,title,author,category,isbn,totalCopies,description);
+        BookDTO book = new BookDTO();
+        book.setBookId(id);
+        book.setBookTitle(title);
+        book.setAuthor(author);
+        book.setCategory(category);
+        book.setIsbn(isbn);
+        book.setDescription(description);
+        book.setTotalCopies(totalCopies);
+        book.setAvailablecopies(totalCopies);
+        book.setStatus("ACTIVE");
         Integer authorId = add_book_controller.getAuthorId(author);
         Integer categoryId = add_book_controller.getCategoryId(category);
 
