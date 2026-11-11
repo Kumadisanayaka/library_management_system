@@ -1,21 +1,23 @@
 package controller.borrowingHistoryController;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import model.BorrowingHistoryDTO;
+import model.StatusCountDTO;
 import scene.SceneManager;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class Borrowing_history_page_controller implements Initializable {
+
+    Borrowing_history_controller borrowingHistoryController = new Borrowing_history_controller();
 
     @FXML
     private Button btnAddBook;
@@ -25,9 +27,6 @@ public class Borrowing_history_page_controller implements Initializable {
 
     @FXML
     private Button btnDashboard;
-
-    @FXML
-    private Button btnExport;
 
     @FXML
     private Button btnHistory;
@@ -54,40 +53,34 @@ public class Borrowing_history_page_controller implements Initializable {
     private Button btnViewBooks;
 
     @FXML
-    private TableColumn<?, ?> clmBookId;
+    private TableColumn<BorrowingHistoryDTO, String> clmBookId;
 
     @FXML
-    private TableColumn<?, ?> clmBookTitle;
+    private TableColumn<BorrowingHistoryDTO, String> clmBookTitle;
 
     @FXML
-    private TableColumn<?, ?> clmDueDate;
+    private TableColumn<BorrowingHistoryDTO, LocalDate> clmDueDate;
 
     @FXML
-    private TableColumn<?, ?> clmIssueDate;
+    private TableColumn<BorrowingHistoryDTO, LocalDate> clmIssueDate;
 
     @FXML
-    private TableColumn<?, ?> clmMemberId;
+    private TableColumn<BorrowingHistoryDTO, String> clmMemberId;
 
     @FXML
-    private TableColumn<?, ?> clmMemberName;
+    private TableColumn<BorrowingHistoryDTO, String> clmMemberName;
 
     @FXML
-    private TableColumn<?, ?> clmRecordId;
+    private TableColumn<BorrowingHistoryDTO, Integer> clmRecordId;
 
     @FXML
-    private TableColumn<?, ?> clmReturnDate;
+    private TableColumn<BorrowingHistoryDTO, String> clmStatus;
 
     @FXML
-    private TableColumn<?, ?> clmStatus;
+    private TableView<BorrowingHistoryDTO> tblHistoryData;
 
     @FXML
     private ComboBox<String> cmbBookStatCategories;
-
-    @FXML
-    private DatePicker datePickerFromDate;
-
-    @FXML
-    private DatePicker datePickerTodate;
 
     @FXML
     private Label lblBookIssuedCount;
@@ -119,10 +112,6 @@ public class Borrowing_history_page_controller implements Initializable {
         SceneManager.switchPage("/view/main_dashboard_page.fxml");
     }
 
-    @FXML
-    void btnExportOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnHistoryOnAction(ActionEvent event) {
@@ -169,8 +158,31 @@ public class Borrowing_history_page_controller implements Initializable {
 
     }
 
+    private void loadFilters(){
+
+        ObservableList<BorrowingHistoryDTO> historyList =
+                borrowingHistoryController.applyFilters(
+                        txtsearch.getText(),cmbBookStatCategories.getValue());
+
+        tblHistoryData.setItems(historyList);
+
+    }
+
+    private void loadRecordCount(){
+
+        StatusCountDTO countDTO = borrowingHistoryController.getRecordCount();
+
+        lblTotalRecordsCount.setText(String.valueOf(countDTO.getTotalRecords()));
+        lblBookIssuedCount.setText(String.valueOf(countDTO.getIssuedBooks()));
+        lblBooksReturnedCount.setText(String.valueOf(countDTO.getReturnBooks()));
+        lblOverdueBooksCount.setText(String.valueOf(countDTO.getOverDueBooks()));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        loadFilters();
+        loadRecordCount();
 
         cmbBookStatCategories.getItems().addAll(
                 "All Transactions",
@@ -180,5 +192,26 @@ public class Borrowing_history_page_controller implements Initializable {
         );
 
         cmbBookStatCategories.setValue("All Transactions");
+
+        clmRecordId.setCellValueFactory(new PropertyValueFactory<>("issueId"));
+        clmMemberId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
+        clmMemberName.setCellValueFactory(new PropertyValueFactory<>("memberName"));
+        clmBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        clmBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
+        clmIssueDate.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
+        clmDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        clmStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        cmbBookStatCategories.valueProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    loadFilters();
+                }
+        );
+
+        txtsearch.textProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    loadFilters();
+                }
+        );
     }
 }
