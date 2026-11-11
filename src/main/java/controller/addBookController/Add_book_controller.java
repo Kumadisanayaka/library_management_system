@@ -15,9 +15,8 @@ public class Add_book_controller {
         ObservableList<String> bookCategoryList = FXCollections.observableArrayList();
         String SQL = "SELECT category_name,short_code FROM book_categories";
 
-        PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement(SQL);
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){

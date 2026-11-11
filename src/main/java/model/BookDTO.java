@@ -8,7 +8,12 @@ public class BookDTO {
     private String category;
     private String isbn;
     private Integer totalCopies;
+    private Integer availablecopies;
     private String description;
+    private String status;
+
+    public BookDTO() {
+    }
 
     public BookDTO(
             String bookId,
@@ -17,7 +22,9 @@ public class BookDTO {
             String category,
             String isbn,
             Integer totalCopies,
-            String description
+            Integer availablecopies,
+            String description,
+            String status
     ) {
         this.bookId = bookId;
         this.bookTitle = bookTitle;
@@ -25,7 +32,9 @@ public class BookDTO {
         this.category = category;
         this.isbn = isbn;
         this.totalCopies = totalCopies;
+        this.availablecopies = availablecopies;
         this.description = description;
+        this.status = status;
     }
 
     public String getBookId() {
@@ -82,5 +91,21 @@ public class BookDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getAvailablecopies() {
+        return availablecopies;
+    }
+
+    public void setAvailablecopies(Integer availablecopies) {
+        this.availablecopies = availablecopies;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

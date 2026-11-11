@@ -1,5 +1,6 @@
 package controller.viewBooksController;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,23 +10,31 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
+import model.ViewBookDTO;
 import scene.SceneManager;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class View_books_page_controller implements Initializable {
 
-    @FXML
-    private TableColumn<?, ?> actionsColumn;
+    View_books_controller viewBooksController = new View_books_controller();
 
     @FXML
-    private TableColumn<?, ?> authorColumn;
+    private TableColumn<ViewBookDTO, String> availableCopiesColumn;
 
     @FXML
-    private TableColumn<?, ?> bookTitleColumn;
+    private TableColumn<ViewBookDTO, String> authorColumn;
+
+    @FXML
+    private TableColumn<ViewBookDTO, String> bookTitleColumn;
+
+    @FXML
+    private TableColumn<ViewBookDTO, String> statusColomn;
 
     @FXML
     private Button btnAddBook;
@@ -64,7 +73,7 @@ public class View_books_page_controller implements Initializable {
     private Button btnViewBook;
 
     @FXML
-    private TableColumn<?, ?> categoryColumn;
+    private TableColumn<ViewBookDTO, String> categoryColumn;
 
     @FXML
     private ComboBox<String> cmbAvailability;
@@ -76,19 +85,19 @@ public class View_books_page_controller implements Initializable {
     private ComboBox<String> cmbSortBy;
 
     @FXML
-    private TableColumn<?, ?> copiesColumn;
+    private TableColumn<ViewBookDTO, String> totalCopiesColumn;
 
     @FXML
-    private TableColumn<?, ?> idColumn;
+    private TableColumn<ViewBookDTO, String> idColumn;
 
     @FXML
-    private TableColumn<?, ?> isbnColumn;
+    private TableColumn<ViewBookDTO, String> isbnColumn;
 
     @FXML
     private Label lblTotalCount;
 
     @FXML
-    private TableView<?> tblViewBooks;
+    private TableView<ViewBookDTO> tblViewBooks;
 
     @FXML
     private TextField txtSearch;
@@ -136,6 +145,16 @@ public class View_books_page_controller implements Initializable {
     @FXML
     void btnResetFilterOnAction(ActionEvent event) {
 
+        txtSearch.clear();
+        cmbCategory.setValue(null);
+        cmbCategory.setPromptText("Select Category");
+        cmbAvailability.setValue(null);
+        cmbAvailability.setPromptText("Select Availability");
+        cmbSortBy.setValue(null);
+        cmbSortBy.setPromptText("Select Sort by");
+        loadFilteredBooks();
+        Integer totalBooks = viewBooksController.getCategoryBookCount(null);
+        lblTotalCount.setText(String.valueOf(totalBooks));
     }
 
     @FXML
@@ -145,7 +164,7 @@ public class View_books_page_controller implements Initializable {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
-
+        loadFilteredBooks();
     }
 
     @FXML
@@ -168,26 +187,30 @@ public class View_books_page_controller implements Initializable {
 
     }
 
+    private void loadCategories(){
+
+        ObservableList<String> categoryList = viewBooksController.getCategories();
+        cmbCategory.setItems(categoryList);
+    }
+
+    private void loadFilteredBooks(){
+
+        String searchText = txtSearch.getText();
+        String category = cmbCategory.getValue();
+        String availability = cmbAvailability.getValue();
+        String sort = cmbSortBy.getValue();
+
+        ObservableList<ViewBookDTO> bookList = viewBooksController.applyFilters(searchText,category,availability,sort);
+
+        tblViewBooks.setItems(bookList);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        cmbCategory.getItems().addAll(
-                "Fiction",
-                "Non-Fiction",
-                "Science",
-                "Technology",
-                "Education",
-                "History",
-                "Biography",
-                "Business",
-                "Self-Help",
-                "Literature",
-                "Reference",
-                "Children's Books"
-        );
+        loadCategories();
 
         cmbAvailability.getItems().addAll(
-                "All Availability",
                 "Available",
                 "Unavailable"
         );
@@ -196,11 +219,47 @@ public class View_books_page_controller implements Initializable {
                 "Title (A-Z)",
                 "Title (Z-A)",
                 "Author (A-Z)",
+                "Author (Z-A)",
                 "Book ID"
         );
 
-        cmbCategory.setValue("All Categories");
-        cmbAvailability.setValue("All Availability");
-        cmbSortBy.setValue("Title (A-Z)");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        bookTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        totalCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("totalCopies"));
+        availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("availableCopies"));
+        statusColomn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        loadFilteredBooks();
+
+        lblTotalCount.setText(String.valueOf(viewBooksController.getCategoryBookCount(null)));
+
+        txtSearch.textProperty().addListener(
+            (observable, oldValue, newValue) ->{
+                loadFilteredBooks();
+            });
+
+        cmbCategory.valueProperty().addListener(
+            (observable, oldValue, newValue) ->{
+                loadFilteredBooks();
+
+                Integer bookCount = viewBooksController.getCategoryBookCount(newValue);
+
+                lblTotalCount.setText(String.valueOf(bookCount));
+
+            } );
+
+        cmbAvailability.valueProperty().addListener(
+            (observable, oldValue, newValue) ->{
+                loadFilteredBooks();
+            });
+
+        cmbSortBy.valueProperty().addListener(
+            (observable, oldValue, newValue) ->{
+                loadFilteredBooks();
+            });
+
     }
 }

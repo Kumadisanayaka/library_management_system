@@ -1,0 +1,152 @@
+
+/* Main Page */
+
+.page-root {
+    -fx-background-color: #F5F7FB;
+    -fx-font-family: "Arial";
+}
+
+/* Header */
+
+.header {
+    -fx-background-color: #172554;
+    -fx-padding: 25px 35px;
+}
+
+.page-title {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.page-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #CBD5E1;
+}
+
+/* Form Container */
+
+.form-container {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 30px 35px;
+}
+
+/* Form Labels */
+
+.form-container .label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
+}
+
+/* Text Fields */
+
+.form-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 10px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #1E293B;
+}
+
+.form-field:focused {
+    -fx-border-color: #2563EB;
+    -fx-border-width: 1.5px;
+}
+
+/* Read Only Member ID */
+
+.text-field:disabled,
+.text-field:readonly {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #64748B;
+}
+
+/* ComboBox */
+
+.combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-font-size: 13px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #2563EB;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #1E293B;
+    -fx-padding: 8px;
+}
+
+/* Text Area */
+
+.text-area {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-font-size: 13px;
+}
+
+.text-area:focused {
+    -fx-border-color: #2563EB;
+}
+
+.text-area .content {
+    -fx-background-color: #FFFFFF;
+}
+
+/* Button Container */
+
+.button-container {
+    -fx-padding: 15px 0px 0px 0px;
+    -fx-spacing: 12px;
+}
+
+/* Cancel Button */
+
+.cancel-button {
+    -fx-background-color: #E2E8F0;
+    -fx-text-fill: #334155;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 22px;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #CBD5E1;
+}
+
+/* Update Button */
+
+.update-button {
+    -fx-background-color: #1D4ED8;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 22px;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+
+.update-button:hover {
+    -fx-background-color: #1E40AF;
+}
+
+/* Form Labels */
+
+.form-label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
+    -fx-padding: 0 0 4px 0;
+}

@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -94,10 +93,8 @@
                      <children>
                         <HBox prefHeight="91.0" prefWidth="810.0" styleClass="history-filter-bar">
                            <children>
-                              <TextField fx:id="txtsearch" onKeyTyped="#txtSearchTypingOnAction" prefHeight="38.0" prefWidth="336.0" promptText="Search member, book ID or title..." styleClass="history-search-field" />
-                              <ComboBox fx:id="cmbBookStatCategories" prefHeight="38.0" prefWidth="198.0" promptText="All Transactions" styleClass="history-status-filter" />
-                              <DatePicker fx:id="datePickerFromDate" styleClass="history-from-date" />
-                              <DatePicker fx:id="datePickerTodate" styleClass="history-to-date" />
+                              <TextField fx:id="txtsearch" onKeyTyped="#txtSearchTypingOnAction" prefHeight="38.0" prefWidth="563.0" promptText="Search member, book ID or title..." styleClass="history-search-field" />
+                              <ComboBox fx:id="cmbBookStatCategories" prefHeight="38.0" prefWidth="338.0" promptText="All Transactions" styleClass="history-status-filter" />
                               <Button fx:id="btnResetFilters" mnemonicParsing="false" onAction="#btnResetFiltersOnAction" prefHeight="38.0" prefWidth="135.0" styleClass="reset-filter-button" text="Reset Filters" />
                            </children>
                         </HBox>
@@ -110,20 +107,18 @@
                                  </children>
                               </VBox>
                               <Region prefHeight="72.0" prefWidth="436.0" />
-                              <Button fx:id="btnExport" mnemonicParsing="false" onAction="#btnExportOnAction" prefHeight="38.0" prefWidth="215.0" styleClass="export-button" text="Export" />
                            </children>
                         </HBox>
-                        <TableView prefHeight="200.0" prefWidth="200.0" styleClass="history-table">
+                        <TableView fx:id="tblHistoryData" prefHeight="200.0" prefWidth="200.0" styleClass="history-table">
                           <columns>
                             <TableColumn fx:id="clmRecordId" prefWidth="84.79996031522751" text="Record ID" />
                             <TableColumn fx:id="clmMemberId" prefWidth="94.39999389648438" text="Member ID" />
                               <TableColumn fx:id="clmMemberName" prefWidth="167.20001220703125" text="Member Name" />
-                              <TableColumn fx:id="clmBookId" prefWidth="86.39996337890625" text="Book ID" />
-                              <TableColumn fx:id="clmBookTitle" prefWidth="192.79998779296875" text="Book Title" />
-                              <TableColumn fx:id="clmIssueDate" prefWidth="116.00006103515625" text="Issue Date" />
-                              <TableColumn fx:id="clmDueDate" prefWidth="123.199951171875" text="Due Date" />
-                              <TableColumn fx:id="clmReturnDate" prefWidth="109.5999755859375" text="Return Date" />
-                              <TableColumn fx:id="clmStatus" prefWidth="124.80001220703116" text="Status" />
+                              <TableColumn fx:id="clmBookId" prefWidth="116.0" text="Book ID" />
+                              <TableColumn fx:id="clmBookTitle" prefWidth="215.20001220703125" text="Book Title" />
+                              <TableColumn fx:id="clmIssueDate" prefWidth="159.99993896484375" text="Issue Date" />
+                              <TableColumn fx:id="clmDueDate" prefWidth="139.199951171875" text="Due Date" />
+                              <TableColumn fx:id="clmStatus" prefWidth="125.60003662109375" text="Status" />
                           </columns>
                         </TableView>
                      </children>

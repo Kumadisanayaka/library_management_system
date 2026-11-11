@@ -358,3 +358,31 @@
     -fx-font-size: 12px;
     -fx-padding: 4px 0 0 0;
 }
+
+.edit-button {
+    -fx-background-color: #E0ECFF;
+    -fx-text-fill: #1D4ED8;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 6px 12px;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+
+.edit-button:hover {
+    -fx-background-color: #C7DBFF;
+}
+
+.delete-button {
+    -fx-background-color: #FEE2E2;
+    -fx-text-fill: #B91C1C;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 6px 12px;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+
+.delete-button:hover {
+    -fx-background-color: #FECACA;
+}
