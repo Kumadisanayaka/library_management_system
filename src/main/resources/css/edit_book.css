@@ -1,0 +1,168 @@
+
+/* =================================
+   MAIN PAGE
+================================= */
+
+.edit-book-root {
+    -fx-background-color: #F4F6FA;
+    -fx-padding: 30;
+    -fx-spacing: 20;
+}
+
+/* =================================
+   PAGE HEADER
+================================= */
+
+.page-header {
+    -fx-background-color: #172554;
+    -fx-padding: 25 30;
+    -fx-spacing: 6;
+}
+
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.page-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #CBD5E1;
+}
+
+/* =================================
+   FORM CARD
+================================= */
+
+.edit-book-card {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 25;
+    -fx-border-color: #DCE3ED;
+    -fx-border-width: 1;
+    -fx-spacing: 20;
+}
+
+/* =================================
+   FIELD LABELS
+================================= */
+
+.field-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
+    -fx-spacing: 7;
+}
+
+/* =================================
+   TEXT FIELDS
+================================= */
+
+.form-input {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D5DEEA;
+    -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 10 12;
+    -fx-font-size: 13px;
+    -fx-text-fill: #142344;
+}
+
+.form-input:focused {
+    -fx-border-color: #307EF0;
+}
+
+/* =================================
+   READ ONLY FIELDS
+================================= */
+
+.readonly-input {
+    -fx-background-color: #EEF2F7;
+    -fx-border-color: #D5DEEA;
+    -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 10 12;
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748B;
+}
+
+/* =================================
+   DESCRIPTION TEXT AREA
+================================= */
+
+.form-textarea {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D5DEEA;
+    -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-font-size: 13px;
+    -fx-text-fill: #142344;
+}
+
+.form-textarea:focused {
+    -fx-border-color: #307EF0;
+}
+
+.form-textarea .content {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 0;
+}
+
+/* =================================
+   MESSAGE LABEL
+================================= */
+
+.message-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #DC2626;
+}
+
+/* =================================
+   BUTTON CONTAINER
+================================= */
+
+.form-button-container {
+    -fx-spacing: 10;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+/* =================================
+   PRIMARY BUTTON
+================================= */
+
+.primary-button {
+    -fx-background-color: #307EF0;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #2168D5;
+}
+
+/* =================================
+   SECONDARY BUTTON
+================================= */
+
+.secondary-button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #334155;
+    -fx-border-color: #D5DEEA;
+    -fx-border-width: 1;
+    -fx-font-size: 13px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #EEF2F7;
+}
