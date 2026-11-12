@@ -12,10 +12,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="613.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manageBooksController.Manage_books_controller">
+<AnchorPane prefHeight="614.0" prefWidth="1232.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manageBooksController.Manage_books_page_controller">
    <children>
-      <BorderPane prefHeight="614.0" prefWidth="1130.0" styleClass="manage-books-root" stylesheets="@../css/manage_book_page.css">
+      <BorderPane prefHeight="614.0" prefWidth="1232.0" styleClass="manage-books-root" stylesheets="@../css/manage_book_page.css">
          <left>
             <VBox prefHeight="614.0" prefWidth="250.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
@@ -48,7 +47,7 @@
                               <Label styleClass="page-subtitle" text="View and manage library books" />
                            </children>
                         </VBox>
-                        <Region prefHeight="100.0" prefWidth="286.0" />
+                        <Region prefHeight="66.0" prefWidth="397.0" />
                         <HBox prefHeight="68.0" prefWidth="278.0" styleClass="admin-profile">
                            <children>
                               <Label styleClass="admin-avatar" text="A" />
@@ -75,13 +74,13 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" styleClass="book-summary">
                      <children>
-                        <VBox prefHeight="100.0" prefWidth="275.0" styleClass="summary-card">
+                        <VBox prefHeight="96.0" prefWidth="309.0" styleClass="summary-card">
                            <children>
                               <Label styleClass="summary-label" text="Total Books" />
                               <Label fx:id="lblTotalBookCount" prefHeight="26.0" prefWidth="74.0" styleClass="summary-value" text="0" />
                            </children>
                         </VBox>
-                        <VBox prefHeight="100.0" prefWidth="275.0" styleClass="summary-card">
+                        <VBox prefHeight="96.0" prefWidth="323.0" styleClass="summary-card">
                            <children>
                               <Label styleClass="summary-label" text="Available Books" />
                               <Label fx:id="lblAvailableBookCount" prefHeight="26.0" prefWidth="70.0" styleClass="summary-value" text="0" />
@@ -104,8 +103,8 @@
                             <TableColumn fx:id="clmBookTitle" prefWidth="180.79998779296875" text="Book Title" />
                               <TableColumn fx:id="clmAuthor" prefWidth="172.0" text="Author" />
                               <TableColumn fx:id="clmCategory" prefWidth="105.59991455078125" text="Category" />
-                              <TableColumn fx:id="clmStatus" prefWidth="93.5999755859375" text="Status" />
-                              <TableColumn fx:id="clmAction" prefWidth="142.39990234375" text="Actions" />
+                              <TableColumn fx:id="clmStatus" prefWidth="99.2000732421875" text="Status" />
+                              <TableColumn fx:id="clmAction" prefWidth="237.5999755859375" text="Actions" />
                           </columns>
                         </TableView>
                      </children>

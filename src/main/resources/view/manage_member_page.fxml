@@ -110,7 +110,7 @@
                      </VBox.margin>
                      <children>
                         <Label styleClass="table-section-title" text="Member List" />
-                        <TableView prefHeight="198.0" prefWidth="782.0" styleClass="members-table">
+                        <TableView fx:id="tblMember" prefHeight="198.0" prefWidth="782.0" styleClass="members-table">
                            <columns>
                               <TableColumn fx:id="clmMemberId" prefWidth="91.99996638298035" text="Member ID" />
                               <TableColumn fx:id="clmFullName" prefWidth="144.79995727539062" text="Full Name" />

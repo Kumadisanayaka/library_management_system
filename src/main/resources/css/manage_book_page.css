@@ -643,3 +643,59 @@
 
     -fx-font-size: 12px;
 }
+
+/* Edit Button */
+.table-edit-button {
+    -fx-background-color: #EAF2FF;
+    -fx-text-fill: #2563EB;
+    -fx-border-color: #BFDBFE;
+    -fx-border-width: 1;
+    -fx-padding: 6 14;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-cursor: hand;
+}
+
+.table-edit-button:hover {
+    -fx-background-color: #DBEAFE;
+}
+
+
+/* Activate Button */
+.table-activate-button {
+    -fx-background-color: #DCFCE7;
+    -fx-text-fill: #15803D;
+    -fx-border-color: #BBF7D0;
+    -fx-border-width: 1;
+    -fx-padding: 6 14;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-cursor: hand;
+}
+
+.table-activate-button:hover {
+    -fx-background-color: #BBF7D0;
+}
+
+
+/* Deactivate Button */
+.table-deactivate-button {
+    -fx-background-color: #FEE2E2;
+    -fx-text-fill: #DC2626;
+    -fx-border-color: #FECACA;
+    -fx-border-width: 1;
+    -fx-padding: 6 14;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-cursor: hand;
+}
+
+.table-deactivate-button:hover {
+    -fx-background-color: #FECACA;
+}

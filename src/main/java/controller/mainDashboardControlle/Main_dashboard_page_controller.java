@@ -1,14 +1,23 @@
 package controller.mainDashboardControlle;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.BookIssuedDTO;
 import scene.SceneManager;
 
-public class Main_dashboard_page_controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Main_dashboard_page_controller  implements Initializable {
+
+    Main_dashboard_controller mainDashboardController = new Main_dashboard_controller();
 
     @FXML
     private Button btnAddMember;
@@ -41,19 +50,19 @@ public class Main_dashboard_page_controller {
     private Button btnViewBooks;
 
     @FXML
-    private TableColumn<?, ?> clmBookTitle;
+    private TableColumn<BookIssuedDTO, String> clmBookTitle;
 
     @FXML
-    private TableColumn<?, ?> clmDueDate;
+    private TableColumn<BookIssuedDTO, String> clmDueDate;
 
     @FXML
-    private TableColumn<?, ?> clmIssueDate;
+    private TableColumn<BookIssuedDTO, String> clmIssueDate;
 
     @FXML
-    private TableColumn<?, ?> clmMember;
+    private TableColumn<BookIssuedDTO, String> clmMember;
 
     @FXML
-    private TableColumn<?, ?> clmStatus;
+    private TableColumn<BookIssuedDTO, String> clmStatus;
 
     @FXML
     private Label lblBookIssued;
@@ -68,7 +77,7 @@ public class Main_dashboard_page_controller {
     private Label lblTotalMember;
 
     @FXML
-    private TableView<?> tblRecentIssuedBooks;
+    private TableView<BookIssuedDTO> tblRecentIssuedBooks;
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
@@ -82,17 +91,17 @@ public class Main_dashboard_page_controller {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/main_dashboard_page.fxml");
     }
 
     @FXML
     void btnHistoryOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/borrowing_history_page.fxml");
     }
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/issue_page.fxml");
     }
 
     @FXML
@@ -112,7 +121,7 @@ public class Main_dashboard_page_controller {
 
     @FXML
     void btnReturnBookOnAction(ActionEvent event) {
-
+        SceneManager.switchPage("/view/return_book_page.fxml");
     }
 
     @FXML
@@ -120,4 +129,45 @@ public class Main_dashboard_page_controller {
         SceneManager.switchPage("/view/view_books_page.fxml");
     }
 
+    private void loadTableDate(){
+        ObservableList<BookIssuedDTO> issuedBookList = mainDashboardController.getLoadIssuedBookData();
+        tblRecentIssuedBooks.setItems(issuedBookList);
+    }
+
+    private void loadTotalBookCount(){
+        Integer totalBooks = mainDashboardController.getTotalBookCount();
+        lblTotalBook.setText(String.valueOf(totalBooks));
+
+    }
+
+    private void loadTotalMemberCount(){
+        Integer totalMembers = mainDashboardController.getTotalMemberCount();
+        lblTotalMember.setText(String.valueOf(totalMembers));
+    }
+
+    private void loadTotalIssuedBookCount(){
+        Integer totalIssuedBooks = mainDashboardController.getTotalIssuedBookCount();
+        lblBookIssued.setText(String.valueOf(totalIssuedBooks));
+    }
+
+    private void loadTotalOverdueBookCount(){
+        Integer totalOverdueBooks = mainDashboardController.getTotalOverdueBookCount();
+        lblOverDueBooks.setText(String.valueOf(totalOverdueBooks));
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadTableDate();
+        loadTotalBookCount();
+        loadTotalMemberCount();
+        loadTotalIssuedBookCount();
+        loadTotalOverdueBookCount();
+
+        clmBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
+        clmMember.setCellValueFactory(new PropertyValueFactory<>("memberName"));
+        clmIssueDate.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
+        clmDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        clmStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+    }
 }

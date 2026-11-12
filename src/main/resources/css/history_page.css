@@ -1,0 +1,516 @@
+/* =========================================
+   ROOT
+========================================= */
+
+.history-root {
+    -fx-background-color: #F5F7FB;
+    -fx-font-family: "Arial";
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    -fx-background-color: #17233D;
+    -fx-pref-width: 288px;
+    -fx-min-width: 288px;
+    -fx-max-width: 288px;
+    -fx-padding: 28px 12px 20px 12px;
+    -fx-spacing: 12px;
+}
+
+.logo-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 16px 25px 16px;
+}
+
+.navigation-menu {
+    -fx-spacing: 6px;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #C3CEE0;
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 16px;
+    -fx-pref-width: 264px;
+    -fx-min-width: 264px;
+    -fx-pref-height: 54px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #263B5E;
+    -fx-text-fill: #FFFFFF;
+}
+
+.nav-button-active {
+    -fx-background-color: #2675F5;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 16px;
+    -fx-pref-width: 264px;
+    -fx-min-width: 264px;
+    -fx-pref-height: 54px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #C3CEE0;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 16px;
+    -fx-pref-width: 264px;
+    -fx-min-width: 264px;
+    -fx-pref-height: 50px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: #263B5E;
+    -fx-text-fill: #FFFFFF;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.content-area {
+    -fx-background-color: #F5F7FB;
+    -fx-padding: 24px;
+    -fx-spacing: 22px;
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.top-bar {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 20px;
+}
+
+.page-header {
+    -fx-spacing: 5px;
+}
+
+.page-title {
+    -fx-text-fill: #17233D;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: #7A869A;
+    -fx-font-size: 13px;
+}
+
+
+/* =========================================
+   ADMIN PROFILE
+========================================= */
+
+.admin-profile {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 9px 14px 9px 9px;
+    -fx-spacing: 10px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-color: #E1E6EE;
+    -fx-border-width: 1px;
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+}
+
+.admin-avatar {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+    -fx-background-radius: 20px;
+}
+
+.admin-info {
+    -fx-spacing: 3px;
+}
+
+.admin-name {
+    -fx-text-fill: #17233D;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.admin-role {
+    -fx-text-fill: #7A869A;
+    -fx-font-size: 11px;
+}
+
+
+/* =========================================
+   HISTORY STATISTICS
+========================================= */
+
+.history-statistics {
+    -fx-spacing: 18px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.history-stat-card {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-pref-height: 102px;
+    -fx-min-height: 102px;
+    -fx-border-color: #E1E9F5;
+    -fx-border-width: 1px;
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+}
+
+.total-records-label,
+.issued-records-label,
+.returned-records-label,
+.overdue-records-label {
+    -fx-text-fill: #526074;
+    -fx-font-size: 13px;
+}
+
+.total-records-value,
+.issued-records-value,
+.returned-records-value {
+    -fx-text-fill: #172F59;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.overdue-records-value {
+    -fx-text-fill: #E53935;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================
+   TABLE CONTAINER
+========================================= */
+
+.history-table-container {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 22px;
+    -fx-spacing: 18px;
+    -fx-border-color: #E1E9F5;
+    -fx-border-width: 1px;
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+}
+
+
+/* =========================================
+   TABLE HEADER
+========================================= */
+
+.history-table-header {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 15px;
+}
+
+.history-table-heading {
+    -fx-spacing: 5px;
+}
+
+.table-section-title {
+    -fx-text-fill: #17233D;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.table-section-subtitle {
+    -fx-text-fill: #7A869A;
+    -fx-font-size: 12px;
+}
+
+
+/* =========================================
+   EXPORT BUTTON
+========================================= */
+
+.export-button {
+    -fx-background-color: #2675F5;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 11px 18px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.export-button:hover {
+    -fx-background-color: #1D63D8;
+}
+
+
+/* =========================================
+   FILTER BAR
+========================================= */
+
+.history-filter-bar {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 16px;
+    -fx-spacing: 12px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-color: #E1E9F5;
+    -fx-border-width: 1px;
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+}
+
+
+/* =========================================
+   SEARCH FIELD
+========================================= */
+
+.history-search-field {
+    -fx-pref-height: 42px;
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #344054;
+    -fx-prompt-text-fill: #94A3B8;
+    -fx-font-size: 12px;
+    -fx-padding: 0px 12px;
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.history-search-field:focused {
+    -fx-border-color: #2F80ED;
+}
+
+
+/* =========================================
+   STATUS FILTER
+========================================= */
+
+.history-status-filter {
+    -fx-pref-height: 42px;
+    -fx-background-color: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.history-status-filter:focused {
+    -fx-border-color: #2F80ED;
+}
+
+.history-status-filter .list-cell {
+    -fx-text-fill: #344054;
+    -fx-font-size: 12px;
+    -fx-padding: 8px;
+}
+
+.history-status-filter .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.history-status-filter .arrow {
+    -fx-background-color: #526074;
+}
+
+.history-status-filter .list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D8E0EC;
+}
+
+.history-status-filter .list-view .list-cell:filled:selected {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: #FFFFFF;
+}
+
+
+/* =========================================
+   DATE FILTERS
+========================================= */
+
+.history-from-date,
+.history-to-date {
+    -fx-pref-height: 42px;
+    -fx-background-color: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-border-color: #D8E0EC;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.history-from-date:focused,
+.history-to-date:focused {
+    -fx-border-color: #2F80ED;
+}
+
+.history-from-date .text-field,
+.history-to-date .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: #344054;
+    -fx-prompt-text-fill: #94A3B8;
+}
+
+.history-from-date .arrow-button,
+.history-to-date .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.history-from-date .arrow-button .arrow,
+.history-to-date .arrow-button .arrow {
+    -fx-background-color: #526074;
+}
+
+
+/* =========================================
+   RESET FILTER BUTTON
+========================================= */
+
+.reset-filter-button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #2675F5;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 17px;
+    -fx-border-color: #9CC2FF;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.reset-filter-button:hover {
+    -fx-background-color: #EEF4FD;
+}
+
+
+/* =========================================
+   HISTORY TABLE
+========================================= */
+
+.history-table {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 0px;
+    -fx-font-size: 12px;
+}
+
+.history-table .column-header-background {
+    -fx-background-color: #EEF4FD;
+    -fx-background-radius: 5px 5px 0px 0px;
+}
+
+.history-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 44px;
+    -fx-border-color: transparent;
+}
+
+.history-table .column-header .label {
+    -fx-text-fill: #234B8B;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-padding: 0px 8px;
+}
+
+.history-table .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-cell-size: 44px;
+    -fx-border-color: transparent transparent #E7EDF5 transparent;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.history-table .table-row-cell:odd {
+    -fx-background-color: #FFFFFF;
+}
+
+.history-table .table-row-cell:hover {
+    -fx-background-color: #F3F7FD;
+}
+
+.history-table .table-row-cell:selected {
+    -fx-background-color: #E7F0FF;
+}
+
+.history-table .table-cell {
+    -fx-text-fill: #344054;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0px 8px;
+    -fx-border-color: transparent;
+}
+
+.history-table .placeholder .label {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 13px;
+}
+
+
+/* =========================================
+   TABLE SCROLLBAR
+========================================= */
+
+.history-table .scroll-bar:vertical,
+.history-table .scroll-bar:horizontal {
+    -fx-background-color: #F5F7FB;
+}
+
+.history-table .scroll-bar:vertical .thumb,
+.history-table .scroll-bar:horizontal .thumb {
+    -fx-background-color: #C3CEE0;
+    -fx-background-radius: 5px;
+}
+
+.history-table .scroll-bar .increment-button,
+.history-table .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+}
+
+
+/* =========================================
+   PAGINATION / RECORD COUNT
+========================================= */
+
+.history-pagination {
+    -fx-alignment: CENTER_RIGHT;
+    -fx-spacing: 8px;
+}
+
+.history-record-count {
+    -fx-text-fill: #7A869A;
+    -fx-font-size: 12px;
+}
+
+
+/* =========================================
+   RESPONSIVE-FRIENDLY CONTENT SPACING
+========================================= */
+
+.history-content {
+    -fx-spacing: 20px;
+}
