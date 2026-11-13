@@ -1,11 +1,18 @@
 package controller.addBookController;
 
+import controller.entity.AuthorEntity;
+import controller.entity.BookCategoryEntity;
+import controller.entity.BookEntity;
+import controller.util.HibernateUtil;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.BookDTO;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.*;
+import java.util.List;
 
 public class Add_book_controller {
 
@@ -13,19 +20,23 @@ public class Add_book_controller {
 
     public ObservableList<String> getBookCategories(){
         ObservableList<String> bookCategoryList = FXCollections.observableArrayList();
-        String SQL = "SELECT category_name,short_code FROM book_categories";
+        String HQL = "FROM BookCategoryEntity ";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            while (resultSet.next()){
-                String short_code = resultSet.getString("short_code");
-                String category_name = resultSet.getString("category_name");
-                bookCategoryList.add(short_code+" - "+category_name);
+            List<BookCategoryEntity> categories =
+                    session.createQuery(HQL,BookCategoryEntity.class).getResultList();
+
+            for (BookCategoryEntity category : categories){
+
+                String shortCode = category.getShortCode();
+                String categoryName = category.getCategoryName();
+
+                bookCategoryList.add(shortCode + " - " +categoryName);
             }
-        } catch (SQLException e) {
-            System.err.println("Could not load Book Categories from DB : "+e.getMessage());
+
+        } catch (Exception e) {
+            System.err.println("Could not load Book Categories from DB : " +e.getMessage());
         }
 
         return bookCategoryList;
@@ -48,122 +59,129 @@ public class Add_book_controller {
 
         String categoryShortCode = bookCategory.split("-")[0].trim();
 
-        String sql = "SELECT book_id FROM books WHERE book_id LIKE ? ORDER BY book_id DESC LIMIT 1";
+        String hql = "FROM BookEntity b " +
+                "WHERE b.bookId LIKE :pattern " +
+                "ORDER BY b.bookId DESC";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,categoryShortCode + "%");
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            while (resultSet.next()){
-                String lastBookId =resultSet.getString("book_id");
-                if (lastBookId != null && lastBookId.length() > categoryShortCode.length()){
-                    String lastNumberStr = lastBookId.substring(categoryShortCode.length());
+            BookEntity lastBook = session.createQuery(hql,BookEntity.class)
+                    .setParameter("pattern",categoryShortCode +"%")
+                    .setMaxResults(1)
+                    .uniqueResult();
 
-                    try {
-                        int nextNumber = Integer.parseInt(lastNumberStr) + 1;
-                        return categoryShortCode + String.format("%03d",nextNumber);
-                    } catch (NumberFormatException ignored) {
-                    }
+            if (lastBook != null){
+
+                String lastBookId = lastBook.getBookId();
+
+                if (lastBookId.length() > categoryShortCode.length()){
+
+                    String lastBookIdstr = lastBookId.substring(categoryShortCode.length());
+
+                    int nextNumber = Integer.parseInt(lastBookIdstr)+1;
+
+                    return categoryShortCode + String.format("%03d",nextNumber);
 
                 }
             }
-
-            return categoryShortCode + "001";
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        return categoryShortCode + "001";
 
     }
 
     public boolean addBook(BookDTO book, Integer authorId, Integer categoryId) {
 
-        String sql = "INSERT INTO books(" +
-                    "book_id, " +
-                    "book_title, " +
-                    "isbn, " +
-                    "total_copies, " +
-                    "description," +
-                    "available_copies, " +
-                    "status, " +
-                    "author_id, " +
-                    "category_id) " +
-                    "VALUES (?,?,?,?,?,?,?,?,?)";
+       Transaction transaction = null;
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,book.getBookId());
-            preparedStatement.setString(2,book.getBookTitle());
-            preparedStatement.setString(3,book.getIsbn());
-            preparedStatement.setInt(4,book.getTotalCopies());
-            preparedStatement.setString(5,book.getDescription());
-            preparedStatement.setInt(6,book.getTotalCopies());
-            preparedStatement.setString(7,"ACTIVE");
-            preparedStatement.setInt(8,authorId);
-            preparedStatement.setInt(9,categoryId);
+       try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            return preparedStatement.executeUpdate() > 0;
+           transaction = session.beginTransaction();
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+           AuthorEntity author = session.find(AuthorEntity.class, authorId);
+
+           BookCategoryEntity category = session.find(BookCategoryEntity.class, categoryId);
+
+           if (author == null && category == null){
+               transaction.rollback();
+               return false;
+           }
+
+           BookEntity newBook = new BookEntity();
+           newBook.setBookId(book.getBookId());
+           newBook.setBookTitle(book.getBookTitle());
+           newBook.setIsbn(book.getIsbn());
+           newBook.setTotalCopies(book.getTotalCopies());
+           newBook.setDescription(book.getDescription());
+           newBook.setAvailableCopies(book.getTotalCopies());
+           newBook.setStatus(book.getStatus());
+           newBook.setAuthor(author);
+           newBook.setCategory(category);
+           session.persist(newBook);
+
+           return true;
+       } catch (Exception e) {
+
+           if (transaction != null && transaction.isActive()){
+               transaction.rollback();
+           }
+           throw new RuntimeException(e);
+       }
 
     }
 
     public Integer getAuthorId(String author) {
 
-        String sql = "SELECT * FROM authors";
+        String hql = "FROM AuthorEntity a " +
+                "WHERE LOWER(TRIM(a.authorName)) = :authorName";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            while (resultSet.next()){
-                String authorName = resultSet.getString("author_name");
+            AuthorEntity existingAuthor = session.createQuery(hql,AuthorEntity.class)
+                    .setParameter("authorName",author.trim().toLowerCase())
+                    .setMaxResults(1)
+                    .uniqueResult();
 
-                if (author.trim().equalsIgnoreCase(authorName.trim())){
-                    return resultSet.getInt("author_id");
-                }
+            if (existingAuthor != null){
+                return existingAuthor.getAuthorId();
             }
 
-            String sql2 = "INSERT INTO authors (author_name) VALUES (?)";
+            AuthorEntity newAuthor = new AuthorEntity();
+            newAuthor.setAuthorName(author.trim());
 
-            PreparedStatement insertStatement = connection.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
-            insertStatement.setString(1,author.trim());
-            insertStatement.executeUpdate();
+            Transaction transaction = session.beginTransaction();
+            session.persist(newAuthor);
+            transaction.commit();
 
-            ResultSet genaratedKey = insertStatement.getGeneratedKeys();
+            return newAuthor.getAuthorId();
 
-            if (genaratedKey.next()){
-                return genaratedKey.getInt(1);
-            }
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        return null;
     }
 
     public Integer getCategoryId(String category) {
 
         String shortCode = category.split("-")[0].trim();
 
-        String sql = "SELECT * FROM book_categories";
+        String hql = "FROM BookCategoryEntity bc " +
+                "WHERE bc.shortCode = :shortCode ";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            while (resultSet.next()){
-                String sc = resultSet.getString("short_code");
-                if (shortCode.equalsIgnoreCase(sc.trim())){
-                    return resultSet.getInt("category_id");
-                }
+            BookCategoryEntity bookCategory = session.createQuery(hql,BookCategoryEntity.class)
+                    .setParameter("shortCode",shortCode)
+                    .uniqueResult();
+
+            if (bookCategory != null){
+
+                return bookCategory.getCategoryId();
             }
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
