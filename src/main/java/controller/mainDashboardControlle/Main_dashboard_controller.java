@@ -1,14 +1,20 @@
 package controller.mainDashboardControlle;
 
+import controller.util.HibernateUtil;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.BookIssuedDTO;
+import model.DashboardDTO;
+import org.hibernate.Session;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Objects;
 
 public class Main_dashboard_controller {
 
@@ -19,114 +25,75 @@ public class Main_dashboard_controller {
 
         ObservableList<BookIssuedDTO> bookList = FXCollections.observableArrayList();
 
-        String sql = "SELECT " +
-                        "b.book_title, " +
-                        "m.full_name, " +
-                        "bi.issue_date, " +
-                        "bi.due_date, " +
+        String hql = "SELECT " +
+                        "b.bookTitle, " +
+                        "m.fullName, " +
+                        "bi.issueDate, " +
+                        "bi.dueDate, " +
                         "bi.status " +
-                    "FROM book_issues bi " +
-                    "INNER JOIN books b " +
-                        "ON bi.book_id = b.book_id " +
-                    "INNER JOIN members m " +
-                        "ON bi.member_id = m.member_id " +
-                    "ORDER BY bi.issue_date DESC, bi.issue_id DESC LIMIT 5 ";
+                    "FROM BookIssueEntity bi " +
+                    "INNER JOIN book b " +
+                    "INNER JOIN member m " +
+                    "ORDER BY bi.issueDate DESC, bi.issueId DESC ";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            while (resultSet.next()){
+            List<Object[]> results = session.createQuery(hql,Object[].class)
+                    .setMaxResults(10)
+                    .getResultList();
 
-                BookIssuedDTO bookIssuedDTO = new BookIssuedDTO();
-                bookIssuedDTO.setBookTitle(resultSet.getString("book_title"));
-                bookIssuedDTO.setMemberName(resultSet.getString("full_name"));
-                bookIssuedDTO.setIssueDate(resultSet.getDate("issue_date").toLocalDate());
-                bookIssuedDTO.setDueDate(resultSet.getDate("due_date").toLocalDate());
-                bookIssuedDTO.setStatus(resultSet.getString("status"));
+           for (Object[] row : results){
+               BookIssuedDTO issuedDTO = new BookIssuedDTO();
+               issuedDTO.setBookTitle((String) row[0]);
+               issuedDTO.setMemberName((String) row[1]);
+               issuedDTO.setIssueDate((LocalDate) row[2]);
+               issuedDTO.setDueDate((LocalDate) row[3]);
+               issuedDTO.setStatus((String) row[4]);
 
-                bookList.add(bookIssuedDTO);
+               bookList.add(issuedDTO);
+           }
 
-            }
-
-            return bookList;
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        return bookList;
 
     }
 
-    public Integer getTotalBookCount() {
 
-        String sql = "SELECT COUNT(*) FROM books";
+    public DashboardDTO getDashboardCardData() {
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        String hql = "SELECT " +
+                "(SELECT COUNT(b) FROM BookEntity b), " +
+                "(SELECT COUNT(m) FROM MemberEntity m), " +
+                "(SELECT COUNT(bi) FROM BookIssueEntity bi), " +
+                "(SELECT COUNT(bi) FROM BookIssueEntity bi " +
+                "WHERE bi.status = 'Issued' " +
+                "AND bi.dueDate < CURRENT_DATE) ";
 
-            while (resultSet.next()){
-                return resultSet.getInt(1);
-            }
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-        } catch (SQLException e) {
+            Object[] result = session.createQuery(hql,Object[].class)
+                    .getSingleResult();
+
+            int totalBooks = ((Number) result[0]).intValue();
+            int totalMembers = ((Number) result[1]).intValue();
+            int totalIssuedBooks = ((Number) result[2]).intValue();
+            int totalOverdueBooks = ((Number) result[3]).intValue();
+
+            DashboardDTO dashboardDTO = new DashboardDTO();
+            dashboardDTO.setTotalBookCount(totalBooks);
+            dashboardDTO.setTotalMemberCount(totalMembers);
+            dashboardDTO.setTotalIssuedBookCount(totalIssuedBooks);
+            dashboardDTO.setTotalOverdueBookCount(totalOverdueBooks);
+
+            return dashboardDTO;
+
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        return null;
-    }
-
-    public Integer getTotalMemberCount() {
-
-        String sql = "SELECT COUNT(*) FROM members";
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                return resultSet.getInt(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return null;
-    }
-
-    public Integer getTotalIssuedBookCount() {
-
-        String sql = "SELECT COUNT(*) FROM book_issues";
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                return resultSet.getInt(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return null;
-    }
-
-    public Integer getTotalOverdueBookCount() {
-
-        String sql = "SELECT COUNT(*) FROM book_issues WHERE status = 'Issued' AND due_date < CURDATE()";
-
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                return resultSet.getInt(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return null;
     }
 }
