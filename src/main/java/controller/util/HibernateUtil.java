@@ -1,6 +1,6 @@
 package controller.util;
 
-import controller.entity.UserEntity;
+import controller.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -21,6 +21,12 @@ public class HibernateUtil {
                     .setProperty("hibernate.show_sql","true")
                     .setProperty("hibernate.format_sql","true")
                     .addAnnotatedClass(UserEntity.class)
+                    .addAnnotatedClass(AuthorEntity.class)
+                    .addAnnotatedClass(BookEntity.class)
+                    .addAnnotatedClass(BookCategoryEntity.class)
+                    .addAnnotatedClass(BookIssueEntity.class)
+                    .addAnnotatedClass(MemberEntity.class)
+                    .addAnnotatedClass(MembershipCategoryEntity.class)
                     .buildSessionFactory();
 
         } catch (Exception e) {
