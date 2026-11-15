@@ -4,7 +4,6 @@ import controller.entity.AuthorEntity;
 import controller.entity.BookCategoryEntity;
 import controller.entity.BookEntity;
 import controller.util.HibernateUtil;
-import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.BookDTO;
@@ -15,8 +14,6 @@ import java.sql.*;
 import java.util.List;
 
 public class Add_book_controller {
-
-    Connection connection = DBConnection.getInstance().getConnection();
 
     public ObservableList<String> getBookCategories(){
         ObservableList<String> bookCategoryList = FXCollections.observableArrayList();
@@ -120,6 +117,7 @@ public class Add_book_controller {
            newBook.setAuthor(author);
            newBook.setCategory(category);
            session.persist(newBook);
+           transaction.commit();
 
            return true;
        } catch (Exception e) {
