@@ -118,7 +118,7 @@ public class Add_member_page_controller implements Initializable {
             memberDTO.setStatus("Active");
 
             try {
-                boolean isAdded = addMemberController.addMember(memberDTO);
+                boolean isAdded = addMemberController.addMember(memberDTO,categoryId);
 
                 if (isAdded){
                     new Alert(Alert.AlertType.INFORMATION,"Member Added Successfully!\nMember ID : "+memberDTO.getId()).show();
