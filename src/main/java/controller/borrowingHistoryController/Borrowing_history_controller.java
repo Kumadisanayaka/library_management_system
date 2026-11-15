@@ -1,156 +1,130 @@
 package controller.borrowingHistoryController;
 
-import db.DBConnection;
+import controller.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.BorrowingHistoryDTO;
 import model.StatusCountDTO;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Borrowing_history_controller {
-
-    Connection connection = DBConnection.getInstance().getConnection();
 
     public ObservableList<BorrowingHistoryDTO> applyFilters(String searchtxt, String status) {
 
         ObservableList<BorrowingHistoryDTO> historyList = FXCollections.observableArrayList();
 
-        List<String> parameters = new ArrayList<>();
+        String hql = "SELECT bi.issueId, " +
+                "bi.member.memberId, " +
+                "bi.member.fullName, " +
+                "bi.book.bookId, " +
+                "bi.book.bookTitle, " +
+                "bi.issueDate, " +
+                "bi.dueDate, " +
+                "CASE " +
+                "WHEN bi.status = 'Issued' AND bi.dueDate < CURRENT_DATE " +
+                "THEN 'Overdue' " +
+                "ELSE bi.status " +
+                "END " +
+                "FROM BookIssueEntity bi " +
+                "WHERE 1=1 ";
 
-        StringBuilder sql = new StringBuilder(
-                "SELECT " +
-                        "bi.issue_id, " +
-                        "bi.member_id, " +
-                        "m.full_name, " +
-                        "bi.book_id, " +
-                        "b.book_title, " +
-                        "bi.issue_date, " +
-                        "bi.due_date, " +
-                        "CASE " +
-                        "WHEN bi.status = 'Issued' " +
-                        "AND bi.due_date < CURDATE() " +
-                        "THEN 'Overdue' " +
-                        "ELSE bi.status " +
-                        "END AS display_status " +
-                        "FROM book_issues bi " +
-                        "INNER JOIN members m " +
-                        "ON bi.member_id = m.member_id " +
-                        "INNER JOIN books b " +
-                        "ON bi.book_id = b.book_id " +
-                        "WHERE 1=1 "
-        );
+        if (searchtxt != null && !searchtxt.isBlank()) {
 
-        if (searchtxt != null && !searchtxt.trim().isEmpty()){
-
-            sql.append(
-                    "AND (bi.member_id LIKE ? " +
-                    "OR bi.book_id LIKE ? " +
-                    "OR b.book_title LIKE ?) "
-            );
-
-            String searchPattern = "%" + searchtxt.trim() + "%";
-
-            parameters.add(searchPattern);
-            parameters.add(searchPattern);
-            parameters.add(searchPattern);
+            hql += " AND (bi.member.memberId LIKE :search " +
+                    "OR bi.book.bookId LIKE :search " +
+                    "OR bi.book.bookTitle LIKE :search) ";
         }
 
-        if (status != null && !status.equals("All Transactions")){
+        if (status != null && !status.equals("All Transactions")) {
 
-            if (status.equals("Overdue")){
+            if (status.equals("Overdue")) {
 
-                sql.append(
-                        "AND bi.status = 'Issued' " +
-                        "AND bi.due_date < CURDATE() "
-                );
+                hql += " AND bi.status = 'Issued' " +
+                        "AND bi.dueDate < CURRENT_DATE ";
+
             } else if (status.equals("Issued")) {
 
-                sql.append(
-                        "AND bi.status = 'Issued' " +
-                        "AND bi.due_date >= CURDATE() "
-                );
+                hql += " AND bi.status = 'Issued' " +
+                        "AND bi.dueDate >= CURRENT_DATE ";
+
             } else if (status.equals("Returned")) {
 
-                sql.append(
-                        "AND bi.status = 'Returned' "
-                );
-
+                hql += " AND bi.status = 'Returned' ";
             }
         }
 
-        sql.append("ORDER BY bi.issue_id DESC");
+        hql += " ORDER BY bi.issueId DESC ";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql.toString());
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            for (int i = 0; i < parameters.size(); i++) {
+            Query<Object[]> query = session.createQuery(hql, Object[].class);
 
-                preparedStatement.setObject(i+1,parameters.get(i));
+            if (searchtxt != null && !searchtxt.isBlank()) {
+
+                query.setParameter("search", "%" + searchtxt.trim() + "%");
             }
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Object[]> results = query.getResultList();
 
-            while (resultSet.next()){
+            for (Object[] result : results) {
 
                 BorrowingHistoryDTO historyDTO = new BorrowingHistoryDTO();
-                historyDTO.setIssueId(resultSet.getInt("issue_id"));
-                historyDTO.setMemberId(resultSet.getString("member_id"));
-                historyDTO.setMemberName(resultSet.getString("full_name"));
-                historyDTO.setBookId(resultSet.getString("book_id"));
-                historyDTO.setBookTitle(resultSet.getString("book_title"));
-                historyDTO.setIssueDate(resultSet.getDate("issue_date").toLocalDate());
-                historyDTO.setDueDate(resultSet.getDate("due_date").toLocalDate());
-                historyDTO.setStatus(resultSet.getString("display_status"));
-                historyList.add(historyDTO);
 
+                historyDTO.setIssueId((Integer) result[0]);
+                historyDTO.setMemberId((String) result[1]);
+                historyDTO.setMemberName((String) result[2]);
+                historyDTO.setBookId((String) result[3]);
+                historyDTO.setBookTitle((String) result[4]);
+                historyDTO.setIssueDate((LocalDate) result[5]);
+                historyDTO.setDueDate((LocalDate) result[6]);
+                historyDTO.setStatus((String) result[7]);
+
+                historyList.add(historyDTO);
             }
+
             return historyList;
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public StatusCountDTO getRecordCount() {
 
-        String sql = "SELECT " +
-                "COUNT(*) AS total_records, " +
+        String hql = "SELECT COUNT(bi), " +
                 "SUM(CASE " +
-                "WHEN status = 'Issued' " +
-                "AND due_date >= CURDATE() " +
-                "THEN 1 ELSE 0 END) AS issued_books, " +
+                "WHEN bi.status = 'Issued' " +
+                "AND bi.dueDate >= CURRENT_DATE " +
+                "THEN 1 ELSE 0 END), " +
                 "SUM(CASE " +
-                "WHEN status = 'Returned' " +
-                "THEN 1 ELSE 0 END) AS returned_books, " +
+                "WHEN bi.status = 'Returned' " +
+                "THEN 1 ELSE 0 END), " +
                 "SUM(CASE " +
-                "WHEN status = 'Issued' " +
-                "AND due_date < CURDATE() " +
-                "THEN 1 ELSE 0 END) AS overdue_books " +
-                "FROM book_issues";
+                "WHEN bi.status = 'Issued' " +
+                "AND bi.dueDate < CURRENT_DATE " +
+                "THEN 1 ELSE 0 END) " +
+                "FROM BookIssueEntity bi";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            if (resultSet.next()){
+            Object[] result = session.createQuery(hql, Object[].class)
+                    .getSingleResult();
 
-                StatusCountDTO countDTO = new StatusCountDTO();
-                countDTO.setTotalRecords(resultSet.getInt("total_records"));
-                countDTO.setIssuedBooks(resultSet.getInt("issued_books"));
-                countDTO.setReturnBooks(resultSet.getInt("returned_books"));
-                countDTO.setOverDueBooks(resultSet.getInt("overdue_books"));
+            StatusCountDTO countDTO = new StatusCountDTO();
 
-                return countDTO;
-            }
-        } catch (SQLException e) {
+            countDTO.setTotalRecords(((Number) result[0]).intValue());
+            countDTO.setIssuedBooks(((Number) result[1]).intValue());
+            countDTO.setReturnBooks(((Number) result[2]).intValue());
+            countDTO.setOverDueBooks(((Number) result[3]).intValue());
+
+            return countDTO;
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 }
