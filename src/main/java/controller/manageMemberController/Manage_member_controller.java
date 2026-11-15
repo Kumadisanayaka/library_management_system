@@ -1,38 +1,33 @@
 package controller.manageMemberController;
 
-import db.DBConnection;
+import controller.entity.MembershipCategoryEntity;
+import controller.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.MemberCountDTO;
 import model.MemberDTO;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import java.util.List;
 
 public class Manage_member_controller {
 
-    Connection connection = DBConnection.getInstance().getConnection();
-
     public ObservableList<String> getMemberCategories() {
 
         ObservableList<String> memberCategoryList = FXCollections.observableArrayList();
-        String sql = "SELECT category_name,short_code FROM membership_categories";
+        String hql = "FROM MembershipCategoryEntity";
 
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            while (resultSet.next()){
-                String short_code = resultSet.getString("short_code");
-                String category_name = resultSet.getString("category_name");
+            List<MembershipCategoryEntity> categoryEntities =
+                    session.createQuery(hql,MembershipCategoryEntity.class).getResultList();
 
-                memberCategoryList.add(short_code+" - "+category_name);
+            for (MembershipCategoryEntity category : categoryEntities){
+                memberCategoryList.add(category.getShortCode() + " - " + category.getCategoryName());
             }
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             System.err.println("Could not load Member Categories from DB : " + e.getMessage());
         }
 
@@ -44,50 +39,60 @@ public class Manage_member_controller {
 
         ObservableList<MemberDTO> memberList = FXCollections.observableArrayList();
 
-        String sql = "SELECT m.member_id, m.full_name, m.phone, " +
-                "mc.category_name, m.email, m.status, m.address, m.category_id " +
-                "FROM members m " +
-                "INNER JOIN membership_categories mc ON m.category_id = mc.category_id " +
+        String hql = "SELECT m.memberId, " +
+                            "m.fullName, " +
+                            "m.phone, " +
+                            "mc.categoryName, " +
+                            "m.email," +
+                            "m.status, " +
+                            "m.address, " +
+                            "m.category.categoryId " +
+                "FROM MemberEntity m " +
+                "INNER JOIN m.category mc " +
                 "WHERE 1=1 AND m.status = 'Active' ";
 
-        List<Object> parameters = new ArrayList<>();
 
         if (searchText != null && !searchText.isBlank()){
 
-            sql += " AND (m.member_id LIKE ? OR m.full_name LIKE ? OR m.phone LIKE ?) ";
+            hql += " AND (m.memberId LIKE :search " +
+                    "OR m.fullName LIKE :search " +
+                    "OR m.phone LIKE :search) ";
 
-            parameters.add("%" +searchText+ "%");
-            parameters.add("%" +searchText+ "%");
-            parameters.add("%" +searchText+ "%");
         }
 
         if (category != null && !category.isBlank() && !category.equals("All Categories")){
 
-            String categoryName = category.split("-")[1].trim();
+            hql += " AND mc.categoryName LIKE :categoryName ";
 
-            sql += " AND mc.category_name LIKE ? ";
-
-            parameters.add(categoryName);
         }
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            for (int i = 0; i < parameters.size(); i++){
-                preparedStatement.setObject(i+1, parameters.get(i));
+            Query<Object[]> query = session.createQuery(hql,Object[].class);
+
+            if (searchText != null && !searchText.isBlank()){
+
+                query.setParameter("search","%" +searchText+ "%");
             }
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (category != null && !category.isBlank() && !category.equals("All Categories")){
+
+                String categoryName = category.split("-")[1].trim();
+                query.setParameter("categoryName",categoryName);
+            }
+
+            List<Object[]> results = query.getResultList();
+
+            for (Object[] result : results) {
                 MemberDTO memberDTO = new MemberDTO();
-                memberDTO.setId(resultSet.getString("member_id"));
-                memberDTO.setFullName(resultSet.getString("full_name"));
-                memberDTO.setCategory(resultSet.getString("category_name"));
-                memberDTO.setEmail(resultSet.getString("email"));
-                memberDTO.setPhoneNumber(resultSet.getString("phone"));
-                memberDTO.setAddress(resultSet.getString("address"));
-                memberDTO.setStatus(resultSet.getString("status"));
-                memberDTO.setCategoryId(resultSet.getInt("category_id"));
+                memberDTO.setId((String) result[0]);
+                memberDTO.setFullName((String) result[1]);
+                memberDTO.setPhoneNumber((String) result[2]);
+                memberDTO.setCategory((String) result[3]);
+                memberDTO.setEmail((String) result[4]);
+                memberDTO.setStatus((String) result[5]);
+                memberDTO.setAddress((String) result[6]);
+                memberDTO.setCategoryId(((Number) result[7]).intValue());
 
                 memberList.add(memberDTO);
             }
@@ -102,74 +107,99 @@ public class Manage_member_controller {
 
     public boolean updateMember(String id, String fullname, String email, String phonenumber, String address) {
 
-        String sql = "UPDATE members SET full_name = ?, email = ?, phone = ?, address = ? WHERE member_id = ? ";
+        String hql = "UPDATE MemberEntity m " +
+                "SET m.fullName = :fullName, " +
+                "m.email = :email, " +
+                "m.phone = :phone, " +
+                "m.address = :address " +
+                "WHERE m.memberId = :memberId ";
 
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, fullname);
-            preparedStatement.setString(2, email);
-            preparedStatement.setString(3, phonenumber);
-            preparedStatement.setString(4, address);
-            preparedStatement.setString(5, id);
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
 
-            int rows = preparedStatement.executeUpdate();
+            try {
+                int rows = session.createMutationQuery(hql)
+                        .setParameter("fullName", fullname)
+                        .setParameter("email", email)
+                        .setParameter("phone", phonenumber)
+                        .setParameter("address", address)
+                        .setParameter("memberId", id)
+                        .executeUpdate();
 
-            return rows > 0;
+                transaction.commit();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+                return rows > 0;
+
+            } catch (Exception e) {
+
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                }
+                throw e;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     public boolean deleteMember(String id) {
 
-        String sql = "UPDATE members SET status = 'Inactive' WHERE member_id = ? ";
+        String hql = "UPDATE MemberEntity m " +
+                            "SET m.status = 'Inactive' " +
+                            "WHERE m.memberId = :memberId ";
 
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            preparedStatement.setString(1, id);
+            Transaction transaction = session.beginTransaction();
 
-            int rows = preparedStatement.executeUpdate();
+            try {
+                int rows = session.createMutationQuery(hql)
+                        .setParameter("memberId",id)
+                        .executeUpdate();
 
-            return rows > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+                transaction.commit();
+
+                return rows > 0;
+            } catch (Exception e) {
+
+                if (transaction.isActive()){
+                    transaction.rollback();
+                }
+                throw e;
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     public MemberCountDTO getMemberCount() {
 
-        String sql = "SELECT COUNT(*) AS total_members, " +
-                "SUM(mc.category_name = 'Student') AS student_members, " +
-                "SUM(mc.category_name != 'Student') AS other_members " +
-                "FROM members m " +
-                "INNER JOIN membership_categories mc " +
-                "ON m.category_id = mc.category_id " +
+        String hql = "SELECT COUNT(m) , " +
+                "SUM(CASE WHEN mc.categoryName = 'Student' THEN 1 ELSE 0 END), " +
+                "SUM(CASE WHEN mc.categoryName != 'Student' THEN 1 ELSE 0 END) " +
+                "FROM MemberEntity m " +
+                "INNER JOIN m.category mc " +
                 "WHERE m.status = 'Active' ";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            if (resultSet.next()){
-                int total = resultSet.getInt("total_members");
-                int student = resultSet.getInt("student_members");
-                int other = resultSet.getInt("other_members");
+            Object[] result = session.createQuery(hql,Object[].class).getSingleResult();
 
-                MemberCountDTO memberCountDTO = new MemberCountDTO();
-                memberCountDTO.setTotalMembers(total);
-                memberCountDTO.setStudentMembers(student);
-                memberCountDTO.setOtherMembers(other);
+            int totalMember = ((Number)result[0]).intValue();
+            int studentMember = ((Number)result[1]).intValue();
+            int otherStudent = ((Number)result[2]).intValue();
 
-                return memberCountDTO;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            MemberCountDTO countDTO = new MemberCountDTO();
+            countDTO.setTotalMembers(totalMember);
+            countDTO.setStudentMembers(studentMember);
+            countDTO.setOtherMembers(otherStudent);
+
+            return countDTO;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }
