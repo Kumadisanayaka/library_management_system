@@ -1,25 +1,16 @@
 package controller.mainDashboardControlle;
 
 import controller.util.HibernateUtil;
-import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.BookIssuedDTO;
 import model.DashboardDTO;
 import org.hibernate.Session;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 public class Main_dashboard_controller {
-
-    Connection connection = DBConnection.getInstance().getConnection();
-
 
     public ObservableList<BookIssuedDTO> getLoadIssuedBookData() {
 
