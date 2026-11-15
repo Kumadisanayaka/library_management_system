@@ -1,182 +1,172 @@
 package controller.returnBookController;
 
-import db.DBConnection;
+import controller.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Return_book_controller {
-
-    Connection connection = DBConnection.getInstance().getConnection();
 
     public ObservableList<String> getMemberIds() {
 
         ObservableList<String> memberIdList = FXCollections.observableArrayList();
 
-        String sql = "SELECT DISTINCT member_id FROM book_issues WHERE status = 'Issued' ";
+        String hql = "SELECT DISTINCT bi.member.memberId " +
+                "FROM BookIssueEntity bi " +
+                "WHERE bi.status = 'Issued'";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            while (resultSet.next()){
-                String memberId = resultSet.getString("member_id");
-                memberIdList.add(memberId);
-            }
+            List<String> results = session.createQuery(hql, String.class)
+                    .getResultList();
+
+            memberIdList.addAll(results);
+
             return memberIdList;
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public String getMemberName(String memberId) {
 
-        String sql = "SELECT full_name FROM members WHERE member_id = ? ";
+        String hql = "SELECT m.fullName " +
+                "FROM MemberEntity m " +
+                "WHERE m.memberId = :memberId";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,memberId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            if (resultSet.next()){
+            String name = session.createQuery(hql, String.class)
+                    .setParameter("memberId", memberId)
+                    .uniqueResult();
 
-                String name = resultSet.getString("full_name");
-                return name;
+            return name;
 
-            }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     public ObservableList<String> getBookIds(String memberId) {
 
         ObservableList<String> bookList = FXCollections.observableArrayList();
 
-        String sql = "SELECT book_id FROM book_issues WHERE member_id = ? AND status = 'Issued' ";
+        String hql = "SELECT bi.book.bookId " +
+                "FROM BookIssueEntity bi " +
+                "WHERE bi.member.memberId = :memberId " +
+                "AND bi.status = 'Issued'";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,memberId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            while (resultSet.next()){
+            List<String> results = session.createQuery(hql, String.class)
+                    .setParameter("memberId", memberId)
+                    .getResultList();
 
-                String id = resultSet.getString("book_id");
-                bookList.add(id);
-            }
+            bookList.addAll(results);
 
             return bookList;
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public String getBookTitle(String bookId) {
 
-        String sql = "SELECT book_title FROM books WHERE book_id = ? ";
+        String hql = "SELECT b.bookTitle " +
+                "FROM BookEntity b " +
+                "WHERE b.bookId = :bookId";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,bookId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            if (resultSet.next()){
-                String title = resultSet.getString("book_title");
-                return title;
-            }
-        } catch (SQLException e) {
+            String title = session.createQuery(hql, String.class)
+                    .setParameter("bookId", bookId)
+                    .uniqueResult();
+
+            return title;
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
-    public LocalDate getIssueDate(String bookId,String memberId) {
+    public LocalDate getIssueDate(String bookId, String memberId) {
 
-        String sql = "SELECT issue_date FROM book_issues " +
-                "WHERE member_id = ? " +
-                "AND book_id = ? " +
-                "AND status = 'Issued' " +
-                "LIMIT 1";
+        String hql = "SELECT bi.issueDate " +
+                "FROM BookIssueEntity bi " +
+                "WHERE bi.member.memberId = :memberId " +
+                "AND bi.book.bookId = :bookId " +
+                "AND bi.status = 'Issued'";
 
-        try {
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            LocalDate issueDate = session.createQuery(hql, LocalDate.class)
+                    .setParameter("memberId", memberId)
+                    .setParameter("bookId", bookId)
+                    .setMaxResults(1)
+                    .uniqueResult();
 
-            preparedStatement.setString(1, memberId);
-            preparedStatement.setString(2, bookId);
+            return issueDate;
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-
-                return resultSet.getDate("issue_date").toLocalDate();
-
-            }
-
-            return null;
-
-        } catch (SQLException e) {
-
+        } catch (Exception e) {
             throw new RuntimeException(e);
-
         }
-
     }
 
     public int getIssueId(String memberId, String bookId) {
 
-        String sql = "SELECT issue_id FROM book_issues " +
-                "WHERE member_id = ? " +
-                "AND book_id = ? " +
-                "AND status = 'Issued' " +
-                "LIMIT 1";
+        String hql = "SELECT bi.issueId " +
+                "FROM BookIssueEntity bi " +
+                "WHERE bi.member.memberId = :memberId " +
+                "AND bi.book.bookId = :bookId " +
+                "AND bi.status = 'Issued'";
 
-        try {
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            Integer issueId = session.createQuery(hql, Integer.class)
+                    .setParameter("memberId", memberId)
+                    .setParameter("bookId", bookId)
+                    .setMaxResults(1)
+                    .uniqueResult();
 
-            preparedStatement.setString(1, memberId);
-            preparedStatement.setString(2, bookId);
+            return issueId != null ? issueId : -1;
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-
-                return resultSet.getInt("issue_id");
-
-            }
-
-            return -1;
-
-        } catch (SQLException e) {
-
+        } catch (Exception e) {
             throw new RuntimeException(e);
-
         }
-
     }
 
     public boolean returnBook(Integer issueId) {
 
-        String sql = "UPDATE book_issues SET status = 'Returned' WHERE issue_id = ? ";
+        String hql = "UPDATE BookIssueEntity bi " +
+                "SET bi.status = 'Returned' " +
+                "WHERE bi.issueId = :issueId";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,issueId);
+        Transaction transaction = null;
 
-            return  preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+
+            int rows = session.createMutationQuery(hql)
+                    .setParameter("issueId", issueId)
+                    .executeUpdate();
+
+            transaction.commit();
+
+            return rows > 0;
+
+        } catch (Exception e) {
+
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+
             throw new RuntimeException(e);
         }
     }
