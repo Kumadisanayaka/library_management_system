@@ -1,53 +1,43 @@
 package controller.issueBookController;
 
-import db.DBConnection;
+import controller.entity.BookEntity;
+import controller.entity.BookIssueEntity;
+import controller.entity.MemberEntity;
+import controller.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import model.BookIssuedDTO;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 public class Issue_controller {
-
-    Connection connection = DBConnection.getInstance().getConnection();
-
 
     public ObservableList<String> getBookIds(String memberId) {
 
         ObservableList<String> bookIdList = FXCollections.observableArrayList();
 
-        String sql = "SELECT b.book_id FROM books b " +
+        String hql = "SELECT b.bookId FROM BookEntity b " +
                 "WHERE b.status = 'ACTIVE' " +
-                "AND b.available_copies > 0 " +
+                "AND b.availableCopies > 0 " +
                 "AND NOT EXISTS (" +
-                "SELECT 1 FROM book_issues bi " +
-                "WHERE bi.member_id = ? " +
-                "AND bi.book_id = b.book_id " +
+                "SELECT 1 FROM BookIssueEntity bi " +
+                "WHERE bi.member.memberId = :memberId " +
+                "AND bi.book.bookId = b.bookId " +
                 "AND bi.status = 'Issued')";
 
-        try {
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            List<String> results = session.createQuery(hql,String.class)
+                    .setParameter("memberId",memberId)
+                    .getResultList();
 
-            preparedStatement.setString(1, memberId);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-
-                String bookId = resultSet.getString("book_id");
-
-                bookIdList.add(bookId);
-
-            }
+            bookIdList.addAll(results);
 
             return bookIdList;
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
 
             throw new RuntimeException(e);
 
@@ -59,21 +49,17 @@ public class Issue_controller {
 
         ObservableList<String> memberIdList = FXCollections.observableArrayList();
 
-        String sql = "SELECT member_id FROM members WHERE status = 'Active' ";
+        String hql = "SELECT m.memberId FROM MemberEntity m WHERE m.status = 'Active' ";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            while (resultSet.next()){
+            List<String> results = session.createQuery(hql,String.class)
+                    .getResultList();
 
-                String memberId = resultSet.getString("member_id");
-                memberIdList.add(memberId);
-
-            }
+            memberIdList.addAll(results);
 
             return memberIdList;
-        } catch (SQLException e) {
+        } catch (Exception e) {
 
             throw new RuntimeException(e);
         }
@@ -82,81 +68,106 @@ public class Issue_controller {
 
     public String getMemberName(String memberId) {
 
-        String sql = "SELECT full_name FROM members WHERE member_id = ? ";
+        String hql = "SELECT m.fullName FROM MemberEntity m WHERE m.memberId = :memberId ";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,memberId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            if (resultSet.next()){
+            String memberName = session.createQuery(hql,String.class)
+                    .setParameter("memberId",memberId)
+                    .uniqueResult();
 
-                String name = resultSet.getString("full_name");
-                return name;
+            return memberName;
 
-            }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     public String getBookTitle(String bookId) {
 
-        String sql = "SELECT book_title FROM books WHERE book_id = ? ";
+        String hql = "SELECT b.bookTitle FROM BookEntity b WHERE b.bookId = :bookId ";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,bookId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            if (resultSet.next()){
+            String bookTitle = session.createQuery(hql,String.class)
+                    .setParameter("bookId",bookId)
+                    .uniqueResult();
 
-                String bookTitle = resultSet.getString("book_title");
-                return bookTitle;
-            }
-        } catch (SQLException e) {
+            return bookTitle;
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     public boolean issueBook(BookIssuedDTO bookIssuedDTO) {
 
-        String sql = " INSERT INTO book_issues " +
-                " (member_id, book_id, issue_date, due_date, status) " +
-                " VALUES (?,?,?,?,?) ";
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,bookIssuedDTO.getMemberId());
-            preparedStatement.setString(2,bookIssuedDTO.getBookId());
-            preparedStatement.setDate(3,java.sql.Date.valueOf(bookIssuedDTO.getIssueDate()));
-            preparedStatement.setDate(4,java.sql.Date.valueOf(bookIssuedDTO.getDueDate()));
-            preparedStatement.setString(5,bookIssuedDTO.getStatus());
+            Transaction transaction = session.beginTransaction();
 
-           return preparedStatement.executeUpdate() > 0;
+            try {
+                MemberEntity member = session.find(MemberEntity.class,bookIssuedDTO.getMemberId());
+                BookEntity book = session.find(BookEntity.class,bookIssuedDTO.getBookId());
 
-        } catch (SQLException e) {
+                if (member == null || book == null){
+                    transaction.rollback();
+                    return false;
+                }
+
+                BookIssueEntity bookIssueEntity = new BookIssueEntity();
+                bookIssueEntity.setMember(member);
+                bookIssueEntity.setBook(book);
+                bookIssueEntity.setIssueDate(bookIssuedDTO.getIssueDate());
+                bookIssueEntity.setDueDate(bookIssuedDTO.getDueDate());
+                bookIssueEntity.setStatus(bookIssuedDTO.getStatus());
+                session.persist(bookIssueEntity);
+
+                transaction.commit();
+
+                return true;
+            } catch (Exception e) {
+
+                if (transaction.isActive()){
+                    transaction.rollback();
+                }
+                throw e;
+            }
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public boolean updateAvailableBookCount(String bookId) {
 
-        String sql = "UPDATE books " +
-                "SET available_copies = available_copies - 1 " +
-                "WHERE book_id = ? AND available_copies > 0";
+        String hql = "UPDATE BookEntity b " +
+                "SET b.availableCopies = b.availableCopies - 1 " +
+                "WHERE b.bookId = :bookId AND b.availableCopies > 0";
 
-        try {
-            PreparedStatement preparedStatement =
-                    connection.prepareStatement(sql);
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            preparedStatement.setString(1, bookId);
+            Transaction transaction = session.beginTransaction();
 
-            return preparedStatement.executeUpdate() > 0;
+            try {
+                int rows = session.createMutationQuery(hql)
+                        .setParameter("bookId", bookId)
+                        .executeUpdate();
 
-        } catch (SQLException e) {
+                transaction.commit();
+
+                return rows > 0;
+
+            } catch (Exception e) {
+
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                }
+
+                throw e;
+            }
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

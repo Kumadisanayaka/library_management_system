@@ -1,17 +1,16 @@
 package controller.viewBooksController;
 
+import controller.entity.BookCategoryEntity;
+import controller.util.HibernateUtil;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.ViewBookDTO;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class View_books_controller {
 
@@ -21,22 +20,21 @@ public class View_books_controller {
 
         ObservableList<String> categoryList = FXCollections.observableArrayList();
 
-        String sql = "SELECT category_name,short_code FROM book_categories";
+        String hql = "FROM BookCategoryEntity b ";
 
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            while (resultSet.next()){
-                String shortCode = resultSet.getString("short_code");
-                String categoryName = resultSet.getString("category_name");
+            List<BookCategoryEntity> results =
+                    session.createQuery(hql,BookCategoryEntity.class).getResultList();
 
-                categoryList.add(shortCode+" - "+categoryName);
+            for(BookCategoryEntity category : results) {
+                categoryList.add(category.getShortCode() + " - " + category.getCategoryName());
             }
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println("Could not load Book Categories from DB : "+e.getMessage());
         }
+
         return categoryList;
     }
 
@@ -45,123 +43,121 @@ public class View_books_controller {
         ObservableList<ViewBookDTO> bookList = FXCollections.observableArrayList();
 
 
-        String sql = "SELECT b.book_id, b.book_title, " +
-                "a.author_name, b.isbn, b.total_copies, " +
-                "b.available_copies, bc.category_name, b.status " +
-                "FROM books b " +
-                "INNER JOIN authors a ON b.author_id = a.author_id " +
-                "INNER JOIN book_categories bc ON b.category_id = bc.category_id " +
+        String hql = "SELECT b.bookId, b.bookTitle, " +
+                "a.authorName, b.isbn, b.totalCopies, " +
+                "b.availableCopies, bc.categoryName, b.status " +
+                "FROM BookEntity b " +
+                "INNER JOIN b.author a " +
+                "INNER JOIN b.category bc " +
                 "WHERE 1=1 ";
-
-        List<Object> parameters = new ArrayList<>();
 
         if (searchText != null && !searchText.isBlank()){
 
-            sql += " AND (b.book_title LIKE ? OR a.author_name LIKE ?) ";
+            hql += " AND (b.bookTitle LIKE :search OR a.authorName LIKE :search) ";
 
-            parameters.add("%" +searchText+ "%");
-            parameters.add("%" +searchText+ "%");
         }
 
-        if (category != null && !category.isBlank()){
+        if (category != null && !category.isBlank() && !category.equals("All Categories")){
 
-            String categoryName = category.split("-")[1].trim();
+            hql += " AND bc.categoryName LIKE :categoryName ";
 
-            sql += " AND bc.category_name LIKE ? ";
-
-            parameters.add(categoryName);
         }
 
         if ("Available".equals(availability)){
 
-            sql += " AND b.available_copies > 0 ";
+            hql += " AND b.availableCopies > 0 ";
 
         } else if ("Unavailable".equals(availability)) {
 
-            sql += " AND b.available_copies = 0 ";
+            hql += " AND b.availableCopies = 0 ";
         }
 
         if ("Title (A-Z)".equals(sort)){
 
-            sql += " ORDER BY b.book_title ASC ";
+            hql += " ORDER BY b.bookTitle ASC ";
             
         } else if ("Title (Z-A)".equals(sort)) {
 
-            sql += " ORDER BY b.book_title DESC ";
+            hql += " ORDER BY b.bookTitle DESC ";
             
         } else if ("Author (A-Z)".equals(sort)) {
             
-            sql += " ORDER BY a.author_name ASC ";
+            hql += " ORDER BY a.authorName ASC ";
 
         } else if ("Author (Z-A)".equals(sort)) {
 
-            sql += " ORDER BY a.author_name DESC ";
+            hql += " ORDER BY a.authorName DESC ";
 
         }else {
 
-            sql += " ORDER BY b.book_id ASC ";
+            hql += " ORDER BY b.bookId ASC ";
 
         }
 
-        System.out.println(sql);
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            for (int i = 0; i < parameters.size(); i++){
+            Query<Object[]> query = session.createQuery(hql, Object[].class);
 
-                preparedStatement.setObject(i+1,parameters.get(i));
+            if (searchText != null && !searchText.isBlank()){
+
+                query.setParameter("search","%" +searchText+ "%");
             }
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            if (category != null && !category.isBlank() && !category.equals("All Categories")){
 
-            while (resultSet.next()){
+                String categoryName = category.split("-")[1].trim();
+
+                query.setParameter("categoryName",categoryName);
+
+            }
+
+            List<Object[]> results = query.getResultList();
+
+            for (Object[] result : results){
                 ViewBookDTO viewBookDTO = new ViewBookDTO();
-                viewBookDTO.setId(resultSet.getString("book_id"));
-                viewBookDTO.setTitle(resultSet.getString("book_title"));
-                viewBookDTO.setAuthor(resultSet.getString("author_name"));
-                viewBookDTO.setIsbn(resultSet.getString("isbn"));
-                viewBookDTO.setCategory(resultSet.getString("category_name"));
-                viewBookDTO.setTotalCopies(resultSet.getInt("total_copies"));
-                viewBookDTO.setAvailableCopies(resultSet.getInt("available_copies"));
-                viewBookDTO.setStatus(resultSet.getString("status"));
+                viewBookDTO.setId((String) result[0]);
+                viewBookDTO.setTitle((String) result[1]);
+                viewBookDTO.setAuthor((String) result[2]);
+                viewBookDTO.setIsbn((String) result[3]);
+                viewBookDTO.setTotalCopies(((Number)result[4]).intValue());
+                viewBookDTO.setAvailableCopies(((Number)result[5]).intValue());
+                viewBookDTO.setCategory((String) result[6]);
+                viewBookDTO.setStatus((String) result[7]);
 
                 bookList.add(viewBookDTO);
             }
 
             return bookList;
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public Integer getCategoryBookCount(String category) {
 
-        String sql = "SELECT COUNT(*) FROM books b " +
-                    "INNER JOIN book_categories bc " +
-                    "ON b.category_id = bc.category_id ";
+        String hql = "SELECT COUNT(b) FROM BookEntity b " +
+                    "INNER JOIN b.category bc ";
 
-        if (category != null && !category.isBlank()){
-            sql += " WHERE bc.category_name = ? ";
+        if (category != null && !category.isBlank() && !category.equals("All Categories")){
+            hql += " WHERE bc.categoryName = :categoryName ";
         }
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()) {
 
-            if (category != null && !category.isBlank()){
+            Query<Long> query = session.createQuery(hql,Long.class);
+
+            if (category != null && !category.isBlank() && !category.equals("All Categories")){
+
                 String categoryName = category.split("-")[1].trim();
-                preparedStatement.setString(1,categoryName);
+
+                query.setParameter("categoryName",categoryName);
             }
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            return query.getSingleResult().intValue();
 
-            if (resultSet.next()){
-                return resultSet.getInt(1);
-            }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        return 0;
     }
 }

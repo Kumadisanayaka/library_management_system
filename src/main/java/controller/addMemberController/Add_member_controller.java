@@ -1,34 +1,33 @@
 package controller.addMemberController;
 
-import db.DBConnection;
+import controller.entity.MemberEntity;
+import controller.entity.MembershipCategoryEntity;
+import controller.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.MemberDTO;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 public class Add_member_controller {
 
-    Connection connection = DBConnection.getInstance().getConnection();
-
     public ObservableList<String> getMemberCategories(){
         ObservableList<String> memberCategoryList = FXCollections.observableArrayList();
-        String sql = "SELECT category_name,short_code FROM membership_categories";
+        String hql = "FROM MembershipCategoryEntity ";
 
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try(Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            while (resultSet.next()){
-                String short_code = resultSet.getString("short_code");
-                String category_name = resultSet.getString("category_name");
+            List<MembershipCategoryEntity> categoryEntities =
+                    session.createQuery(hql,MembershipCategoryEntity.class).getResultList();
 
-                memberCategoryList.add(short_code+" - "+category_name);
+            for(MembershipCategoryEntity category : categoryEntities){
+
+                memberCategoryList.add(category.getShortCode()+ " - " +category.getCategoryName());
             }
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             System.err.println("Could not load Member Categories from DB : " + e.getMessage());
         }
 
@@ -40,47 +39,55 @@ public class Add_member_controller {
 
         String categoryShortCode = memberCategory.split("-")[0].trim();
 
-        String sql = "SELECT member_id FROM members WHERE member_id LIKE ? ORDER BY member_id DESC LIMIT 1";
+        String hql = "FROM MemberEntity m " +
+                "WHERE m.memberId LIKE :pattern " +
+                "ORDER BY m.memberId DESC";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,categoryShortCode + "%");
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            while (resultSet.next()){
-                String lastMemberId = resultSet.getString("member_id");
-                if (lastMemberId != null && lastMemberId.length() > categoryShortCode.length()){
-                    String lastNumberStr = lastMemberId.substring(categoryShortCode.length());
+            MemberEntity lastMember = session.createQuery(hql,MemberEntity.class)
+                    .setParameter("pattern",categoryShortCode + "%")
+                    .setMaxResults(1)
+                    .uniqueResult();
 
-                    try {
-                        int nextNumber = Integer.parseInt(lastNumberStr) + 1;
-                        return categoryShortCode + String.format("%03d",nextNumber);
-                    } catch (NumberFormatException e) {
-                    }
+            if (lastMember != null){
+
+                String lastMemberId = lastMember.getMemberId();
+
+                if (lastMemberId.length() > categoryShortCode.length()){
+
+                    String lastMemberIdStr = lastMemberId.substring(categoryShortCode.length());
+
+                    int nextNumber = Integer.parseInt(lastMemberIdStr)+1;
+
+                    return categoryShortCode + String.format("%03d",nextNumber);
+
                 }
             }
-
-            return categoryShortCode + "001";
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        return categoryShortCode + "001";
     }
 
     public Integer getCategoryId(String memberCategory){
         String shortCode = memberCategory.split("-")[0].trim();
 
-        String sql = "SELECT * FROM membership_categories";
+        String hql = "FROM MembershipCategoryEntity mc " +
+                " WHERE mc.shortCode LIKE :shortCode ";
 
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            while (resultSet.next()){
-                String sc = resultSet.getString("short_code");
-                if (shortCode.equalsIgnoreCase(sc.trim())){
-                    return resultSet.getInt("category_id");
-                }
+            MembershipCategoryEntity category =
+                    session.createQuery(hql,MembershipCategoryEntity.class)
+                            .setParameter("shortCode",shortCode)
+                            .uniqueResult();
+
+            if (category != null){
+
+                return category.getCategoryId();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -89,33 +96,39 @@ public class Add_member_controller {
         return null;
     }
 
-    public boolean addMember(MemberDTO memberDTO) {
+    public boolean addMember(MemberDTO memberDTO,Integer categoryId) {
 
-        String sql = "INSERT INTO members (" +
-                    "member_id, " +
-                    "full_name," +
-                    "email, " +
-                    "phone," +
-                    "address," +
-                    "category_id, " +
-                    "status) " +
-                    "VALUES" +
-                    "(?,?,?,?,?,?,?)";
+        Transaction transaction = null;
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,memberDTO.getId());
-            preparedStatement.setString(2,memberDTO.getFullName());
-            preparedStatement.setString(3,memberDTO.getEmail());
-            preparedStatement.setString(4,memberDTO.getPhoneNumber());
-            preparedStatement.setString(5,memberDTO.getAddress());
-            preparedStatement.setInt(6,memberDTO.getCategoryId());
-            preparedStatement.setString(7,memberDTO.getStatus());
+        try (Session session = HibernateUtil.getInstance().getFactory().openSession()){
 
-            return preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
+            transaction = session.beginTransaction();
+
+            MembershipCategoryEntity category =
+                    session.find(MembershipCategoryEntity.class,categoryId);
+
+            if (category == null){
+                transaction.rollback();
+                return false;
+            }
+
+            MemberEntity member = new MemberEntity();
+            member.setMemberId(memberDTO.getId());
+            member.setFullName(memberDTO.getFullName());
+            member.setAddress(memberDTO.getAddress());
+            member.setCategory(category);
+            member.setPhone(memberDTO.getPhoneNumber());
+            member.setEmail(memberDTO.getEmail());
+            member.setStatus(member.getStatus());
+            session.persist(member);
+            transaction.commit();
+
+            return true;
+        } catch (Exception e) {
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback();
+            }
             throw new RuntimeException(e);
         }
-
     }
 }

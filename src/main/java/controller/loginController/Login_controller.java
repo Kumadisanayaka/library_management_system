@@ -1,38 +1,29 @@
 package controller.loginController;
 
-import db.DBConnection;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import controller.entity.UserEntity;
+import controller.util.HibernateUtil;
+import org.hibernate.Session;
 
 public class Login_controller {
 
-    Connection connection = DBConnection.getInstance().getConnection();
-
     public boolean checkUsernameAndPassword(String userName, String password) {
 
-        String SQL = "SELECT username,password FROM users";
+        String HQL = "FROM UserEntity u " +
+                "WHERE u.username = :username " +
+                "AND u.password = :password";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            ResultSet resultSet =preparedStatement.executeQuery();
+        try (Session session = HibernateUtil.getInstance()
+                .getFactory().openSession()) {
 
-            while (resultSet.next()){
+            UserEntity user = session.createQuery(HQL, UserEntity.class)
+                    .setParameter("username", userName)
+                    .setParameter("password", password)
+                    .uniqueResult();
 
-            String dbUsername = resultSet.getString("username");
-            String dbPassword = resultSet.getString("password");
+            return user != null;
 
-            if (dbUsername.equals(userName) && dbPassword.equals(password)){
-                return true;
-            }
-
-            }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        return  false;
     }
 }

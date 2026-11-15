@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.BookIssuedDTO;
+import model.DashboardDTO;
 import scene.SceneManager;
 
 import java.net.URL;
@@ -134,34 +135,19 @@ public class Main_dashboard_page_controller  implements Initializable {
         tblRecentIssuedBooks.setItems(issuedBookList);
     }
 
-    private void loadTotalBookCount(){
-        Integer totalBooks = mainDashboardController.getTotalBookCount();
-        lblTotalBook.setText(String.valueOf(totalBooks));
-
-    }
-
-    private void loadTotalMemberCount(){
-        Integer totalMembers = mainDashboardController.getTotalMemberCount();
-        lblTotalMember.setText(String.valueOf(totalMembers));
-    }
-
-    private void loadTotalIssuedBookCount(){
-        Integer totalIssuedBooks = mainDashboardController.getTotalIssuedBookCount();
-        lblBookIssued.setText(String.valueOf(totalIssuedBooks));
-    }
-
-    private void loadTotalOverdueBookCount(){
-        Integer totalOverdueBooks = mainDashboardController.getTotalOverdueBookCount();
-        lblOverDueBooks.setText(String.valueOf(totalOverdueBooks));
+    private void loadDashboardCardDatas(){
+        DashboardDTO dashboardDTO = mainDashboardController.getDashboardCardData();
+        lblTotalBook.setText(String.valueOf(dashboardDTO.getTotalBookCount()));
+        lblTotalMember.setText(String.valueOf(dashboardDTO.getTotalMemberCount()));
+        lblBookIssued.setText(String.valueOf(dashboardDTO.getTotalIssuedBookCount()));
+        lblOverDueBooks.setText(String.valueOf(dashboardDTO.getTotalOverdueBookCount()));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTableDate();
-        loadTotalBookCount();
-        loadTotalMemberCount();
-        loadTotalIssuedBookCount();
-        loadTotalOverdueBookCount();
+        loadDashboardCardDatas();
+
 
         clmBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         clmMember.setCellValueFactory(new PropertyValueFactory<>("memberName"));
