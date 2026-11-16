@@ -1,29 +1,14 @@
-package service;
+package service.impl;
 
-import controller.entity.UserEntity;
-import controller.util.HibernateUtil;
-import org.hibernate.Session;
+import Repository.LoginRepository;
+import Repository.impl.LoginRepositoryImpl;
+import service.LoginService;
 
-public class LoginServiceImpl implements LoginService{
+public class LoginServiceImpl implements LoginService {
+
+    LoginRepository repository = new LoginRepositoryImpl();
 
     public boolean checkUsernameAndPassword(String userName, String password) {
-
-        String HQL = "FROM UserEntity u " +
-                "WHERE u.username = :username " +
-                "AND u.password = :password";
-
-        try (Session session = HibernateUtil.getInstance()
-                .getFactory().openSession()) {
-
-            UserEntity user = session.createQuery(HQL, UserEntity.class)
-                    .setParameter("username", userName)
-                    .setParameter("password", password)
-                    .uniqueResult();
-
-            return user != null;
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        return repository.checkUsernameAndPassword(userName, password);
     }
 }

@@ -1,4 +1,6 @@
 package Repository;
 
-public class LoginRepository {
+public interface LoginRepository {
+
+    boolean checkUsernameAndPassword(String userName, String password);
 }
