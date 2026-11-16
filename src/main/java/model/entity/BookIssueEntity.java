@@ -1,5 +1,5 @@
 
-package controller.entity;
+package model.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
