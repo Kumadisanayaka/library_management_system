@@ -7,8 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import model.BorrowingHistoryDTO;
-import model.StatusCountDTO;
+import model.dto.BorrowingHistoryDTO;
+import model.dto.StatusCountDTO;
 import scene.SceneManager;
 
 import java.net.URL;

@@ -1,10 +1,10 @@
 package controller.borrowingHistoryController;
 
-import controller.util.HibernateUtil;
+import db.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.BorrowingHistoryDTO;
-import model.StatusCountDTO;
+import model.dto.BorrowingHistoryDTO;
+import model.dto.StatusCountDTO;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
