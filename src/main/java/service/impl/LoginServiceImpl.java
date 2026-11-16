@@ -1,10 +1,10 @@
-package controller.loginController;
+package service;
 
 import controller.entity.UserEntity;
 import controller.util.HibernateUtil;
 import org.hibernate.Session;
 
-public class Login_controller {
+public class LoginServiceImpl implements LoginService{
 
     public boolean checkUsernameAndPassword(String userName, String password) {
 
