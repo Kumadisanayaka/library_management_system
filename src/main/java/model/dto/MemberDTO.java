@@ -1,4 +1,4 @@
-package model;
+package model.dto;
 
 public class MemberDTO {
     private String fullName;
