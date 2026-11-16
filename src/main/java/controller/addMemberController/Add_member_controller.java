@@ -1,11 +1,11 @@
 package controller.addMemberController;
 
-import controller.entity.MemberEntity;
-import controller.entity.MembershipCategoryEntity;
-import controller.util.HibernateUtil;
+import model.entity.MemberEntity;
+import model.entity.MembershipCategoryEntity;
+import db.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.MemberDTO;
+import model.dto.MemberDTO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
