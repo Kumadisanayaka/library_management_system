@@ -13,8 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import model.MemberCountDTO;
-import model.MemberDTO;
+import model.dto.MemberCountDTO;
+import model.dto.MemberDTO;
 import scene.SceneManager;
 
 import java.io.IOException;

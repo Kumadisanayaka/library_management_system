@@ -1,6 +1,6 @@
-package controller.util;
+package db.util;
 
-import controller.entity.*;
+import model.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 

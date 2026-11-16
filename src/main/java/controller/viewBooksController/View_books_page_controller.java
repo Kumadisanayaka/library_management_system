@@ -13,11 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
-import model.ViewBookDTO;
+import model.dto.ViewBookDTO;
 import scene.SceneManager;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class View_books_page_controller implements Initializable {

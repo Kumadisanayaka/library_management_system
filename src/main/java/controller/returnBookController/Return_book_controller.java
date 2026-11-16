@@ -1,6 +1,6 @@
 package controller.returnBookController;
 
-import controller.util.HibernateUtil;
+import db.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;

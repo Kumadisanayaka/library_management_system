@@ -1,11 +1,11 @@
 package controller.viewBooksController;
 
-import controller.entity.BookCategoryEntity;
-import controller.util.HibernateUtil;
+import model.entity.BookCategoryEntity;
+import db.util.HibernateUtil;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.ViewBookDTO;
+import model.dto.ViewBookDTO;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
