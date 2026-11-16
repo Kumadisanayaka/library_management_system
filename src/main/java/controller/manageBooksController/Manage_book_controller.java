@@ -1,12 +1,12 @@
 package controller.manageBooksController;
 
-import controller.entity.AuthorEntity;
-import controller.entity.BookCategoryEntity;
-import controller.util.HibernateUtil;
+import model.entity.AuthorEntity;
+import model.entity.BookCategoryEntity;
+import db.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.BookCountDTO;
-import model.BookDTO;
+import model.dto.BookCountDTO;
+import model.dto.BookDTO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;

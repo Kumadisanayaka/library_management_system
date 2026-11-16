@@ -13,8 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import model.BookCountDTO;
-import model.BookDTO;
+import model.dto.BookCountDTO;
+import model.dto.BookDTO;
 import scene.SceneManager;
 
 import java.net.URL;
