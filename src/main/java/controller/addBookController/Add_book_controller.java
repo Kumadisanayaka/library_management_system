@@ -1,16 +1,15 @@
 package controller.addBookController;
 
-import controller.entity.AuthorEntity;
-import controller.entity.BookCategoryEntity;
-import controller.entity.BookEntity;
-import controller.util.HibernateUtil;
+import model.entity.AuthorEntity;
+import model.entity.BookCategoryEntity;
+import model.entity.BookEntity;
+import db.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.BookDTO;
+import model.dto.BookDTO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.sql.*;
 import java.util.List;
 
 public class Add_book_controller {
