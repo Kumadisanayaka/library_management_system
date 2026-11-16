@@ -1,12 +1,12 @@
 package controller.issueBookController;
 
-import controller.entity.BookEntity;
-import controller.entity.BookIssueEntity;
-import controller.entity.MemberEntity;
-import controller.util.HibernateUtil;
+import model.entity.BookEntity;
+import model.entity.BookIssueEntity;
+import model.entity.MemberEntity;
+import db.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.BookIssuedDTO;
+import model.dto.BookIssuedDTO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
