@@ -5,15 +5,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import model.BookDTO;
+import model.dto.BookDTO;
 import scene.SceneManager;
+import service.AddBookService;
+import service.impl.AddBookServiceImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Add_book_page_controller implements Initializable {
 
-    Add_book_controller add_book_controller = new Add_book_controller();
+    AddBookService service = new AddBookServiceImpl();
 
     @FXML
     private Button btnAdd;
@@ -108,7 +110,7 @@ public class Add_book_page_controller implements Initializable {
     void btnAddOnAction(ActionEvent event) {
 
         //Validate book title
-        if (add_book_controller.isEmpty(txtBookTitle.getText())){
+        if (service.isEmpty(txtBookTitle.getText())){
             lblBooktitleError.setText("Please Enter Book Title.");
             txtBookTitle.getStyleClass().add("input-error");
             txtBookTitle.requestFocus();
@@ -118,7 +120,7 @@ public class Add_book_page_controller implements Initializable {
         }
 
         //Validate book author
-        if (add_book_controller.isEmpty(txtAuthor.getText())){
+        if (service.isEmpty(txtAuthor.getText())){
             lblAuthorError.setText("Please Enter Author name.");
             txtAuthor.getStyleClass().add("input-error");
             txtAuthor.requestFocus();
@@ -129,7 +131,7 @@ public class Add_book_page_controller implements Initializable {
         }
 
         //Validate Book ID
-        if (add_book_controller.isEmpty(txtBookId.getText())){
+        if (service.isEmpty(txtBookId.getText())){
             lblBookIdError.setText("Plese Genarate Book ID.");
             txtBookId.getStyleClass().add("input-error");
             txtBookId.requestFocus();
@@ -139,7 +141,7 @@ public class Add_book_page_controller implements Initializable {
         }
 
         //Validate ISBN
-        if (add_book_controller.isEmpty(txtIsbn.getText())){
+        if (service.isEmpty(txtIsbn.getText())){
             lblIsbnError.setText("Please Enter ISBN Number.");
             txtIsbn.getStyleClass().add("input-error");
             txtIsbn.requestFocus();
@@ -149,7 +151,7 @@ public class Add_book_page_controller implements Initializable {
         }
 
         //Validate Category
-        if (add_book_controller.isEmpty(cmbCategory.getValue())){
+        if (service.isEmpty(cmbCategory.getValue())){
             lblCmbCategoryError.setText("Please select a category.");
             cmbCategory.getStyleClass().add("input-error");
             cmbCategory.requestFocus();
@@ -159,7 +161,7 @@ public class Add_book_page_controller implements Initializable {
         }
 
         //Validate Description
-        if (add_book_controller.isEmpty(txtDescription.getText())){
+        if (service.isEmpty(txtDescription.getText())){
             lblDescriptionError.setText("Please Enter a Description.");
             txtDescription.getStyleClass().add("input-error");
             txtDescription.requestFocus();
@@ -169,7 +171,7 @@ public class Add_book_page_controller implements Initializable {
         }
 
         //Validate Total copies
-        if (add_book_controller.isEmpty(txtTotalCopies.getText())){
+        if (service.isEmpty(txtTotalCopies.getText())){
             lblTotalCopiesError.setText("Please Enter total copies.");
             txtTotalCopies.getStyleClass().add("input-error");
             txtTotalCopies.requestFocus();
@@ -206,11 +208,11 @@ public class Add_book_page_controller implements Initializable {
         book.setTotalCopies(totalCopies);
         book.setAvailablecopies(totalCopies);
         book.setStatus("ACTIVE");
-        Integer authorId = add_book_controller.getAuthorId(author);
-        Integer categoryId = add_book_controller.getCategoryId(category);
+        Integer authorId = service.getAuthorId(author);
+        Integer categoryId = service.getCategoryId(category);
 
         try {
-            boolean isAdded = add_book_controller.addBook(book,authorId,categoryId);
+            boolean isAdded = service.addBook(book,authorId,categoryId);
 
             if (isAdded){
                 new Alert(Alert.AlertType.INFORMATION, "Book Added Successfully!\nBook ID : " + book.getBookId()).show();
@@ -292,7 +294,7 @@ public class Add_book_page_controller implements Initializable {
     }
 
     public void loadBookCategories(){
-        ObservableList<String> bookCategories = add_book_controller.getBookCategories();
+        ObservableList<String> bookCategories = service.getBookCategories();
         cmbCategory.setItems(bookCategories);
     }
 
@@ -327,7 +329,7 @@ public class Add_book_page_controller implements Initializable {
         }
 
         try {
-            String bookId = add_book_controller.genarateBookId(bookCategory);
+            String bookId = service.genarateBookId(bookCategory);
             txtBookId.setText(bookId);
             txtBookId.setEditable(false);
         } catch (Exception e) {

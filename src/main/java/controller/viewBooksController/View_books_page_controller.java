@@ -13,16 +13,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
-import model.ViewBookDTO;
+import model.dto.ViewBookDTO;
 import scene.SceneManager;
+import service.ViewBooksService;
+import service.impl.ViewBooksServiceImpl;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class View_books_page_controller implements Initializable {
 
-    View_books_controller viewBooksController = new View_books_controller();
+    ViewBooksService service = new ViewBooksServiceImpl();
 
     @FXML
     private TableColumn<ViewBookDTO, String> availableCopiesColumn;
@@ -153,7 +154,7 @@ public class View_books_page_controller implements Initializable {
         cmbSortBy.setValue(null);
         cmbSortBy.setPromptText("Select Sort by");
         loadFilteredBooks();
-        Integer totalBooks = viewBooksController.getCategoryBookCount(null);
+        Integer totalBooks = service.getCategoryBookCount(null);
         lblTotalCount.setText(String.valueOf(totalBooks));
     }
 
@@ -189,7 +190,7 @@ public class View_books_page_controller implements Initializable {
 
     private void loadCategories(){
 
-        ObservableList<String> categoryList = viewBooksController.getCategories();
+        ObservableList<String> categoryList = service.getCategories();
         cmbCategory.setItems(categoryList);
     }
 
@@ -200,7 +201,7 @@ public class View_books_page_controller implements Initializable {
         String availability = cmbAvailability.getValue();
         String sort = cmbSortBy.getValue();
 
-        ObservableList<ViewBookDTO> bookList = viewBooksController.applyFilters(searchText,category,availability,sort);
+        ObservableList<ViewBookDTO> bookList = service.applyFilters(searchText,category,availability,sort);
 
         tblViewBooks.setItems(bookList);
 
@@ -234,7 +235,7 @@ public class View_books_page_controller implements Initializable {
 
         loadFilteredBooks();
 
-        lblTotalCount.setText(String.valueOf(viewBooksController.getCategoryBookCount(null)));
+        lblTotalCount.setText(String.valueOf(service.getCategoryBookCount(null)));
 
         txtSearch.textProperty().addListener(
             (observable, oldValue, newValue) ->{
@@ -245,7 +246,7 @@ public class View_books_page_controller implements Initializable {
             (observable, oldValue, newValue) ->{
                 loadFilteredBooks();
 
-                Integer bookCount = viewBooksController.getCategoryBookCount(newValue);
+                Integer bookCount = service.getCategoryBookCount(newValue);
 
                 lblTotalCount.setText(String.valueOf(bookCount));
 

@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import scene.SceneManager;
+import service.ReturnBookService;
+import service.impl.ReturnBookServiceImpl;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -13,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class Return_book_page_controller implements Initializable {
 
-    Return_book_controller returnBookController = new Return_book_controller();
+    ReturnBookService service = new ReturnBookServiceImpl();
 
     @FXML
     private Button btnAddBook;
@@ -164,11 +166,11 @@ public class Return_book_page_controller implements Initializable {
             return;
         }
 
-        Integer issueId = returnBookController.getIssueId(memberId,bookId);
+        Integer issueId = service.getIssueId(memberId,bookId);
 
         if (issueId != null){
 
-            boolean isReturned = returnBookController.returnBook(issueId);
+            boolean isReturned = service.returnBook(issueId);
 
             if (isReturned){
                 showSuccess("Book Returned sucessfully!");
@@ -186,32 +188,32 @@ public class Return_book_page_controller implements Initializable {
 
     private void loadMemberIds(){
 
-        ObservableList<String> memberList = returnBookController.getMemberIds();
+        ObservableList<String> memberList = service.getMemberIds();
         cmbMemberId.setItems(memberList);
 
     }
 
     private void loadMemberName(){
 
-        String memberName = returnBookController.getMemberName(cmbMemberId.getValue());
+        String memberName = service.getMemberName(cmbMemberId.getValue());
         txtMemberName.setText(memberName);
     }
 
     private void loadBookIds(){
 
-        ObservableList<String> bookIdList = returnBookController.getBookIds(cmbMemberId.getValue());
+        ObservableList<String> bookIdList = service.getBookIds(cmbMemberId.getValue());
         cmbBookId.setItems(bookIdList);
     }
 
     private void loadBookTitle(){
 
-        String bookTitle = returnBookController.getBookTitle(cmbBookId.getValue());
+        String bookTitle = service.getBookTitle(cmbBookId.getValue());
         txtBookTitle.setText(bookTitle);
     }
 
     private void loadIssueDate(){
 
-        LocalDate issuedDate = returnBookController.getIssueDate(cmbBookId.getValue(),cmbMemberId.getValue());
+        LocalDate issuedDate = service.getIssueDate(cmbBookId.getValue(),cmbMemberId.getValue());
         datepickerIssueDate.setValue(issuedDate);
     }
 

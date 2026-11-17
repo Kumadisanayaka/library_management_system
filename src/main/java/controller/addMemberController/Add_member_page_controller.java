@@ -5,8 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import model.MemberDTO;
+import model.dto.MemberDTO;
 import scene.SceneManager;
+import service.AddMemberService;
+import service.impl.AddMemberServiceImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +16,7 @@ import java.util.ResourceBundle;
 public class Add_member_page_controller implements Initializable {
 
     Add_member_form_validation_Controller addMemberFormValidationController = new Add_member_form_validation_Controller();
-    Add_member_controller addMemberController = new Add_member_controller();
+    AddMemberService service = new AddMemberServiceImpl();
 
     @FXML
     private Button btnAdd;
@@ -106,7 +108,7 @@ public class Add_member_page_controller implements Initializable {
         boolean isValid = isValidAllInputs();
 
         if (isValid){
-            Integer categoryId = addMemberController.getCategoryId(cmbMemberCategory.getValue());
+            Integer categoryId = service.getCategoryId(cmbMemberCategory.getValue());
             MemberDTO memberDTO = new MemberDTO();
             memberDTO.setFullName(txtFullName.getText());
             memberDTO.setId(txtMemberId.getText());
@@ -118,7 +120,7 @@ public class Add_member_page_controller implements Initializable {
             memberDTO.setStatus("Active");
 
             try {
-                boolean isAdded = addMemberController.addMember(memberDTO,categoryId);
+                boolean isAdded = service.addMember(memberDTO,categoryId);
 
                 if (isAdded){
                     new Alert(Alert.AlertType.INFORMATION,"Member Added Successfully!\nMember ID : "+memberDTO.getId()).show();
@@ -230,7 +232,7 @@ public class Add_member_page_controller implements Initializable {
             return;
         }else{
             try{
-                txtMemberId.setText(addMemberController.genarateMemberId(memberCategory));
+                txtMemberId.setText(service.genarateMemberId(memberCategory));
                 txtMemberId.setEditable(false);
             } catch (Exception e) {
                 new Alert(Alert.AlertType.ERROR,"Failed to generate Member ID : "+e.getMessage()).show();
@@ -279,7 +281,7 @@ public class Add_member_page_controller implements Initializable {
     }
 
     public void loadMemberCategories(){
-        ObservableList<String> memberCategoryList = addMemberController.getMemberCategories();
+        ObservableList<String> memberCategoryList = service.getMemberCategories();
         cmbMemberCategory.setItems(memberCategoryList);
 
     }

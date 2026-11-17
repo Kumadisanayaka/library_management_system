@@ -13,16 +13,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import model.BookCountDTO;
-import model.BookDTO;
+import model.dto.BookCountDTO;
+import model.dto.BookDTO;
 import scene.SceneManager;
+import service.ManageBookService;
+import service.impl.ManageBookServiceImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Manage_books_page_controller implements Initializable {
 
-    Manage_book_controller manageBookController = new Manage_book_controller();
+    ManageBookService service = new ManageBookServiceImpl();
 
     @FXML
     private Button btnAddBook;
@@ -166,7 +168,7 @@ public class Manage_books_page_controller implements Initializable {
 
     private void loadBookCategories(){
 
-        ObservableList<String> bookCategoryList = manageBookController.getBookCategories();
+        ObservableList<String> bookCategoryList = service.getBookCategories();
 
         cmbBookCategories.setItems(bookCategoryList);
         cmbBookCategories.setValue("All Categories");
@@ -177,7 +179,7 @@ public class Manage_books_page_controller implements Initializable {
         String searchtxt = txtSearchField.getText();
         String category = cmbBookCategories.getValue();
 
-        ObservableList<BookDTO> bookList = manageBookController.applyFilters(searchtxt,category);
+        ObservableList<BookDTO> bookList = service.applyFilters(searchtxt,category);
 
         tblBook.setItems(bookList);
 
@@ -186,7 +188,7 @@ public class Manage_books_page_controller implements Initializable {
 
     private void loadBookCount(){
 
-        BookCountDTO bookCountDTO = manageBookController.getBookCount();
+        BookCountDTO bookCountDTO = service.getBookCount();
 
         lblTotalBookCount.setText(String.valueOf(bookCountDTO.getToatlBooks()));
         lblAvailableBookCount.setText(String.valueOf(bookCountDTO.getAvailableBooks()));
@@ -271,11 +273,11 @@ public class Manage_books_page_controller implements Initializable {
                     BookDTO book = getTableView().getItems().get(getIndex());
 
                    int availableBookCount =
-                           manageBookController.getAvailableBookCount(book.getBookId());
+                           service.getAvailableBookCount(book.getBookId());
 
                    if(book.getStatus().equals("ACTIVE")){
 
-                       boolean isUpdated = manageBookController.deActiveBook(book.getBookId());
+                       boolean isUpdated = service.deActiveBook(book.getBookId());
 
                        if (isUpdated){
                            showSuccess("Book deactivated successfully!");
@@ -287,7 +289,7 @@ public class Manage_books_page_controller implements Initializable {
                    }else {
                        if (availableBookCount > 0){
 
-                           boolean isUpdated = manageBookController.activeBook(book.getBookId());
+                           boolean isUpdated = service.activeBook(book.getBookId());
 
                            if (isUpdated){
                                showSuccess("Book activated successfully!");

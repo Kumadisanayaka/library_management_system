@@ -7,9 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import model.BorrowingHistoryDTO;
-import model.StatusCountDTO;
+import model.dto.BorrowingHistoryDTO;
+import model.dto.StatusCountDTO;
 import scene.SceneManager;
+import service.BorrowingHistoryService;
+import service.impl.BorrowingHistoryServiceImpl;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -17,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class Borrowing_history_page_controller implements Initializable {
 
-    Borrowing_history_controller borrowingHistoryController = new Borrowing_history_controller();
+    BorrowingHistoryService service = new BorrowingHistoryServiceImpl();
 
     @FXML
     private Button btnAddBook;
@@ -161,7 +163,7 @@ public class Borrowing_history_page_controller implements Initializable {
     private void loadFilters(){
 
         ObservableList<BorrowingHistoryDTO> historyList =
-                borrowingHistoryController.applyFilters(
+                service.applyFilters(
                         txtsearch.getText(),cmbBookStatCategories.getValue());
 
         tblHistoryData.setItems(historyList);
@@ -170,7 +172,7 @@ public class Borrowing_history_page_controller implements Initializable {
 
     private void loadRecordCount(){
 
-        StatusCountDTO countDTO = borrowingHistoryController.getRecordCount();
+        StatusCountDTO countDTO = service.getRecordCount();
 
         lblTotalRecordsCount.setText(String.valueOf(countDTO.getTotalRecords()));
         lblBookIssuedCount.setText(String.valueOf(countDTO.getIssuedBooks()));

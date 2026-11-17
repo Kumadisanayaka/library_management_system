@@ -13,9 +13,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import model.MemberCountDTO;
-import model.MemberDTO;
+import model.dto.MemberCountDTO;
+import model.dto.MemberDTO;
 import scene.SceneManager;
+import service.ManageMemberService;
+import service.impl.ManageMemberServiceImpl;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class Manage_member_Page_controller implements Initializable {
 
-    Manage_member_controller manageMemberController = new Manage_member_controller();
+    ManageMemberService service = new ManageMemberServiceImpl();
 
     @FXML
     private Button btnAddBook;
@@ -166,7 +168,7 @@ public class Manage_member_Page_controller implements Initializable {
 
     private void loadMemberCategories(){
 
-        ObservableList<String> categoryList = manageMemberController.getMemberCategories();
+        ObservableList<String> categoryList = service.getMemberCategories();
 
         cmbCategory.setItems(categoryList);
     }
@@ -175,7 +177,7 @@ public class Manage_member_Page_controller implements Initializable {
         String searchText = txtSearch.getText();
         String category = cmbCategory.getValue();
 
-        ObservableList<MemberDTO> memberList = manageMemberController.applyFilters(searchText,category);
+        ObservableList<MemberDTO> memberList = service.applyFilters(searchText,category);
 
         tblMember.setItems(memberList);
 
@@ -207,7 +209,7 @@ public class Manage_member_Page_controller implements Initializable {
 
     private void loadMemberCount(){
 
-        MemberCountDTO memberCount = manageMemberController.getMemberCount();
+        MemberCountDTO memberCount = service.getMemberCount();
 
         lblTotalMembersCount.setText(String.valueOf(memberCount.getTotalMembers()));
         lblStudentMembersCount.setText(String.valueOf(memberCount.getStudentMembers()));
@@ -270,7 +272,7 @@ public class Manage_member_Page_controller implements Initializable {
                             .getItems()
                             .get(getIndex());
 
-                    boolean isDeleted = manageMemberController.deleteMember(member.getId());
+                    boolean isDeleted = service.deleteMember(member.getId());
 
                     if (isDeleted){
                         showSuccess("Member Deleted Successfully!");

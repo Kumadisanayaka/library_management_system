@@ -9,16 +9,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.BookIssuedDTO;
-import model.DashboardDTO;
+import model.dto.BookIssuedDTO;
+import model.dto.DashboardDTO;
 import scene.SceneManager;
+import service.impl.MainDashboardServiceImpl;
+import service.MainDashbordService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Main_dashboard_page_controller  implements Initializable {
 
-    Main_dashboard_controller mainDashboardController = new Main_dashboard_controller();
+    MainDashbordService service = new MainDashboardServiceImpl();
 
     @FXML
     private Button btnAddMember;
@@ -131,12 +133,12 @@ public class Main_dashboard_page_controller  implements Initializable {
     }
 
     private void loadTableDate(){
-        ObservableList<BookIssuedDTO> issuedBookList = mainDashboardController.getLoadIssuedBookData();
+        ObservableList<BookIssuedDTO> issuedBookList = service.getLoadIssuedBookData();
         tblRecentIssuedBooks.setItems(issuedBookList);
     }
 
     private void loadDashboardCardDatas(){
-        DashboardDTO dashboardDTO = mainDashboardController.getDashboardCardData();
+        DashboardDTO dashboardDTO = service.getDashboardCardData();
         lblTotalBook.setText(String.valueOf(dashboardDTO.getTotalBookCount()));
         lblTotalMember.setText(String.valueOf(dashboardDTO.getTotalMemberCount()));
         lblBookIssued.setText(String.valueOf(dashboardDTO.getTotalIssuedBookCount()));
