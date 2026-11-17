@@ -12,14 +12,7 @@ public class HibernateUtil {
     private HibernateUtil(){
 
         try {
-            factory = new Configuration()
-                    .setProperty("hibernate.connection.url",
-                            "jdbc:mysql://localhost:3306/library_management_system_v1?createDatabaseIfNotExist=true")
-                    .setProperty("hibernate.connection.username", "root")
-                    .setProperty("hibernate.connection.password", "1234")
-                    .setProperty("hibernate.hbm2ddl.auto", "validate")
-                    .setProperty("hibernate.show_sql","true")
-                    .setProperty("hibernate.format_sql","true")
+            factory = new Configuration().configure()
                     .addAnnotatedClass(UserEntity.class)
                     .addAnnotatedClass(AuthorEntity.class)
                     .addAnnotatedClass(BookEntity.class)
