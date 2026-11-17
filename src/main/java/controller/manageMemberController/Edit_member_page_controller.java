@@ -8,13 +8,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.dto.MemberDTO;
+import service.ManageMemberService;
+import service.impl.ManageMemberServiceImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Edit_member_page_controller implements Initializable {
 
-    Manage_member_controller manageMemberController = new Manage_member_controller();
+    ManageMemberService service = new ManageMemberServiceImpl();
 
     private Manage_member_Page_controller parentController;
 
@@ -81,7 +83,7 @@ public class Edit_member_page_controller implements Initializable {
             return;
         }
 
-        boolean isUpdated = manageMemberController.updateMember(id,fullname,email,phonenumber,address);
+        boolean isUpdated = service.updateMember(id,fullname,email,phonenumber,address);
 
         if (isUpdated){
             showSuccess("Member updated successfully!");

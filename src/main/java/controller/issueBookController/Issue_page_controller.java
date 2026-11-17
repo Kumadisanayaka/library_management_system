@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.dto.BookIssuedDTO;
 import scene.SceneManager;
+import service.IssueService;
+import service.impl.IssueServiceImpl;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -14,7 +16,7 @@ import java.util.ResourceBundle;
 
 public class Issue_page_controller implements Initializable {
 
-    Issue_controller issueController = new Issue_controller();
+    IssueService service = new IssueServiceImpl();
 
     @FXML
     private Button btnAddBook;
@@ -161,8 +163,8 @@ public class Issue_page_controller implements Initializable {
         bookIssuedDTO.setDueDate(dueDate);
         bookIssuedDTO.setStatus("Issued");
 
-        boolean isIssued = issueController.issueBook(bookIssuedDTO);
-        boolean isUpdatedavailableCount = issueController.updateAvailableBookCount(bookId);
+        boolean isIssued = service.issueBook(bookIssuedDTO);
+        boolean isUpdatedavailableCount = service.updateAvailableBookCount(bookId);
 
         if (isIssued && isUpdatedavailableCount){
             showSuccess("Book Issued Successfully!");
@@ -200,23 +202,23 @@ public class Issue_page_controller implements Initializable {
 
     private void loadBookIds(){
 
-        ObservableList<String> bookIdList = issueController.getBookIds(cmbMemberId.getValue());
+        ObservableList<String> bookIdList = service.getBookIds(cmbMemberId.getValue());
         cmbBookId.setItems(bookIdList);
     }
 
     private void loadMemberIds(){
 
-        ObservableList<String> memberList = issueController.getMemberIds();
+        ObservableList<String> memberList = service.getMemberIds();
         cmbMemberId.setItems(memberList);
     }
 
     private void loadMemberName(){
-        String memberName = issueController.getMemberName(cmbMemberId.getValue());
+        String memberName = service.getMemberName(cmbMemberId.getValue());
         txtMemberName.setText(memberName);
     }
 
     private void loadBookTitle(){
-        String bookTitle = issueController.getBookTitle(cmbBookId.getValue());
+        String bookTitle = service.getBookTitle(cmbBookId.getValue());
         txtBookTitle.setText(bookTitle);
     }
 

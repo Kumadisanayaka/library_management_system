@@ -9,13 +9,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.dto.BookDTO;
+import service.ManageBookService;
+import service.impl.ManageBookServiceImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Edit_book_page_controller implements Initializable {
 
-    Manage_book_controller manageBookController = new Manage_book_controller();
+    ManageBookService service = new ManageBookServiceImpl();
 
     private Manage_books_page_controller parentController;
 
@@ -66,7 +68,7 @@ public class Edit_book_page_controller implements Initializable {
 
         String bookId = txtBookId.getText();
 
-        int issuecopy = manageBookController.getIssueCopiesCount(bookId);
+        int issuecopy = service.getIssueCopiesCount(bookId);
 
         String isbn = txtIsbn.getText();
         String title = txtBookTitle.getText();
@@ -147,16 +149,16 @@ public class Edit_book_page_controller implements Initializable {
 
             if (isOtherBookdetailsChange) {
 
-                isUpdatedOther = manageBookController.updateBook(
+                isUpdatedOther = service.updateBook(
                         bookId, isbn, title, totalC, description
                 );
             }
 
             if (isAuthorChanged) {
 
-                Integer authorId = manageBookController.getAuthorId(selectedBook.getAuthor());
+                Integer authorId = service.getAuthorId(selectedBook.getAuthor());
 
-                isUpdatedAuthor = manageBookController.updateAuthor(author,authorId);
+                isUpdatedAuthor = service.updateAuthor(author,authorId);
             }
 
             if (isUpdatedOther && isUpdatedAuthor) {
@@ -181,7 +183,7 @@ public class Edit_book_page_controller implements Initializable {
 
         this.selectedBook = book;
 
-        int issuecopy = manageBookController.getIssueCopiesCount(selectedBook.getBookId());
+        int issuecopy = service.getIssueCopiesCount(selectedBook.getBookId());
 
         int total = selectedBook.getTotalCopies();
 
